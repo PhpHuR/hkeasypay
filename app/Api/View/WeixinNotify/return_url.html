@@ -1,0 +1,38 @@
+<include file="Public:head"/>
+<div class="m-t-md wrapper-md" style="word-wrap: break-word; word-break: break-all;">
+    <div class="container aside-xxxl text-center">
+        <div class="panel panel-default" style="padding-bottom:30px">
+            <div class="panel-body">
+                <span style="font-size:49px; font-weight:bold;" class="panel-default"> 扫码付 </span><br>
+                <span style="font-size:13px"><b>訂單號:</b>{$order}</span><br><br>
+                <span style="font-size:13px"><b>訂單金額:</b>RMB {$amount}</span><br><br>
+                <span style="font-size:13px"><b>時間:</b>{:date('Y-m-d H:i:s')}</span><br><br>
+                <span style="font-size:13px"><b>请用:</b>微信扫描支付</span><br><br>
+                <img alt="扫码支付" src="http://www.paypaypro.com/qrcode.php?data={$wei_path|urlencode}"
+                     style="width:150px;height:150px;"/><br><br>
+                <span id="resualt"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:foot"/>
+<script type="text/javascript">
+    $(function () {
+        //定时请求刷新
+        setInterval(runajax, 5000);
+    });
+    //ajax方法执行
+    function runajax() {
+        $.post("/Api/Query/orderSelect", {
+                order: "{$order}"
+            },
+            function (data) {
+                if (data.status == 1) {
+                    alert('支付成功');
+                    console.log(data.returnurl);
+                    window.location.href = data.returnurl+'?order_number='+data.orderid+'&status=SUCCESS&orderAmount='+{$amount};
+                }
+            })
+    }
+</script>
+</html>

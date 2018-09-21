@@ -1,0 +1,240 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('turnFoOrderPage')}">
+            <div class="row maintop" style="margin-top: 20px">
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                               placeholder="点击选择日期范围"/>
+
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <input type="text" name="key" id="key" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$keyy}"
+                               placeholder="输入需查询的关键字"/>
+                    </div>
+                </div>
+                <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                    搜索
+                </button>
+                <div class="fl_left">
+                    <a href="{:U('turnFoOrderPage')}">
+                        <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                        <table class="urllist white" id="dynamic-table" style="margin-top: 20px">
+                            <thead>
+                            <tr>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>ID</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>日期時間</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>客戶名稱</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>商戶號MID</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>客戶訂單號碼</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>到岸货币</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>结算金额</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>收款銀行</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>收款人名</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>銀行帳號</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>(SwiftCode-国-FW/ABA清算号)</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>跨境金額</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>跨境手續費</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>狀態</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>操作</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="payout_list" item="v">
+                                <tr>
+                                    <td class="hidden-sm hidden-xs" height="28" ><div class='border_margin'>{$v.payout_id}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.begin_time|date="Y-m-d H:i:s",###}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.member_name}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.uid}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.payout_orderid}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.currency_id|getCurrencyName}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.settlementmoney}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.bankname}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.reaccname}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.reaccno}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.proname}-{$v.cityname}-{$v.reaccdept}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.transfermoney}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.free}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>
+                                        <switch name="v.status">
+                                            <case value="1"><span class="label label-success arrowed-in arrowed-in-right">审核通过</span></case>
+                                            <case value="2"><span class="label label-sm label-fiale">审核失败</span></case>
+                                            <case value="3"><span class="label label-info arrowed-right arrowed-in">处理中</span></case>
+                                            <case value="4"><span class="label label-sm label-success">转账成功</span></case>
+                                            <case value="5"><span class="label label-danger arrowed">转账失败</span></case>
+                                            <default /><span class="label label-sm label-inverse arrowed-in">待审核</span>
+                                        </switch>
+                                    </div>
+                                    </td>
+                                    <td class="hidden-sm">
+                                        <div class="border_margin">
+                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                <a class="green payoutAudit"  href="{:U('turnFoOrderPage')}" data-id="{$v.payout_id}" title="详情">
+                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                </a>
+                                            </div>
+                                            <div class="hidden-md hidden-lg">
+                                                <div class="inline position-relative">
+                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a href="{:U('turnFoOrderPage')}" data-id="{$v.payout_id}" class="tooltip-success payoutAudit" data-rel="tooltip" title="" data-original-title="详情">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="15" align="left">
+                                    <a class="btn btn-sm btn-warning"  href="{:U('turnFoOrderPage',array('action'=>'export','reservation'=>$sldate,'status'=>$status))}"  title="导出报表">
+                                        <i class="ace-icon fa fa-fire bigger-110"></i>
+                                        <span class="bigger-110 no-text-shadow">导出报表</span>
+                                    </a>
+                                    {$page}
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+
+    <!-- 显示模态框（Modal） -->
+    <div class="modal fade in" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-backdrop fade in" id="gbbb" style="height: 100%;"></div>
+        <form class="form-horizontal ajaxForm2" name="turnFoOrderPage" method="post" action="{:U('turnFoOrderPage')}">
+            <input type="hidden" name="payout_id" id="editpayout_id" value="" />
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="gb"  data-dismiss="modal"
+                                aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            出金记录详情
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 客戶訂單號碼：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="payout_orderid" id="editpayout_orderid" value="" class="col-xs-10" readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 收款銀行：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="bankname" id="editbankname" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 收款人名：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="reaccname" id="editreaccname" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 銀行帳號：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="reaccno" id="editreaccno" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 出金金額RMB：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="transfermoney" id="edittransfermoney" readonly class="col-xs-10 "  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 出金手續費：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="free" id="editfree" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 备注：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="editremark" id="editremark" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"  id="gbb" >
+                            关闭
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

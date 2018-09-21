@@ -1,0 +1,217 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <span class="white font20">帳戶餘額</span>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="m-b-md">
+                            <span class="white font20">结余</span>
+                        </div>
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th width="16%"><div class="border_top border_dashed text-center">貨幣</div></th>
+                                        <th width="29%"><div class="border_top border_dashed text-center">帳面餘額</div></th>
+                                        <th width="29%"><div class="border_top text-center">可用餘額</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="userinfo" id="vo">
+                                        <tr>
+                                            <td><div class="border_margin text-center">{$vo.currency_id|getCurrencyName}</div></td>
+                                            <td><div class="border_margin text-center">{$vo.sumcount|number_format=###,2,'.',','}</div></td>
+                                            <td><div class="border_margin text-center">{$vo.availablecount|number_format=###,2,'.',','}</div></td>
+                                        </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <div class="m-b-md">
+                            <span class="white font20">今日匯價</span>
+                        </div>
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th width="16%"><div class="border_top border_dashed text-center">貨幣</div></th>
+                                        <th width="29%"><div class="border_top border_dashed text-center">賣出價</div></th>
+                                        <th width="29%"><div class="border_top text-center">買入價</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="curofferList" id="v">
+                                        <tr>
+                                            <td><div class="border_margin text-center">{$v.currency_code}</div></td>
+                                            <td><div class="border_margin text-center">{$v.cursell}</div></td>
+                                            <td><div class="border_margin text-center">{$v.curbuy}</div></td>
+                                        </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <div class="m-b-md">
+                            <span class="white font20">子賬號</span>
+                        </div>
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th width="16%"><div class="border_top border_dashed text-center">貨幣</div></th>
+                                        <th width="29%"><div class="border_top border_dashed text-center">名稱</div></th>
+                                        <th width="29%"><div class="border_top text-center">可用餘額</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="sub_userinfo" id="va">
+                                        <tr>
+                                            <td><div class="border_margin text-center">{$va.currency_id|getCurrencyName}</div></td>
+                                            <td><div class="border_margin text-center">{$va.attribute|getSubUserBalanceAttributeName}</div></td>
+                                            <td><div class="border_margin text-center">{$va.sub_user_balance|number_format=###,2,'.',','}</div></td>
+                                        </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+
+                        <div class="m-b-md">
+                            <span class="white font20">今日收支</span>
+                        </div>
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:80px"><div class="border_top border_dashed text-center">入金</div></th>
+                                        <th style="min-width:80px"><div class="border_top border_dashed text-center">入金手續費</div></th>
+                            <th style="min-width:80px"><div class="border_top border_dashed text-center">出金</div></th>
+                            <th style="min-width:80px"><div class="border_top text-center">出金手續費</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><div class="border_margin text-center">{$vo.currency_id|getCurrencyName} {$payin_order_sum|number_format=###,2,'.',','}</div></td>
+                                        <td><div class="border_margin text-center">{$vo.currency_id|getCurrencyName} {$payin_order_free|number_format=###,2,'.',','}</div></td>
+                                        <td><div class="border_margin text-center">{$vo.currency_id|getCurrencyName} {$payout_order_sum|number_format=###,2,'.',','}</div></td>
+                                        <td><div class="border_margin text-center">{$vo.currency_id|getCurrencyName} {$payout_order_free|number_format=###,2,'.',','}</div></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <div class="m-b-md">
+                            <span class="white font20">帳戶明細</span>
+                        </div>
+                        <div style="width: 100%;position: relative;min-height: 1px">
+                            <form name="admin_list_sea" class="form-search" method="post" action="{:U('info')}">
+                                <div class="main-top" style="margin-top: 20px">
+                                    <div class="hidden-xs btn-sespan fl_left">
+                                        <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                                            <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;padding-left: 15px;margin-left: 15px" value="{$sldate}"
+                                                   placeholder="点击选择日期范围"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-1 hidden-xs btn-sespan">
+                                        <div class="input-group">
+                                            <select name="status" class="form-control search-query admin_sea back_wh1" style="border-radius: 2px;">
+                                                <volist name="userinfo" id="v1">
+                                                    <option value="{$v1.currency_id|getCurrencyName}">{$v1.currency_id|getCurrencyName}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 hidden-xs btn-sespan" style="width: 18%;">
+                                        <div class="input-group" style="width: 100%;">
+                                            <input type="text" name="key" class="back_wh1 white" value="{$keyy}" style="padding:5px;width: 100%;" placeholder="输入订单ID" />
+
+                                        </div>
+                                    </div>
+                                    <div class="fl_left">
+                                        <button type="submit" class="btn-default back_wh1 inline btn-square" style="margin-left: 7px;font-size: 18px;width: 30px;height: 30px;border-radius: 2px">
+                                            <i class="fa fa-search" style="color:#fff"></i>
+                                        </button>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </form>
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:80px"><div class="border_top">日期</div></th>
+                                        <th style="min-width:80px"><div class="border_top">時間</div></th>
+                                        <th style="min-width:80px"><div class="border_top">訂單號</div></th>
+                                        <th><div class="border_top">貨幣</div></th>
+                                        <th><div class="border_top">入金</div></th>
+                                        <th><div class="border_top">出金</div></th>
+                                        <th><div class="border_top">交易類型</div></th>
+                                        <th><div class="border_top">帳面餘額</div></th>
+                                        <th class="text-center"><div class="border_top">備註</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="order_log_list" item="v">
+                                        <tr>
+                                            <td><div class="border_margin">{$v.end_time|date="Y-m-d",###}</div></td>
+                                            <td><div class="border_margin">{$v.end_time|date="H:i:s",###}</div></td>
+                                            <td><div class="border_margin">{$v.orderid}</div></td>
+                                            <td><div class="border_margin">{$v.currency_id|getCurrencyName}</div></td>
+                                            <td><div class="border_margin">{$v.income|number_format=###,2,'.',','}</div></td>
+                                            <td><div class="border_margin">{$v.outlay|number_format=###,2,'.',','}</div></td>
+                                            <td>
+                                                <div class="border_margin">
+                                                <switch name="v.t_type">
+                                                    <case value="1"><span class="text-success">入金</span></case>
+                                                    <case value="2"><span class="red">出金</span></case>
+                                                    <case value="3"><span class="text-error">手續費</span></case>
+                                                </switch>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="border_margin">
+                                                {$v.balance|number_format=###,2,'.',','}
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="border_margin">
+                                                    {$v.remark}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td height="50" colspan="12" align="left">{$page}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

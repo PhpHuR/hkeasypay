@@ -1,0 +1,142 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                鉴权充值
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light text-right tablesorter">
+                                    <form action="{:U('check_list')}" class="form-horizontal ajaxForm2" name="check_list" method="post">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">钱包金额</td>
+                                            <td class="jian-left" id="balance_availablecount">{$wallet_data['money']}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">可用条数</td>
+                                            <td class="jian-left">{$check_data['number']}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">销售价格</td>
+                                            <td class="jian-left"><input type="text" value="{$check_data['money_num']}" id="price" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">充值金额</td>
+                                            <td class="jian-left"><input type="text" name="money" id="transfermoney"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">充值条数</td>
+                                            <td class="jian-left"><input type="text" id="number" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><button style="float: left" class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm" type="submit" id="submit">充值</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="panel panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light text-right tablesorter">
+                                    <form action="{:U('warring_count')}" class="form-horizontal ajaxForm2" name="check_list" method="post">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">设置用到多少条就发送报警信息</td>
+                                            <td class="jian-left"><input type="text" name="warring_count" value="{$check_data['warring_count']}">条</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">备注</td>
+                                            <td class="jian-left">报警将会以手机短信的方式发送</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><button style="float: left" class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm" type="submit">提交</button></td>
+
+                                        </tr>
+                                        </tbody>
+                                    </form>
+
+                                </table>
+                            </div>
+                        </section>
+
+                        <form action="{:U('warring_state')}" class="form-horizontal ajaxForm2" name="warring_state" method="post">
+                            <section class="panel panel-default">
+                                <header class="panel-heading">
+                                    鉴权警报管理
+                                </header>
+
+                                <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                    <table class="table table-striped b-t b-light text-right tablesorter">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">是否启用</td>
+                                            <td class="jian-left">
+                                                <if condition="$check_data['warring_state'] eq 1">
+                                                    <button class="btn btn-minier btn-info nextBtn" type="submit" name="id" value="{$check_data['id']}" title="已开启">
+                                                        开启
+                                                    </button>
+                                                    <else/>
+                                                    <button class="btn btn-minier btn-warning nextBtn"  type="submit" name="id" value="{$check_data['id']}" title="已禁用">
+                                                        禁用
+                                                    </button>
+                                                </if>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </form>
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                鉴权使用说明
+                            </header>
+
+                            <div class="table-responsive evenodd tabledata" style="text-align:center;padding:5px 0;overflow:auto">
+                               在输入个人信息的时候会对个人信息进行银行卡认证，该服务需要付一定的费用，可自行选择需不需要开启该服务
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>
+<script>
+        $("#transfermoney").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+            var keyCode = evt.which;
+            //可用餘額總數
+            var t0 = $("#balance_availablecount").text();
+//            每条价格
+            var t1 = $('#price').val();
+            //當前輸入額度
+            var t2 = $(this).val();
+
+            var num = Math.floor(t2/t1);
+            $('#number').val(num);
+
+            if (t2 > Math.floor(t0)) {
+                layer.alert("可用餘額不夠，請重新核對金額後填寫！", {icon: 5});
+                console.log($('#number').val());
+                $('#number').val(0);
+                $(this).val(0.00);
+
+            }
+        });
+
+</script>

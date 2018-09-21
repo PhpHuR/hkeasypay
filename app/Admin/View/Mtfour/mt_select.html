@@ -1,0 +1,64 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                        <table class="xin_table">
+                            <tbody>
+                            <tr>
+                                <th class="jian-right">手机号</th>
+                                <td class="jian-left" >{$mtdata['phone']}</td>
+                                <th class="jian-right">姓名</th>
+                                <td class="jian-left" >{$mtdata['realname']}</td>
+                            </tr>
+                            <tr>
+                                <th class="jian-right">电邮</th>
+                                <td class="jian-left">{$mtdata['email']}</td>
+
+                                <th class="jian-right">身份证号</th>
+                                <td class="jian-left">{$mtdata['idcard']}</td>
+                            </tr>
+                            <tr>
+                                <th class="jian-right">银行卡所属银行</th>
+                                <td class="jian-left" >{$mtdata['bankname']}</td>
+                                <th class="jian-right">银行卡号</th>
+                                <td class="jian-left" >{$mtdata['bankcard']}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="jian-right">银行地址</th>
+                                <td class="jian-left" colspan="3">{$mtdata['bankaddress']}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="jian-right">身份证正面</th>
+                                <td class="jian-left" ><img class="ace-id-bank" src="/{$mtdata['idcard_z_path']}" alt=""></td>
+                                <th class="jian-right">身份证反面</th>
+                                <td class="jian-left" ><img class="ace-id-bank" src="/{$mtdata['idcard_f_path']}" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th class="jian-right">银行卡图片</th>
+                                <td class="jian-left" ><img class="ace-id-bank" src="/{$mtdata['bankphoto_path']}" alt=""></td>
+                                <th class="jian-right">大头照</th>
+                                <td class="jian-left" ><img class="ace-id-bank" src="/{$mtdata['bigphoto_path']}" alt=""></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

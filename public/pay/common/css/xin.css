@@ -1,0 +1,120 @@
+.title1{
+    height: 40px;
+    line-height: 40px;
+    background: rgba(40,50,56,0.5);
+    border-radius:5px;
+    color:#fff;
+    font-size:14px;
+    padding-left: 30px;
+    margin-bottom: 5%;
+}
+.box_payin{
+    width: 50%;
+    float: left;
+    color: #fff;
+}
+.bgtouming{background-color: rgba(255,255,255,0) !important;color:#fff !important;}
+.form-input {
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius: 2px;
+    padding:0px 5px;
+    height:26px;
+    font-size:12px;
+    width:60%
+}
+.zhuyi{
+    font-size: 20px;
+    position: relative;
+    top:5px;
+    left: 10px;
+    color: rgba(255,255,255,0.6);
+}
+.write-60{
+    color:rgba(255,255,255,0.6);
+}
+.form-group label.xin-label{
+    font-weight:normal;
+    font-size:14px;
+    padding-top:4px;
+}
+.box_bank{
+    float: right;
+    width: 50%;
+}
+.input-blue{
+    background-color: rgba(48,86,148,0.6);
+    border:0;
+    border-radius: 4px;
+}
+.clear{
+    clear: both;
+}
+.xin_header{
+    height: 55px;
+    line-height: 55px;
+    margin-top: 15px;
+    background-color:rgba(40,50,56,0.2);
+    padding:0 20px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    color:#fff;
+    font-size:13px
+}
+.bankList1{
+    overflow: hidden;
+    padding-left: 8px;
+    background-color:rgba(40,50,50,0.2);
+}
+.bankList1 ul li{
+    list-style: none;
+    float: left;
+    width:33%;
+    margin-bottom: 5px;
+}
+.bankList1 ul li img{
+    width: 160px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    vertical-align:middle ;
+    height:42px;
+}
+.fuyan-input{
+    background-color: rgba(255,255,255,0);
+    border: 1px solid rgba(243,243,243,0.4);
+    border-radius: 4px;
+}
+.banking{position: absolute;top:15px;left: 0;float: left;z-index: 1;margin: 0!important;width: 12px;}
+.pos-rel{position: relative;display: block;}
+.submit_payin{
+    display:block;
+    margin:0 auto;
+    border: 0;
+    margin-top:20px;
+    height: 50px;
+    background-color:rgba(0,94,199,0.7);
+    padding:0 65px;
+    overflow: hidden;
+    color:#ffffff;
+    border-radius:4px;
+    font-size:18px;
+    cursor:pointer;
+}
+.shenming{
+    color:#fff;
+}
+.shenming:hover{
+    color:#fff;
+    text-decoration: none;
+}
+.box_tishi{
+    background-color: rgba(40,50,56,0.2);
+    margin-top: 20px;
+}
+.tishi{display: inline-block;float: left;padding: 6px 30px;line-height: 26px}
+.tishi ul li{list-style: none;color:#fff;}
+.pos_rel_4{
+    position: relative;
+    top:-4px;
+}

@@ -1,0 +1,94 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <div class="row maintop">
+
+            <div class="fl_left">
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('payout_rate_list')}">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="val" id="val" class="back_wh1" value="{$testval}" style="width: 100%;color:#fff" placeholder="输入需查询支付公司ID" />
+
+                        </div>
+                    </div>
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </form>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('payout_rate_list')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        显示全部
+                    </button>
+                </a>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('payout_rate_add')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;width: 111%;font-size: 15px">
+                        添加入金费率
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form id="leftnav" name="leftnav" method="post" action="" >
+                        <table class="urllist white" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>ID</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>支付公司ID</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>规则名称</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>出金手续费</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>出金成本</div></th>
+                                <th class="hidden-sm hidden-xs blue"><div class="border_margin">单笔最少出金</div></th>
+                                <th class="hidden-sm hidden-xs red2"><div class="border_margin">单笔最大出金</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>创建时间</div></th>
+                                <th class="hidden-sm"><div class="border_margin">操作</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="payout_rate_list" item="v">
+                                <tr>
+                                    <td height="28" class="hidden-sm"><div class="border_margin">{$v.payout_rate_id}</div></td>
+                                    <td height="28" class="hidden-sm"><div class="border_margin">{$v.api_china_name}</div></td>
+                                    <td height="28" class="hidden-sm"><div class="border_margin">{$v.payout_rate_title}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v['outrate']}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v['outprice']}</div></td>
+                                    <td class="hidden-sm hidden-xs blue"><div class="border_margin">{$v['outmin']}</div></td>
+                                    <td class="hidden-sm hidden-xs red2"><div class="border_margin">{$v['outmax']}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.time|date="Y-m-d H:i:s",###}</div></td>
+                                    <td class="hidden-sm">
+                                        <div class="hidden-sm border_margin hidden-xs action-buttons">
+                                            <a class="green" href="{:U('payout_rate_edit',array('payout_rate_id'=>$v['payout_rate_id']))}" title="修改">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+
+                                            <a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('payout_rate_del',array('payout_rate_id'=>$v['payout_rate_id']))}" title="删除">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="9" align="left">{$page}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

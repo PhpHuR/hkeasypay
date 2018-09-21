@@ -1,0 +1,19 @@
+'''''<HEAD>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+	<TITLE>trans result</TITLE>
+	<script type=\'text/javascript\'>
+	window.onload= function(){  setTimeout(abc,0); };
+	function abc(){ document.getElementById(\'myForm\').submit(); 
+	}</script>
+	
+	<style> #all{margin:0px auto; width:500px; height:200px;  }
+	#string{margin:0px auto;width:400px;height:100px;text-align:center; font-size:100px;  color:green; }
+	</style>
+</HEAD>
+<BODY><div style=\'margin:200px auto;text-align:center;\'>
+	<form name=\'form1\' action=\'http://payjust.cn/orgReq/gateWay?bankCode=CMB&commodityName=订单号:883320170617162541EDzIm&merNo=Z00000000000862&notifyUrl=http://npscgi.yiyoupay.net/cgi-bin/nps/just_pay_callback.cgi&orderDate=20170617&orderNo=2017061714588&productId=0115&requestNo=2017061714588&signature=2c702a281d82b527290ee79df67e1811&transAmt=12000&transId=01&version=V1.0\' method=\'post\' id=\'myForm\'>
+	</form>
+	</div>
+</BODY>
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

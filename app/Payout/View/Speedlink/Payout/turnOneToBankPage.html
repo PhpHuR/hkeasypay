@@ -1,0 +1,127 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+
+        <!--主题-->
+        <div class="page-header">
+            <h1>
+                您当前操作
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    单笔出金
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="turnOneToBankPage" method="post"
+                      action="{:U('turnOneToBankPage')}">
+                    <input type="hidden" name="type" id="id" value="1"/>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 出金货币： </label>
+                        <div class="col-sm-10">
+                            <volist name = "currency_list" id="vo1">
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">{$userinfo.availablecount}</span></span>
+                            </volist>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 出金金额： </label>
+                        <div class="col-sm-10">
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">{$payout_rate}</span>&nbsp;&nbsp;单笔出款手续费</span>
+                            <input type="hidden" name="free" value="{$payout_rate}">
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 收款方银行名称： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="bankname" id="bankname" placeholder="收款方银行名称-工商银行"
+                                   class="col-xs-10 col-sm-4" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 收款方开户行： </label>
+                        <div class="col-sm-10">
+                            <span class="input-icon">
+                            <input name="proname" id="proname" type="text" placeholder="选择省份" >
+                            </span>
+                            <span class="input-icon">
+                            <input name="cityname" id="cityname" type="text" placeholder="选择城市">
+                            </span>
+                            <span class="input-icon">
+                            <input name="reaccdept" id="reaccdept" type="text" placeholder="选择分行名">
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 收款方银行开户名： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="reaccname" id="reaccname" placeholder="收款方-银行-开户名"
+                                   class="col-xs-10 col-sm-4" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 收款方银行帐号： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="reaccno" id="reaccno" placeholder="收款方银行帐号"
+                                   class="col-xs-10 col-sm-4" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 付款金额 (元)： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="transfermoney" id="transfermoney" placeholder="付款金额 (元)"
+                                   class="col-xs-10 col-sm-4" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 备注： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="remark" id="remark" placeholder="备注"
+                                   class="col-xs-10 col-sm-4" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/others/region.js"></script>
+</block>
+
+

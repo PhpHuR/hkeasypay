@@ -1,0 +1,133 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<img src="/public/index/images/banner.jpg" class="indexbanner">
+	<div class="page-content">
+		<div>
+			<div class="col-xs-12">
+				<div>
+					<div class="space-6"></div>
+					<div class="col-sm-7 infobox-container">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+							<div class="infobox infobox-blue">
+								<div class="infobox-data">
+									<div class="infobox-content">今日总入款数</div>
+
+								</div>
+							</div>
+							<div class="infobox infobox-blue2">
+								<div class="infobox-data">
+									<span class="infobox-data-number">{$payin_order_sum|number_format=###,2,'.',','}</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+							<div class="infobox infobox-red">
+								<div class="infobox-data">
+									<div class="infobox-content">今日总出款数</div>
+
+								</div>
+							</div>
+							<div class="infobox infobox-red2">
+								<div class="infobox-data">
+									<span class="infobox-data-number">{$payout_order_sum|number_format=###,2,'.',','}</span>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+							<div class="infobox infobox-green">
+								<div class="infobox-data">
+									<div class="infobox-content">今日总利润数</div>
+
+								</div>
+							</div>
+							<div class="infobox infobox-green2">
+								<div class="infobox-data">
+									<span class="infobox-data-number">{$pay_order_all|number_format=###,2,'.',','}</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="space-6"></div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="vspace-12-sm"></div>
+
+					<div class="col-sm-5">
+						<!-- 安全检测开始 -->
+						<div class="panel ace-body <if condition="$system_safe">panel-default<else />panel-danger</if>">
+						<div class="ace-padd">
+							<div><i class="ace-icon fa fa-bolt"></i><span style="font-size: 18px;color:#fff;">系统安全检测</span></div>
+							<if condition="$system_safe">
+								<p class="text-success"><span class="glyphicon glyphicon-ok-sign"></span> <span class="tishi-font">当前系统安全！</span></p>
+							</if>
+							<if condition="$weak_setting_db_password">
+								<p class="text-danger"><span class="iconfont icon-weibiaoti-"></span> <span class="tishi-font">数据库连接密码为弱密码，安全起见，增强密码！</span></p>
+							</if>
+							<if condition="$weak_setting_admin_password">
+								<p class="text-danger"><span class="iconfont icon-weibiaoti-"></span> <span class="tishi-font">检测到您的后台登录密码为弱密码！</span></p>
+							</if>
+							<if condition="$danger_mode_debug">
+								<p class="text-warning"><span class="iconfont icon-weibiaoti-"></span> <span class="tishi-font">当前系统运行在调试模式，可能会影响运行性能及安全！</span></p>
+							</if>
+							<if condition="$system_pageshow">
+								<p class="text-warning"><span class="iconfont icon-weibiaoti-"></span><span class="tishi-font">当前系统已开SHOW_PAGE_TRACE</span>  </p>
+							</if>
+							<if condition="$weak_setting_admin_last_change_password">
+								<p class="text-warning"><span class="iconfont icon-weibiaoti-"></span> <span class="tishi-font">您太久没有更换登陆密码了，请定期更换后台登陆密码！</span> </p>
+							</if>
+							<!--[if lte IE 8]>
+							<p class="text-warning">
+								<span class=""></span> 浏览器版本过低！
+							</p>
+							<![endif]-->
+						</div>
+					</div>
+					<!-- 安全检测结束 -->
+					<div class="panel panel-default ace-body2">
+						<div class="ace-padd">
+							<div style="border-bottom: 10px">
+								<i class="ace-icon fa fa-wrench"></i>
+								<span style="color: #fff;font-size: 18px;">日常维护</span>
+							</div>
+							<table class="ace-table">
+								<tbody>
+								<tr>
+									<td width="100%">
+										<a href="{:U('Sys/maintain',array('action'=>'download_log'))}" target="_blank" class="btn btn-default rst-url-btn">下载日志</a>
+										<a href="{:U('Sys/maintain',array('action'=>'view_log'))}" target="_blank" class="btn btn-default rst-url-btn">查看日志</a>
+										<a href="{:U('Sys/maintain',array('action'=>'clear_log'))}" class="btn btn-default rst-url-btn ">清除日志</a>
+										<if condition="$debug">
+											<a href="{:U('Sys/maintain',array('action'=>'debug_off'))}" class="btn btn-default rst-url-btn ">关闭调试</a>
+											<else />
+											<a href="{:U('Sys/maintain',array('action'=>'debug_on'))}" class="btn btn-default rst-url-btn ">打开调试</a>
+										</if>
+										<if condition="$system_pageshow">
+											<a href="{:U('Sys/maintain',array('action'=>'trace_off'))}" class="btn btn-default rst-url-btn ">关闭Trace</a>
+											<else />
+											<a href="{:U('Sys/maintain',array('action'=>'trace_on'))}" class="btn btn-default rst-url-btn ">打开Trace</a>
+										</if>
+									</td>
+								</tr>
+								<tr class="ace-lasttr">
+									<td>日志大小 : {$log_size|format_bytes} <span class="rizhi">日志数 : {$log_file_cnt}</span></td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+					<div class="clear"></div>
+					<!-- 文章排行开始 -->
+					<!-- 文章排行结束 -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.col -->
+	</div><!-- /.row -->
+	</div>
+</block>

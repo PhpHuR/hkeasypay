@@ -1,0 +1,190 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <div class="row white">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="userinfo_add" method="post" action="{:U('userinfo_add')}">
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属品牌： </label>-->
+                        <!--<div class="col-sm-10">-->
+                            <!--<select name="brand" class="col-sm-4 selector" >-->
+                                <!--&lt;!&ndash;<option value="globalspeedlink">所属品牌</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="globepays">globepays</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="cpay88">cpay88</option>&ndash;&gt;-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="space-4"></div>-->
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 商户名称：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="member_name" id="member_name" placeholder="商户名称" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司电话：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="tel" id="tel" placeholder="公司电话" class="col-xs-10 col-sm-4" maxlength="15" minlength="5" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属代理名称： </label>
+                        <div class="col-sm-10">
+                            <select name="agent_id" class="col-sm-4 selector" >
+                                <option value="">所属代理名称</option>
+                                <foreach name="agent_list" item="v">
+                                    <option value="{$v.agent_list_id}">{$v.agent_list_nickname}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属行业：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="industry" id="industry" placeholder="输入所属行业" class="col-xs-10 col-sm-4" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司地址：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="address" id="address" placeholder="公司地址" class="col-xs-10 col-sm-4" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 支付密码：  </label>
+                        <div class="col-sm-10">
+                            <input type="password" name="paypsd" id="paypsd" placeholder="支付密码" value="888888" class="col-xs-10 col-sm-4" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择产品（通道费率的组合）：  </label>
+                        <div class="checkbox">
+                            <foreach name='product' item='product'>
+                                <label id="product_{$product.product_id}">
+                                    <input class="ace ace-checkbox-2" name="product[]" type="checkbox" id="product_va{$product.product_id}" value="{$product.product_id}" />
+                                    <span class="lbl"> {$product.product_title}</span>
+                                </label>
+                            </foreach>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 开通货币类型：  </label>
+                        <div class="checkbox">
+                            <foreach name='currency' item='currency'>
+                                <label id="currency_{$currency.ccy_id}">
+                                    <input class="ace ace-checkbox-2" name="currency[]" type="checkbox" id="currency_va{$currency.ccy_id}" value="{$currency.ccy_id}" />
+                                    <span class="lbl"> {$currency.ccy_code}</span>
+                                </label>
+                            </foreach>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+<!--                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 入金手续费规则： </label>
+                        <div class="col-sm-10">
+                            <select name="payin_rate"  class="col-sm-4 selector" required>
+                                <option value="">规则名称</option>
+                                <foreach name="payin_rate" item="v">
+                                    <option value="{$v.payin_rate_id}">{$v['payin_rate_title']}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 入金支付公司：  </label>
+                        <div class="col-sm-10">
+                            <select name="payin_id" id="payin_id" class="col-sm-4 selector" onChange="loadPayInMid('payin_id','payin_mid','{:U('Ajax/getMid')}');">
+                                <option value="0" selected>支付公司名称</option><volist name="payment_name" id="voi">
+                                <option value="{$voi.api_id}" >{$voi.api_china_name}</option></volist>
+                            </select>
+                            <select name="payin_mid" id="payin_mid" class="col-sm-4 selector"  onchange="loadPayInMid('payin_mid','','{:U('Ajax/getMid')}');">
+                                <option value="0">入金MID</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>-->
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 出金手续费规则： </label>
+                        <div class="col-sm-10">
+                            <select name="payout_rate"  class="col-sm-4 selector" required>
+                                <option value="">规则名称</option>
+                                <foreach name="payout_rate" item="v">
+                                    <option value="{$v.payout_rate_id}">{$v.payout_rate_title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 出金支付公司：  </label>
+                        <div class="col-sm-10">
+                            <select name="payout_mid" id="payout_mid" class="col-sm-4 selector">
+                                <option value="0" selected>支付公司名称-----MID名称</option>
+                                <volist name="payment_mid" id="vo">
+                                <option value="{$vo.p_id}-{$vo.m_id}" >{$vo.p_id|getPaymentName}-----{$vo.title}</option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 自动出金：  </label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input name="payout_auto" type="radio" value="0" checked class="ace" />
+                                <span class="lbl"> 手动 </span>&nbsp;&nbsp;
+                            </label>
+                            <label>
+                                <input name="payout_auto" type="radio" value="1" class="ace" />
+                                <span class="lbl"> 自动 </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/others/region.js"></script>
+</block>

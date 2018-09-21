@@ -1,0 +1,66 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <!--主题-->
+        <div class="page-header">
+            <h1>
+                您当前操作
+                <small style="color: #fff">
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    添加产品分类
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12" style="color: #fff">
+                <form class="form-horizontal ajaxForm2" name="addcategory" method="post" action="{:U('addcategory')}">
+                    <input type="hidden" name="parentid" value="{$parentid}" />
+                    <div class="box_rewrite">
+                        <label class="control-label no-padding-right bottom5" for="form-field-1"> 分类名称：  </label>
+                        <div class="col-sm-9" style="float: none">
+                            <input type="text" name="category_title" value="{$suffix}" id="category_title" placeholder="必填：分类名称" class="w91 bgtouming" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="box_rewrite">
+                        <label class="control-label no-padding-right bottom5" for="form-field-1"> 是否开启：  </label>
+                        <div class="col-sm-9" style="float: none">
+                            <input type="checkbox" name="status" value="1" id="status" placeholder="必填：分类名称" class="ace ace-switch ace-switch-4 btn-flat" />
+                            <span class="lbl">&nbsp;&nbsp;默认关闭</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="box_rewrite">
+                        <label class="control-label no-padding-right bottom5" for="form-field-1">  排序（从小到大）： </label>
+                        <div class="col-sm-9" style="float: none">
+                            <input type="text" name="priority" value="50" style="color: #fff;" id="priority" placeholder="必填：分类名称" class="w91 bgtouming" required/>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="ace-btn-blue pad8-50" type="submit">
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="ace-btn-blue pad8-50" type="reset">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

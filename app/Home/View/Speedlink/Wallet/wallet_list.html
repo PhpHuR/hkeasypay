@@ -1,0 +1,93 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">錢包管理</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                充值
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                    <table class="table ach-table">
+                                        <form class="form-horizontal ajaxForm2" action="{:U('wallet_list')}" name="check_money_list" method="post">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">子帳號</td>
+                                            <td class="jian-left">
+                                                <select name="sub_balance" style="width: 18%" id="sub_balance">
+                                                    <option selected>子帳號</option>
+                                                    <foreach name="sum_money" item="v">
+                                                        <option value="{$v.sub_balance_id}">{$v.attribute|getSubUserBalanceAttributeName}</option>
+                                                    </foreach>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">帳戶餘額</td>
+                                            <td class="jian-left"><input type="text" id="balance_availablecount" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">錢包金額</td>
+                                            <td class="jian-left">{$wallet_data['money']}
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">充值金額</td>
+                                            <td class="jian-left"><input type="text" name="money" id="transfermoney"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><button class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm " type="submit" id="submit">充值</button></td>
+                                        </tr>
+                                        </tbody>
+                                </form>
+                                    </table>
+
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+<include file="Public:footer"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sub_balance").bind('input', function () {
+            $.post("/home/ajax/getBalance", {
+                    id: $(this).val(),
+                },
+                function (data, status) {
+                    if (status == "success") {
+                        $("#balance_availablecount").val(data.sub_user_balance);
+                    } else {
+                        alert("數據: \n" + data + "\n狀態: " + status);
+                    }
+                });
+        });
+
+        $("#transfermoney").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+            var keyCode = evt.which;
+            //可用餘額總數
+            var t0 = $("#balance_availablecount").val();
+            //當前輸入額度
+            var t2 = $(this).val();
+            if (t2 > t0) {
+                layer.alert("可用餘額不夠，請重新核對金額後填寫！", {icon: 5});
+                $(this).val(0.00);
+            }
+
+        });
+    });
+
+</script>

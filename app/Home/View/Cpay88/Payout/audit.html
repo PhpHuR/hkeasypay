@@ -1,0 +1,200 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">出金紀錄</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <section class="panel panel-default">
+                            <div class="table-responsive evenodd tablethinred" style="overflow-x: auto;">
+                                <table class="table table-striped b-t b-light tablesorter remittance-record">
+                                    <thead>
+                                    <tr class="panel-heading">
+                                        <th class="text-center">訂單號碼</th>
+                                        <th class="text-center">日期</th>
+                                        <th class="text-center">客戶訂單號碼</th>
+                                        <th class="text-center">訂單狀態</th>
+                                        <th width="100" class="text-center"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            <input type="text" class="form-control input-sm inline v-middle clean_data"
+                                                   style="min-width:60px">
+                                        </td>
+                                        <td class="text-center" style="white-space: nowrap;">
+                                            <input class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                   size="16" type="text" value="2016-07-27"
+                                                   data-date-format="yyyy-mm-dd">
+                                            -
+                                            <input class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                   size="16" type="text" value="2016-08-03"
+                                                   data-date-format="yyyy-mm-dd">
+                                        </td>
+
+                                        <td class="text-center">
+                                            <input type="text" class="form-control input-sm inline v-middle clean_data"
+                                                   style="min-width:60px">
+                                        </td>
+
+
+                                        <td class="text-center">
+                                            <select class="input-xs input-s-xsssm form-control inline v-middle selectCus selectCus-xs clean_data"
+                                                    style="min-width:80px">
+                                                <option value="">---</option>
+                                                <option value="1">待付款</option>
+                                                <option value="2">已完成</option>
+                                                <option value="0">失敗</option>
+                                            </select>
+                                        </td>
+
+
+                                        <td class="text-center" width="100" style="white-space: nowrap;">
+                                            <button id="query_btn" class="btn btn-default btn-danger btn-square inline">
+                                                <i class="fa fa-search"></i></button>
+                                            <button id="clean_btn" class="btn btn-default btn-danger btn-square inline">
+                                                <i class="fa fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <div class="padder">
+                            <div class="line line-dashed b-b line-lg pull-in m-t-md"></div>
+                        </div>
+
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                交易列表
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th>訂單號碼</th>
+                                        <th>日期</th>
+                                        <th>時間</th>
+                                        <th>客戶訂單號碼</th>
+                                        <th>商戶號MID</th>
+                                        <th>貨幣</th>
+                                        <th>出金金額</th>
+                                        <th>出金手續費</th>
+                                        <th>訂單狀態</th>
+                                        <th>通知狀態</th>
+                                        <th>出金銀行</th>
+                                        <th>收款人名</th>
+                                        <th>銀行帳號</th>
+                                        <th class="text-center">備註</th>
+                                        <th class="text-center">詳情</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>0003</td>
+                                        <td>2016-07-03</td>
+                                        <td>16:30:55</td>
+                                        <td>8273947</td>
+                                        <td>XXX-XXXXXX</td>
+                                        <td>RMB</td>
+                                        <td>2000</td>
+                                        <td>30</td>
+                                        <td><span class="text-success">已完成</span></td>
+                                        <td><span class="text-success">已通知</span> <a href="#"
+                                                                                     class="btn btn-danger btn-xs-square delete-btn"><i
+                                                class="fa fa-bell-o"></i></a></td>
+                                        <td>中國銀行</td>
+                                        <td>李力</td>
+                                        <td>123-123123-123</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><a href="modal-receipt.php" class="btn-xs-square"
+                                                                   data-toggle="ajaxModal"><i
+                                                class="fa fa-file-text-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0002</td>
+                                        <td>2016-07-02</td>
+                                        <td>13:30:55</td>
+                                        <td>8273947</td>
+                                        <td>XXX-XXXXXX</td>
+                                        <td>RMB</td>
+                                        <td>2000</td>
+                                        <td>30</td>
+                                        <td><span class="text-success">已完成</span></td>
+                                        <td><span class="text-success">已通知</span> <a href="#"
+                                                                                     class="btn btn-danger btn-xs-square delete-btn"><i
+                                                class="fa fa-bell-o"></i></a></td>
+                                        <td>中國銀行</td>
+                                        <td>陳峰</td>
+                                        <td>123-123123-123</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><a href="modal-receipt.php" class="btn-xs-square"
+                                                                   data-toggle="ajaxModal"><i
+                                                class="fa fa-file-text-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0001</td>
+                                        <td>2016-07-01</td>
+                                        <td>17:30:55</td>
+                                        <td>8273947</td>
+                                        <td>XXX-XXXXXX</td>
+                                        <td>RMB</td>
+                                        <td>2000</td>
+                                        <td>30</td>
+                                        <td><span class="text-success">已完成</span></td>
+                                        <td><span class="text-success">已通知</span> <a href="#"
+                                                                                     class="btn btn-danger btn-xs-square delete-btn"><i
+                                                class="fa fa-bell-o"></i></a></td>
+                                        <td>中國銀行</td>
+                                        <td>黃小明</td>
+                                        <td>123-123123-123</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><a href="modal-receipt.php" class="btn-xs-square"
+                                                                   data-toggle="ajaxModal"><i
+                                                class="fa fa-file-text-o"></i></a></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-7 text-center-xs">
+                                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                                            <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+
+                        <div class="col-md-12">
+                            <a href="#" class="btn btn-s-md btn-danger m-b-md btn-rounded"><i
+                                    class="fa fa-file-text-o"></i> 匯出報表</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

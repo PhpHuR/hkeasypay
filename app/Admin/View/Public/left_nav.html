@@ -1,0 +1,116 @@
+<div id="sidebar" class="sidebar blackbg responsive sidebar-fixed">
+	<!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">-->
+		<!--&lt;!&ndash;左侧顶端按钮&ndash;&gt;-->
+		<!--<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">-->
+			<!--<a class="btn btn-success" href="{:U('News/news_list')}" role="button" title="文章列表"><i class="ace-icon fa fa-signal"></i></a>-->
+			<!--<a class="btn btn-info" href="{:U('News/news_add')}" role="button" title="添加文章"><i class="ace-icon fa fa-pencil"></i></a>-->
+			<!--<a class="btn btn-warning" href="{:U('Member/member_list')}" role="button" title="会员列表"><i class="ace-icon fa fa-users"></i></a>-->
+			<!--<a class="btn btn-danger" href="{:U('Sys/sys')}" role="button" title="站点设置"><i class="ace-icon fa fa-cogs"></i></a>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;左侧顶端按钮（手机）&ndash;&gt;-->
+		<!--<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">-->
+			<!--<a class="btn btn-success" href="{:U('News/news_list')}" role="button" title="文章列表"></a>-->
+			<!--<a class="btn btn-info" href="{:U('News/news_add')}" role="button" title="添加文章"></a>-->
+			<!--<a class="btn btn-warning" href="{:U('Member/member_list')}" role="button" title="会员列表"></a>-->
+			<!--<a class="btn btn-danger" href="{:U('Sys/sys')}" role="button" title="站点设置"></a>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!-- 用户菜单开始 -->
+	<div>
+		<!-- 导航左侧正常样式开始 -->
+		<div style="padding: 5px 0">
+			<!-- logo -->
+			<a href="{:U('Index/index')}" class="hkeasypay">
+				<div>
+					<i class="fa fa-leaf"></i>
+					HKEASYPAY
+				</div>
+			</a>
+		</div><!-- 导航左侧正常样式结束 -->
+		<div class="user-img">
+			<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+				<if condition="$_SESSION['admin_avatar'] neq ''">
+					<img class="nav-user-photo radius-img" style="margin: 10px 0" src="__UPLOAD__avatar/{$_SESSION['admin_avatar']}" alt="{$_SESSION['admin_username']}" />
+					<else />
+					<img class="nav-user-photo radius-img" style="margin: 10px 0" src="__PUBLIC__/img/girl.jpg" alt="{$_SESSION['admin_username']}" />
+				</if>
+				<div class="user-info">
+					<small>欢迎,</small>
+					{$_SESSION['admin_username']}
+				</div>
+			</a>
+		</div>
+	</div>
+	<!-- 用户菜单结束 -->
+	<!-- 菜单列表开始 -->
+	<ul class="nav nav-list">
+		<!--一级菜单遍历开始-->
+		<foreach name="menus" item="v">
+			<if condition="!empty($v['_child'])">
+				<li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">open</if>">
+			<a href="#" class="dropdown-toggle">
+				<i class="iconfont {$v.css}"></i>
+				<span class="menu-text">{$v.title}</span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<!--二级菜单遍历开始-->
+				<foreach name="v._child" item="vv">
+					<if condition="!empty($vv['_child'])">
+						<li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active open</if>">
+					<a href="{:U($vv['name'])}" class="dropdown-toggle">
+						<!--<i class="menu-icon fa fa-caret-right"></i>-->
+						{$vv.title}
+						<!--<b class="arrow fa fa-angle-down"></b>-->
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						<!--三级菜单遍历开始-->
+						<foreach name="vv._child" item="vvv">
+							<li class="<if condition="(count($menus_curr) egt 3) AND ($menus_curr[2] eq $vvv['id'])">active</if>">
+							<a href="{:U($vvv['name'])}">
+								<!--<i class="menu-icon fa fa-caret-right"></i>-->
+								{$vvv.title}
+							</a>
+							<b class="arrow"></b>
+							</li>
+						</foreach><!--三级菜单遍历结束-->
+					</ul>
+					</li>
+					<else />
+					<li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active</if>">
+					<a href="{:U($vv['name'])}">
+						<!--<i class="menu-icon fa fa-caret-right"></i>-->
+						{$vv.title}
+					</a>
+					<b class="arrow"></b>
+					</li>
+					</if>
+				</foreach><!--二级菜单遍历结束-->
+			</ul>
+			</li>
+			<else />
+			<li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+			<a href="{:U($v['name'])}">
+				<i class="menu-icon fa fa-caret-right"></i>
+				{$v.title}
+			</a>
+			<b class="arrow"></b>
+			</li>
+			</if>
+		</foreach><!--一级菜单遍历结束-->
+		<li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+
+		<a href="{:U('Sys/clear')}" class="confirm-rst-btn" data-info="确定要清理缓存吗？">
+			<i class="menu-icon iconfont icon-qingchu"></i>
+			清除缓存
+		</a>
+		<b class="arrow"></b>
+		</li>
+	</ul><!-- 菜单列表结束 -->
+
+	<!-- 菜单栏缩进开始 -->
+	<!--<div class="sidebar-collapse" id="sidebar-collapse">-->
+		<!--<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>-->
+	<!--</div>&lt;!&ndash; 菜单栏缩进结束 &ndash;&gt;-->
+</div>

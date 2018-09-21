@@ -1,0 +1,119 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                        <input type="hidden" name="checkk"  value="1" /><!--用于判断操作类型-->
+                        <header class="ace-header">
+                            信贷平台注册情况
+                        </header>
+                        <table class="xin_table">
+                            <thead>
+                            <tr>
+                                <th style="min-width:80px">注册时间</th>
+                                <th>平台类型</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>{$jie_data.registered_time}</td>
+                                <td>{$jie_data.registered_type}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div>
+                        <input type="hidden" name="checkk" value="1" /><!--用于判断操作类型-->
+                        <header class="ace-header">
+                            贷款申请记录
+                        </header>
+                        <table class="xin_table">
+                            <thead>
+                            <tr>
+                                <th style="min-width:80px">申请时间</th>
+                                <th>平台类型</th>
+                                <th>申请金额</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>{$jie_data.apply_time}</td>
+                                <td>{$jie_data.apply_type}</td>
+                                <td>{$jie_data.apply_amount}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div>
+                        <input type="hidden" name="checkk" value="1" /><!--用于判断操作类型-->
+                        <header class="ace-header">
+                            贷款放款记录
+                        </header>
+                        <table class="xin_table">
+                            <thead>
+                            <tr>
+                                <th style="min-width:80px">放款时间</th>
+                                <th>平台类型</th>
+                                <th>申请金额</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>{$jie_data.loan_time}</td>
+                                <td>{$jie_data.loan_type}</td>
+                                <td>{$jie_data.loan_amount}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div>
+                        <input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+                        <header class="ace-header">
+                            逾期还款记录
+                        </header>
+                        <table class="xin_table" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th style="min-width:80px">驳回时间</th>
+                                <th>平台类型</th>
+                                <th>逾期次数</th>
+                                <th>逾期金额</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>{$jie_data.overdue_time}</td>
+                                <td>{$jie_data.loan_type}</td>
+                                <td>{$jie_data.overdue_count}</td>
+                                <td>{$jie_data.overdue_amount}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

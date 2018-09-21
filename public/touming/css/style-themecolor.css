@@ -1,0 +1,95 @@
+.header.navbar { 
+}
+
+.header-md {
+border-bottom:4px solid #054988 !important; position:relative;
+	}
+.header-md:before {
+	position:absolute; display:block; content:''; border-bottom:4px solid #c9d9e8 !important; height:100%; width:100%; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+	}
+
+.header-md .navbar-nav > li > a { color:#ec7725; font-weight:bold}
+
+.bg-black .nav-primary > ul.nav-main > li:hover > a,
+.bg-black .nav-primary > ul.nav-main > li:focus > a,
+.bg-black .nav-primary > ul.nav-main > li:active > a,
+.bg-black .nav-primary > ul.nav-main > li.active > a {
+  background-color: #054988;
+}
+.bg-black {
+  background-color: rgba(40,50,56,0.2);
+}
+
+.bg-black.dk, .bg-black .dk { background-color:rgba(0,0,0,0); }
+
+.bg-black .nav > li:hover > a, .bg-black .nav > li:focus > a, .bg-black .nav > li:active > a, .bg-black .nav > li.active > a { background-color:rgba(49,75,103,0.42)}
+
+h3 { color: #fff }
+
+.red { color:#ec7725}
+.red:hover { color:#dd1e32}
+
+.marquee {background-color:#5f5f5f; color:#ffef95}
+
+.panel .tablethinred .table thead > tr > th {background-color:rgba(40,50,56,0.4);}
+.tablethinred tr.panel-heading { background-color:rgba(40,50,56,0.4); color:#fff;}
+.panel-default .panel-heading {background-color: rgba(40,50,56,0.4);color:#fff;}
+.headerdivhr { border-top:1px solid #e2b6b6 ; margin:3px 0px}
+.headerdivline { color:#E0AEAE}
+
+.panel-default .panel-heading a { color:#ec7725; }
+
+.btn-danger {background-color: #ec7725; border-color: #ec7725;}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+  background-color: #d06317;
+  border-color: #d06317;
+}
+
+.bg-danger {
+  background-color: #ec7725;
+}
+
+.text-danger {
+  color: #ec7725;
+}
+.text-danger-lt {
+  color: #c4a13f;
+}
+.text-danger-lter {
+  color: #d7b147;
+}
+.text-danger-dk {
+  color: #a7872c;
+}
+.text-danger-dker {
+  color: #957927;
+}
+
+.text-black {
+  color: #000;
+}
+
+.themecolor { color:#ec7725}
+.themecolor2 { color:#000}
+.themecolor3 { color:#FBB02F}
+
+
+.btn-tool.fx.on { background:url(../images/toolicon_fx-on.png) no-repeat 50% 50%; background-size: 30px 30px; background-color:#ec7725; border:#ec7725}
+.btn-tool.card.on { background:url(../images/toolicon_card-on.png) no-repeat 50% 50%;background-size: 30px 30px; background-color:#ec7725; border:#ec7725}
+.btn-tool.upop.on { background:url(../images/toolicon_upop-on.png) no-repeat 50% 50%;background-size: 30px 30px; background-color:#ec7725; border:#ec7725}
+
+.btn-tool.fx.off { background:url(../images/toolicon_fx-off.png) no-repeat 50% 50%; background-size: 30px 30px; background-color:rgba(0, 0, 0, 0.2); border:#575757}
+.btn-tool.card.off { background:url(../images/toolicon_card-off.png) no-repeat 50% 50%; background-size: 30px 30px; background-color:rgba(0, 0, 0, 0.2); border:#575757}
+.btn-tool.upop.off { background:url(../images/toolicon_upop-off.png) no-repeat 50% 50%; background-size: 30px 30px; background-color:rgba(0, 0, 0, 0.2); border:#575757}
+
+.closewindow { background:#464646; border-bottom:#ec7725 4px solid; color:#fff; padding:5px; font-size:14px; height:35px}
+
+.copyright { color:#a8bdd4 !important}
+.bg-black .icon-muted { color:#a8bdd4 !important}
+
+.bgdanger, .bgdanger:hover, .bgdanger:visited { background-color:#2da9de; border-color:#2da9de; color:#fff; font-size:12px}
+.bgfinish, .bgfinish:hover,  .bgfinish:visited { background-color:#ccc; border-color:#ccc; color:#fff; font-size:12px}

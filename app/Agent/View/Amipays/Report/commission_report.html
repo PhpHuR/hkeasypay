@@ -1,0 +1,211 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">客戶統計報告</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <form name="admin_list_sea" class="form-search form-horizontal" method="post"
+                              action="{:U('commission_report')}">
+                            <section class="panel panel-default">
+                                <div class="table-responsive evenodd tablethinred" style="overflow-x: auto;">
+                                    <table class="table table-striped b-t b-light tablesorter remittance-record">
+                                        <thead>
+                                        <tr class="panel-heading">
+                                            <th>日期</th>
+                                            <th>客戶MID</th>
+                                            <th width="100"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="white-space: nowrap;">
+                                                <input name="begin_time"
+                                                       class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                       size="16" type="text" value="{$begin_time}"
+                                                       data-date-format="yyyy-mm-dd">
+                                                -
+                                                <input name="end_time"
+                                                       class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                       size="16" type="text" value="{$end_time}"
+                                                       data-date-format="yyyy-mm-dd">
+                                            </td>
+
+                                            <td>
+                                                <input name="key" value="{$keyy}" type="text"
+                                                       class="form-control input-sm inline v-middle clean_data"
+                                                       style="min-width:60px">
+                                            </td>
+
+                                            <td width="100" style="white-space: nowrap;">
+                                                <button type="submit" id="query_btn"
+                                                        class="btn btn-default btn-danger btn-square inline">
+                                                    <i class="fa fa-search"></i></button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </form>
+                        <div class="padder">
+                            <div class="line line-dashed b-b line-lg pull-in m-t-md"></div>
+                        </div>
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                清單
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th>客戶ID</th>
+                                        <th>客戶名稱</th>
+                                        <th>訂單金額</th>
+                                        <th>佣金比率%</th>
+                                        <th>佣金CNY</th>
+                                        <th>中介人</th>
+                                        <th>佣金比率%</th>
+                                        <th>佣金 CNY</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="list" item="v">
+                                        <tr>
+                                            <td>{$v.uid}</td>
+                                            <td>{$v.uid|getUserinfoName}</td>
+                                            <td>
+                                                <volist name="v['list_l']" id="a">
+                                                    <if condition="$a.attribute eq weixin">
+                                                        微信: {$a.iordermoney|number_format=###,2,'.',','}<br>
+                                                        -----<br>
+                                                        <elseif condition="$a.attribute eq alipay"/>
+                                                        支付寶: {$a.iordermoney|number_format=###,2,'.',','}<br>
+                                                        -----<br>
+                                                        <else/>
+                                                        網關: {$a.iordermoney|number_format=###,2,'.',','}<br>
+                                                        -----<br>
+                                                    </if>
+                                                </volist>
+                                                入金總: {$a.iordermoney|number_format=###,2,'.',','}<br>
+                                                -----<br>
+                                                出金總: {$a.otransfermoney|number_format=###,2,'.',','}
+                                            </td>
+                                            <td>
+                                                <foreach name="v['agentListRate']" item="vm">
+                                                    <foreach name="vm" key="km" item="vm1">
+                                                    <if condition="$km eq session('hid')">
+                                                        微信：{$vm1['weixin']*100}%<br>----<br>
+                                                        支付寶：{$vm1['alipay']*100}%<br>----<br>
+                                                        網關：{$vm1['netgate']*100}%<br>----<br>
+                                                    </if>
+                                                    </foreach>
+                                                </foreach>
+
+                                            </td>
+                                            <td>
+                                                <foreach name="v['agentListRate']" item="vyj">
+                                                    <foreach name="vyj" key="km" item="vyj">
+                                                        <if condition="$km eq session('hid')">
+                                                            <volist name="vyj['total']" id="total">
+                                                                <if condition="$total.agattribute eq weixin">
+                                                                    微信: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                    -----<br>
+                                                                    <elseif condition="$total.agattribute eq alipay"/>
+                                                                    支付寶: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                    -----<br>
+                                                                    <else/>
+                                                                    網關: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                    -----<br>
+                                                                </if>
+                                                            </volist>
+                                                            <!--InTotal: {$total.iordermoney|number_format=###,2,'.',','}<br>-->
+                                                        </if>
+                                                    </foreach>
+                                                </foreach>
+
+                                            </td>
+                                            <td>
+                                                <foreach name="v['agentListRate']" item="ag">
+                                                    <foreach name="ag" key="km" item="agid">
+                                                        <if condition="$km gt session('hid')">
+                                                          {$km|getAgentName}<br>-----<br>
+                                                        </if>
+                                                    </foreach>
+                                                </foreach>
+
+                                            </td>
+                                            <td>
+                                                <foreach name="v['agentListRate']" item="agr">
+                                                    <foreach name="agr" key="km" item="agidr">
+                                                        <if condition="$km gt session('hid')">
+                                                            微信：{$agidr['weixin']*100}%<br>----<br>
+                                                            支付寶：{$agidr['alipay']*100}%<br>----<br>
+                                                            網關：{$agidr['netgate']*100}%<br>******<br>
+                                                        </if>
+                                                    </foreach>
+                                                </foreach>
+
+                                            </td>
+                                            <td>
+                                                <foreach name="v['agentListRate']" item="agrc">
+                                                    <foreach name="agrc" key="km" item="agidrc">
+                                                        <if condition="$km gt session('hid')">
+                                                            <volist name="agidrc['total']" id="total">
+                                                                    <if condition="$total.agattribute eq weixin">
+                                                                        微信: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                        -----<br>
+                                                                        <elseif condition="$total.agattribute eq alipay"/>
+                                                                        支付寶: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                        -----<br>
+                                                                        <else/>
+                                                                        網關: {$total.agfree|number_format=###,2,'.',','}<br>
+                                                                        -----<br>
+                                                                    </if>
+
+                                                            </volist>
+                                                            <!--InTotal: {$total.iordermoney|number_format=###,2,'.',','}<br>-->
+
+                                                        </if>
+                                                    </foreach>
+                                                </foreach>
+
+                                            </td>
+                                        </tr>
+                                    </foreach>
+
+                                    <tr>
+                                        <td height="50" colspan="8" align="left">
+                                            <!--<a class="btn btn-sm btn-warning" href="{:U('select',array('action'=>'export','begin_time'=>$begin_time,'end_time'=>$end_time,'status'=>$status))}" title="匯出報表">-->
+                                            <!--<i class="ace-icon fa fa-fire bigger-110"></i>-->
+                                            <!--<span class="bigger-110 no-text-shadow">匯出報表</span>-->
+                                            <!--</a>-->
+                                            {$page}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

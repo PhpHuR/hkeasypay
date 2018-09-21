@@ -1,0 +1,119 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <form name="admin_list_sea" class="form-search" method="post" action="{:U('mt_list')}">
+            <div class="row maintop" style="margin-top: 20px">
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                               placeholder="点击选择日期范围"/>
+                    </div>
+                </div>
+                <div class="fl_left">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="val" id="val" class="back_wh1" value="{$testval}" style="color: #fff;width: 109%;" placeholder="输入姓名/电话" />
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form id="leftnav" name="leftnav" method="post" action="" >
+                        <input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+                        <table class="urllist white" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-sm"><div class="border_margin">ID</div></th>
+                                <th class="hidden-sm"><div class="border_margin">所属商户名</div></th>
+                                <th class="hidden-sm"><div class="border_margin">手机号</div></th>
+                                <th class="hidden-sm hidden-xs"><div class="border_margin">姓名</div></th>
+                                <th class="hidden-sm"><div class="border_margin">管理</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="mtdata" item="v">
+                                <tr>
+                                    <td class="hidden-sm" height="28"><div class="border_margin">{$v.id}</div></td>
+                                    <td class="hidden-sm"><div class="border_margin">{$v.user_id|getUserinfoName}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.phone}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.realname}</div></td>
+
+
+                                    <td class="hidden-sm">
+                                        <div class="border_margin">
+                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                <a class="white" href="{:U('mt_select',array('id'=>$v['id']))}">
+                                                    <i class="iconfont icon-baogaochaxun"></i>
+                                                </a>
+                                                <a class="red confirm-rst-url-btn" href="{:U('mt_del',array('id'=>$v['id']))}" data-info="你确定要删除吗？" title="删除">
+                                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                </a>
+                                            </div>
+                                            <div class="hidden-md hidden-lg">
+                                                <div class="inline position-relative">
+                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a href="{:U('admin_group_access',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="配置规则">
+																	<span class="green">
+																		<i class="ace-icon fa fa-cog bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{:U('admin_group_edit',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="{:U('admin_group_del',array('id'=>$v['id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="6" align="left">{$page}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

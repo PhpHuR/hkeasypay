@@ -1,0 +1,1018 @@
+8813###--881320180726094108rkaeo---
+8813<br />1532569215<br />0.67<br />2<br />881320180726094108rkaeo<br />26-07-2018 09:41:37<br />0.00<br />1532569298<br />##############################<br />b637b04b5371e99b86579a34a7f51ebfe39fb4f26e5d92664de130897fffe523<br />success###--1532569215--##2018-07-26 09:41:38
+8813###--881320180726095600hNCdf---<html>
+<head><title>302 Found</title></head>
+<body bgcolor="white">
+<center><h1>302 Found</h1></center>
+<hr><center>6f5a5f441378b37be5a6ae1b8fe30a14da4c8313
+Time : Wed Jul  4 10:51:11 CST 2018</center>
+</body>
+</html>
+###--1532570157--##2018-07-26 09:56:28
+8813###--881320180726100923zpnQe---55###--1318072610091263--##2018-07-26 10:09:47
+8815###--881520180912102028NpoSJ---error###--1705--##2018-09-12 10:21:24
+8815###--881520180912110735oyWzm---
+8815<br />1536721629<br />0.80<br />2<br />881520180912110735oyWzm<br />12-09-2018 11:08:30<br />0.02<br />1536721711<br />##############################<br />b78129de74b4b79561e26bc5d36c3817650efe7f1af36755329510fdbe0df1e3<br />success###--1536721629--##2018-09-12 11:08:31
+8815###--881520180912114758XFaPU---
+8815<br />1536724063<br />1.00<br />2<br />881520180912114758XFaPU<br />12-09-2018 11:48:41<br />0.03<br />1536724121<br />##############################<br />31ee76fd47ab2d123346178c754536f483c8d82ff9136fa5ebd5d1676aa7a538<br />success###--1536724063--##2018-09-12 11:48:41
+8815###--881520180912114758XFaPU---
+8815<br />1536724063<br />1.00<br />2<br />881520180912114758XFaPU<br />12-09-2018 11:48:41<br />0.03<br />1536724122<br />##############################<br />df807cedd1819bc8bf7d0f0bab492f60f6fefe84d0902f144868faa120924f04<br />success###--1536724063--##2018-09-12 11:48:42
+8815###--881520180912120352KBbpm---
+8815<br />1536725020<br />0.80<br />2<br />881520180912120352KBbpm<br />12-09-2018 12:04:13<br />0.02<br />1536725053<br />##############################<br />4e913112a9adda19eaf91ddb82db31202cb3d5baff3f34690beeca4a177e9158<br />success###--1536725020--##2018-09-12 12:04:14
+8815###--881520180912143120zslbe---error###--1709--##2018-09-12 14:31:45
+8815###--881520180912160201bfwxv---<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>System Error</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* Base */
+        body {
+            color: #333;
+            font: 14px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0 20px 20px;
+            word-break: break-word;
+        }
+        h1{
+            margin: 10px 0 0;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 32px;
+        }
+        h2{
+            color: #4288ce;
+            font-weight: 400;
+            padding: 6px 0;
+            margin: 6px 0 0;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        h3.subheading {
+            color: #4288ce;
+            margin: 6px 0 0;
+            font-weight: 400;
+        }
+        h3{
+            margin: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        abbr{
+            cursor: help;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        a{
+            color: #868686;
+            cursor: pointer;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        .line-error{
+            background: #f8cbcb;
+        }
+
+        .echo table {
+            width: 100%;
+        }
+
+        .echo pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border: 0;
+            border-radius: 3px;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .echo pre > pre {
+            padding: 0;
+            margin: 0;
+        }
+        /* Layout */
+        .col-md-3 {
+            width: 25%;
+        }
+        .col-md-9 {
+            width: 75%;
+        }
+        [class^="col-md-"] {
+            float: left;
+        }
+        .clearfix {
+            clear:both;
+        }
+        @media only screen 
+        and (min-device-width : 375px) 
+        and (max-device-width : 667px) { 
+            .col-md-3,
+            .col-md-9 {
+                width: 100%;
+            }
+        }
+        /* Exception Info */
+        .exception {
+            margin-top: 20px;
+        }
+        .exception .message{
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-bottom: 0 none;
+            line-height: 18px;
+            font-size:16px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+
+        .exception .code{
+            float: left;
+            text-align: center;
+            color: #fff;
+            margin-right: 12px;
+            padding: 16px;
+            border-radius: 4px;
+            background: #999;
+        }
+        .exception .source-code{
+            padding: 6px;
+            border: 1px solid #ddd;
+
+            background: #f9f9f9;
+            overflow-x: auto;
+
+        }
+        .exception .source-code pre{
+            margin: 0;
+        }
+        .exception .source-code pre ol{
+            margin: 0;
+            color: #4288ce;
+            display: inline-block;
+            min-width: 100%;
+            box-sizing: border-box;
+        font-size:14px;
+            font-family: "Century Gothic",Consolas,"Liberation Mono",Courier,Verdana;
+            padding-left: 56px;
+        }
+        .exception .source-code pre li{
+            border-left: 1px solid #ddd;
+            height: 18px;
+            line-height: 18px;
+        }
+        .exception .source-code pre code{
+            color: #333;
+            height: 100%;
+            display: inline-block;
+            border-left: 1px solid #fff;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace{
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-top: 0 none;
+            line-height: 16px;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace ol{
+            margin: 12px;
+        }
+        .exception .trace ol li{
+            padding: 2px 4px;
+        }
+        .exception div:last-child{
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Exception Variables */
+        .exception-var table{
+            width: 100%;
+            margin: 12px 0;
+            box-sizing: border-box;
+            table-layout:fixed;
+            word-wrap:break-word;            
+        }
+        .exception-var table caption{
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 0;
+        }
+        .exception-var table caption small{
+            font-weight: 300;
+            display: inline-block;
+            margin-left: 10px;
+            color: #ccc;
+        }
+        .exception-var table tbody{
+            font-size: 13px;
+            font-family: Consolas,"Liberation Mono",Courier,"微软雅黑";
+        }
+        .exception-var table td{
+            padding: 0 6px;
+            vertical-align: top;
+            word-break: break-all;
+        }
+        .exception-var table td:first-child{
+            width: 28%;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .exception-var table td pre{
+            margin: 0;
+        }
+
+        /* Copyright Info */
+        .copyright{
+            margin-top: 24px;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+        }
+
+        /* SPAN elements with the classes below are added by prettyprint. */
+        pre.prettyprint .pln { color: #000 }  /* plain text */
+        pre.prettyprint .str { color: #080 }  /* string content */
+        pre.prettyprint .kwd { color: #008 }  /* a keyword */
+        pre.prettyprint .com { color: #800 }  /* a comment */
+        pre.prettyprint .typ { color: #606 }  /* a type name */
+        pre.prettyprint .lit { color: #066 }  /* a literal value */
+        /* punctuation, lisp open bracket, lisp close bracket */
+        pre.prettyprint .pun, pre.prettyprint .opn, pre.prettyprint .clo { color: #660 }
+        pre.prettyprint .tag { color: #008 }  /* a markup tag name */
+        pre.prettyprint .atn { color: #606 }  /* a markup attribute name */
+        pre.prettyprint .atv { color: #080 }  /* a markup attribute value */
+        pre.prettyprint .dec, pre.prettyprint .var { color: #606 }  /* a declaration; a variable name */
+        pre.prettyprint .fun { color: red }  /* a function name */
+    </style>
+</head>
+<body>
+    <div class="echo">
+            </div>
+        <div class="exception">
+    <div class="message">
+        
+            <div class="info">
+                <div>
+                    <h2>[2] <abbr title="think\exception\ErrorException">ErrorException</abbr> in <a class="toggle" title="/www/web/global_data/public_html/application/home/controller/Payment.php line 238">Payment.php line 238</a></h2>
+                </div>
+                <div><h1>Illegal string offset 'order_status'</h1></div>
+            </div>
+        
+    </div>
+	        <div class="source-code">
+            <pre class="prettyprint lang-php"><ol start="229"><li class="line-229"><code>            //待处理状态下相关处理代码
+</code></li><li class="line-230"><code>            echo 'error';
+</code></li><li class="line-231"><code>        }
+</code></li><li class="line-232"><code>
+</code></li><li class="line-233"><code>    }
+</code></li><li class="line-234"><code>    //微信异步通知
+</code></li><li class="line-235"><code>    public function notifyWeixin(){
+</code></li><li class="line-236"><code>        $str = file_get_contents('php://input');
+</code></li><li class="line-237"><code>        $order = explode('&amp;',$str);
+</code></li><li class="line-238"><code>        if($order[4]['order_status']== 1){
+</code></li><li class="line-239"><code>            update_pay_status($order[1]['order_number']);
+</code></li><li class="line-240"><code>            echo 'SUCCESS';
+</code></li><li class="line-241"><code>            $data['transaction_id'] = $order['order_number'];
+</code></li><li class="line-242"><code>            M(&quot;order&quot;)-&gt;where(array('order_sn' =&gt; $order[5]['system_order_number']))-&gt;save($data);
+</code></li><li class="line-243"><code>        }elseif($order[4]['order_status'] == 'FAILED' || $order[4]['order_status'] == 'CANCEL'){
+</code></li><li class="line-244"><code>
+</code></li><li class="line-245"><code>        }else{
+</code></li><li class="line-246"><code>            //待处理状态下相关处理代码
+</code></li><li class="line-247"><code>            echo 'error';
+</code></li></ol></pre>
+        </div>
+	        <div class="trace">
+            <h2>Call Stack</h2>
+            <ol>
+                <li>in <a class="toggle" title="/www/web/global_data/public_html/application/home/controller/Payment.php line 238">Payment.php line 238</a></li>
+                                <li>
+                at <abbr title="think\Error">Error</abbr>::appError(2, '<a class="toggle" title="Illegal string offset 'order_status'">Illegal string offse...</a>', '<a class="toggle" title="/www/web/global_data/public_html/application/home/controller/Payment.php">/www/web/global_data...</a>', 238, ['str' => '<a class="toggle" title="company_code=8815&amp;order_number=201809121602012298&amp;order_amount=1.00&amp;remark=&amp;order_status=2&amp;system_order_number=881520180912160201bfwxv&amp;sett_date=12-09-2018+16%3A02%3A31&amp;order_fee=0.03&amp;timestamp=1536739352&amp;sign_type=SHA256&amp;version=1.0&amp;orderCurrency=CNY&amp;sign=098a61bc62b65b9f80c299c8c7af899ae8bf6e4c46de003ef6148658967685a1">company_code=8815&amp;or...</a>', 'order' => ['company_code=8815', '<a class="toggle" title="order_number=201809121602012298">order_number=2018091...</a>', 'order_amount=1.00', ...]]) in <a class="toggle" title="/www/web/global_data/public_html/application/home/controller/Payment.php line 238">Payment.php line 238</a>                </li>
+                                <li>
+                at <abbr title="app\home\controller\Payment">Payment</abbr>->notifyWeixin()                </li>
+                                <li>
+                at <abbr title="ReflectionMethod">ReflectionMethod</abbr>->invokeArgs(<em>object</em>(<abbr title="app\home\controller\Payment">Payment</abbr>), []) in <a class="toggle" title="/www/web/global_data/public_html/thinkphp/library/think/App.php line 227">App.php line 227</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::invokeMethod([<em>object</em>(<abbr title="app\home\controller\Payment">Payment</abbr>), 'notifyWeixin'], []) in <a class="toggle" title="/www/web/global_data/public_html/thinkphp/library/think/App.php line 405">App.php line 405</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::module(['Home', 'Payment', 'notifyWeixin'], ['app_namespace' => 'app', 'app_debug' => <em>true</em>, 'app_trace' => <em>false</em>, ...], <em>null</em>) in <a class="toggle" title="/www/web/global_data/public_html/thinkphp/library/think/App.php line 133">App.php line 133</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::run() in <a class="toggle" title="/www/web/global_data/public_html/thinkphp/start.php line 18">start.php line 18</a>                </li>
+                                <li>
+                at require('<a class="toggle" title="/www/web/global_data/public_html/thinkphp/start.php">/www/web/global_data...</a>') in <a class="toggle" title="/www/web/global_data/public_html/index.php line 52">index.php line 52</a>                </li>
+                            </ol>
+        </div>
+    </div>
+        
+        <div class="exception-var">
+        <h2>Exception Datas</h2>
+                <table>
+                        <caption>Error Context</caption>
+            <tbody>
+                                <tr>
+                    <td>str</td>
+                    <td>
+                        company_code=8815&amp;order_number=201809121602012298&amp;order_amount=1.00&amp;remark=&amp;order_status=2&amp;system_order_number=881520180912160201bfwxv&amp;sett_date=12-09-2018+16%3A02%3A31&amp;order_fee=0.03&amp;timestamp=1536739352&amp;sign_type=SHA256&amp;version=1.0&amp;orderCurrency=CNY&amp;sign=098a61bc62b65b9f80c299c8c7af899ae8bf6e4c46de003ef6148658967685a1                    </td>
+                </tr>
+                                <tr>
+                    <td>order</td>
+                    <td>
+                        [
+    &quot;company_code=8815&quot;,
+    &quot;order_number=201809121602012298&quot;,
+    &quot;order_amount=1.00&quot;,
+    &quot;remark=&quot;,
+    &quot;order_status=2&quot;,
+    &quot;system_order_number=881520180912160201bfwxv&quot;,
+    &quot;sett_date=12-09-2018+16%3A02%3A31&quot;,
+    &quot;order_fee=0.03&quot;,
+    &quot;timestamp=1536739352&quot;,
+    &quot;sign_type=SHA256&quot;,
+    &quot;version=1.0&quot;,
+    &quot;orderCurrency=CNY&quot;,
+    &quot;sign=098a61bc62b65b9f80c299c8c7af899ae8bf6e4c46de003ef6148658967685a1&quot;
+]                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+            </div>
+    
+        <div class="exception-var">
+        <h2>Environment Variables</h2>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>GET Data</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">POST Data</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>company_code</strong></div>
+                    <div class="col-md-9"><small>
+                        8815                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>order_number</strong></div>
+                    <div class="col-md-9"><small>
+                        201809121602012298                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>order_amount</strong></div>
+                    <div class="col-md-9"><small>
+                        1.00                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>remark</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>order_status</strong></div>
+                    <div class="col-md-9"><small>
+                        2                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>system_order_number</strong></div>
+                    <div class="col-md-9"><small>
+                        881520180912160201bfwxv                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>sett_date</strong></div>
+                    <div class="col-md-9"><small>
+                        12-09-2018 16:02:31                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>order_fee</strong></div>
+                    <div class="col-md-9"><small>
+                        0.03                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>timestamp</strong></div>
+                    <div class="col-md-9"><small>
+                        1536739352                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>sign_type</strong></div>
+                    <div class="col-md-9"><small>
+                        SHA256                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>version</strong></div>
+                    <div class="col-md-9"><small>
+                        1.0                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>orderCurrency</strong></div>
+                    <div class="col-md-9"><small>
+                        CNY                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>sign</strong></div>
+                    <div class="col-md-9"><small>
+                        098a61bc62b65b9f80c299c8c7af899ae8bf6e4c46de003ef6148658967685a1                    </small></div>
+                </div>
+                            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Files</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">Cookies</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>is_mobile</strong></div>
+                    <div class="col-md-9"><small>
+                        0                    </small></div>
+                </div>
+                            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Session</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">Server/Request Data</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTTP_HOST</strong></div>
+                    <div class="col-md-9"><small>
+                        easy-globalbuy.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTTP_ACCEPT</strong></div>
+                    <div class="col-md-9"><small>
+                        */*                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTENT_LENGTH</strong></div>
+                    <div class="col-md-9"><small>
+                        321                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTENT_TYPE</strong></div>
+                    <div class="col-md-9"><small>
+                        application/x-www-form-urlencoded                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /sbin:/usr/sbin:/bin:/usr/bin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_SIGNATURE</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_SOFTWARE</strong></div>
+                    <div class="col-md-9"><small>
+                        Apache                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        easy-globalbuy.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_ADDR</strong></div>
+                    <div class="col-md-9"><small>
+                        172.31.154.239                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_PORT</strong></div>
+                    <div class="col-md-9"><small>
+                        80                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REMOTE_ADDR</strong></div>
+                    <div class="col-md-9"><small>
+                        47.74.2.191                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DOCUMENT_ROOT</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_SCHEME</strong></div>
+                    <div class="col-md-9"><small>
+                        http                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTEXT_PREFIX</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTEXT_DOCUMENT_ROOT</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_ADMIN</strong></div>
+                    <div class="col-md-9"><small>
+                        you@example.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SCRIPT_FILENAME</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/index.php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REMOTE_PORT</strong></div>
+                    <div class="col-md-9"><small>
+                        46622                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>GATEWAY_INTERFACE</strong></div>
+                    <div class="col-md-9"><small>
+                        CGI/1.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_PROTOCOL</strong></div>
+                    <div class="col-md-9"><small>
+                        HTTP/1.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_METHOD</strong></div>
+                    <div class="col-md-9"><small>
+                        POST                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>QUERY_STRING</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_URI</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php/Home/Payment/notifyWeixin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SCRIPT_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATH_INFO</strong></div>
+                    <div class="col-md-9"><small>
+                        /Home/Payment/notifyWeixin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATH_TRANSLATED</strong></div>
+                    <div class="col-md-9"><small>
+                        redirect:/index.php/Payment/notifyWeixin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PHP_SELF</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php/Home/Payment/notifyWeixin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_TIME_FLOAT</strong></div>
+                    <div class="col-md-9"><small>
+                        1536739352.842                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        1536739352                    </small></div>
+                </div>
+                            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Environment Variables</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">ThinkPHP Constants</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>APP_DEBUG</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PLUGIN_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/plugins/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>UPLOAD_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        public/upload/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TPSHOP_CACHE_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        86400                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SITE_URL</strong></div>
+                    <div class="col-md-9"><small>
+                        http://easy-globalbuy.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>INSTALL_DATE</strong></div>
+                    <div class="col-md-9"><small>
+                        1463741583                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERIALNUMBER</strong></div>
+                    <div class="col-md-9"><small>
+                        20160520065303oCWIoa                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>APP_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/application/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>NOW_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        1536739352                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_VERSION</strong></div>
+                    <div class="col-md-9"><small>
+                        5.0.7                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_START_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        1536739352.843                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_START_MEM</strong></div>
+                    <div class="col-md-9"><small>
+                        243736                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>EXT</strong></div>
+                    <div class="col-md-9"><small>
+                        .php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DS</strong></div>
+                    <div class="col-md-9"><small>
+                        /                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/thinkphp/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>LIB_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/thinkphp/library/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CORE_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/thinkphp/library/think/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TRAIT_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/thinkphp/library/traits/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ROOT_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>EXTEND_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/extend/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>VENDOR_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/vendor/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>RUNTIME_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/runtime/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>LOG_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/runtime/log/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CACHE_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/runtime/cache/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TEMP_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/runtime/temp/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONF_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        /www/web/global_data/public_html/application/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONF_EXT</strong></div>
+                    <div class="col-md-9"><small>
+                        .php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ENV_PREFIX</strong></div>
+                    <div class="col-md-9"><small>
+                        PHP_                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_CLI</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_WIN</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_AJAX</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_GET</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_POST</strong></div>
+                    <div class="col-md-9"><small>
+                        true                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>MODULE_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        home                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTROLLER_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        Payment                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ACTION_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        notifyWeixin                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PREFIX</strong></div>
+                    <div class="col-md-9"><small>
+                        tp_                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SESSION_ID</strong></div>
+                    <div class="col-md-9"><small>
+                        4kpletot0flhj8m9a0eo0v58s7                    </small></div>
+                </div>
+                            </div>
+                    </div>
+            </div>
+    
+    <div class="copyright">
+        <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
+        <span>V5.0.7</span> 
+        <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
+    </div>
+        <script>
+        var LINE = 238;
+
+        function $(selector, node){
+            var elements;
+
+            node = node || document;
+            if(document.querySelectorAll){
+                elements = node.querySelectorAll(selector);
+            } else {
+                switch(selector.substr(0, 1)){
+                    case '#':
+                        elements = [node.getElementById(selector.substr(1))];
+                        break;
+                    case '.':
+                        if(document.getElementsByClassName){
+                            elements = node.getElementsByClassName(selector.substr(1));
+                        } else {
+                            elements = get_elements_by_class(selector.substr(1), node);
+                        }
+                        break;
+                    default:
+                        elements = node.getElementsByTagName();
+                }
+            }
+            return elements;
+
+            function get_elements_by_class(search_class, node, tag) {
+                var elements = [], eles, 
+                    pattern  = new RegExp('(^|\\s)' + search_class + '(\\s|$)');
+
+                node = node || document;
+                tag  = tag  || '*';
+
+                eles = node.getElementsByTagName(tag);
+                for(var i = 0; i < eles.length; i++) {
+                    if(pattern.test(eles[i].className)) {
+                        elements.push(eles[i])
+                    }
+                }
+
+                return elements;
+            }
+        }
+
+        $.getScript = function(src, func){
+            var script = document.createElement('script');
+            
+            script.async  = 'async';
+            script.src    = src;
+            script.onload = func || function(){};
+            
+            $('head')[0].appendChild(script);
+        }
+
+        ;(function(){
+            var files = $('.toggle');
+            var ol    = $('ol', $('.prettyprint')[0]);
+            var li    = $('li', ol[0]);   
+
+            // 短路径和长路径变换
+            for(var i = 0; i < files.length; i++){
+                files[i].ondblclick = function(){
+                    var title = this.title;
+
+                    this.title = this.innerHTML;
+                    this.innerHTML = title;
+                }
+            }
+
+            // 设置出错行
+            var err_line = $('.line-' + LINE, ol[0])[0];
+            err_line.className = err_line.className + ' line-error';
+
+            $.getScript('//cdn.bootcss.com/prettify/r298/prettify.min.js', function(){
+                prettyPrint();
+
+                // 解决Firefox浏览器一个很诡异的问题
+                // 当代码高亮后，ol的行号莫名其妙的错位
+                // 但是只要刷新li里面的html重新渲染就没有问题了
+                if(window.navigator.userAgent.indexOf('Firefox') >= 0){
+                    ol[0].innerHTML = ol[0].innerHTML;
+                }
+            });
+
+        })();
+    </script>
+    </body>
+</html>
+###--201809121602012298--##2018-09-12 16:02:32
+8815###--881520180912163302JjBpE---error###--201809121633026880--##2018-09-12 16:33:47
+8815###--881520180912163302JjBpE---error###--201809121633026880--##2018-09-12 16:33:48
+8815###--881520180912163600cpMwK---error###--201809121635596300--##2018-09-12 16:36:19
+8815###--881520180912163831TEqmt---error###--201809121638316252--##2018-09-12 16:39:13
+8815###--881520180912164242WkztY---error###--201809121642411475--##2018-09-12 16:42:57
+8815###--881520180912164926tarmX---error###--201809121649258230--##2018-09-12 16:51:02
+8815###--881520180912170632mXKET---error###--201809121706329743--##2018-09-12 17:06:59
+8815###--881520180912170632mXKET---error###--201809121706329743--##2018-09-12 17:07:00
+8815###--881520180912170904uoAhG---error###--201809121709044218--##2018-09-12 17:09:26
+8815###--881520180912172045NdCgO---error###--201809121720459820--##2018-09-12 17:22:23
+8815###--881520180912172045NdCgO---error###--201809121720459820--##2018-09-12 17:22:24
+8815###--881520180912175244NxpuD---error###--201809121752443652--##2018-09-12 17:53:18
+8815###--881520180912175244NxpuD---error###--201809121752443652--##2018-09-12 17:53:19
+8815###--881520180912180029mSyhU---success###--201809121800286764--##2018-09-12 18:00:44
+8815###--881520180914104518OWemZ---###--data_package2018091410156521--##2018-09-14 10:46:10
+8815###--881520180914111050VnzOa---<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/template/pc/rainbow/static/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="/template/pc/rainbow/static/css/common_style.css"/>
+    <script src="/template/pc/rainbow/static/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/js/global.js"></script>
+    <script src="/template/pc/rainbow/static/js/common.js"></script>
+</head>
+<body>
+<div class="operation_success_fail w710" >
+    
+    <div class="boxoperation p" >
+        <div class="success_fial_img fl">
+            <img src="/template/pc/rainbow/static/images/wrong_05.jpg"/>
+        </div>
+        <div class="success_describe fl">
+            <div class="sd1">
+                <i class="wro"></i>
+                <span>please login</span>
+            </div>
+            <div class="sd2">
+                <a id="href" href="javascript:history.back(-1);">页面跳转中...</a>
+                <span>等待时间：<em id="wait">3</em></span>
+            </div>
+            <div class="sd3">
+                <a href="/">首页</a>
+                <a href="/index.php?m=Home&c=Cart&a=cart">购物车</a>
+                <a href="/index.php?m=Home&c=User&a=index">用户中心</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+<script src="/template/pc/rainbow/static/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    /**/
+    (function () {
+        var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+        var interval = setInterval(function () {
+            var time = --wait.innerHTML;
+            if (time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            }
+            ;
+        }, 1000);
+    })();
+
+</script>
+</body>
+</html>###--data_package2018091497491001--##2018-09-14 11:11:31
+8815###--881520180914112722OcNmW---<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/template/pc/rainbow/static/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="/template/pc/rainbow/static/css/common_style.css"/>
+    <script src="/template/pc/rainbow/static/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/js/global.js"></script>
+    <script src="/template/pc/rainbow/static/js/common.js"></script>
+</head>
+<body>
+<div class="operation_success_fail w710" >
+    
+    <div class="boxoperation p" >
+        <div class="success_fial_img fl">
+            <img src="/template/pc/rainbow/static/images/wrong_05.jpg"/>
+        </div>
+        <div class="success_describe fl">
+            <div class="sd1">
+                <i class="wro"></i>
+                <span>please login</span>
+            </div>
+            <div class="sd2">
+                <a id="href" href="javascript:history.back(-1);">页面跳转中...</a>
+                <span>等待时间：<em id="wait">3</em></span>
+            </div>
+            <div class="sd3">
+                <a href="/">首页</a>
+                <a href="/index.php?m=Home&c=Cart&a=cart">购物车</a>
+                <a href="/index.php?m=Home&c=User&a=index">用户中心</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+<script src="/template/pc/rainbow/static/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    /**/
+    (function () {
+        var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+        var interval = setInterval(function () {
+            var time = --wait.innerHTML;
+            if (time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            }
+            ;
+        }, 1000);
+    })();
+
+</script>
+</body>
+</html>###--data_package2018091457995155--##2018-09-14 11:27:38

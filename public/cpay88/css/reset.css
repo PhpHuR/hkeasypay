@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+ 
+  .app,
+  .app body {
+    height: 100%;
+    overflow: auto;
+
+  }
+
+}

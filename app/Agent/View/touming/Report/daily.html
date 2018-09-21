@@ -1,0 +1,98 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <span class="white font20">報告-每日報告</span>
+                </div>
+
+                <div class="">
+                    <div style="width: 100%;position: relative;min-height: 1px">
+                        <form name="admin_list_sea" class="form-search" method="post" action="{:U('daily')}">
+                            <div class="main-top" style="margin-top: 20px">
+                                <div class="hidden-xs btn-sespan fl_left">
+                                    <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;padding-left: 15px;margin-left: 15px" value="{$sldate}"
+                                               placeholder="点击选择日期范围"  autocomplete="off"/>
+                                    </div>
+                                </div>
+                                <div class="fl_left">
+                                    <button type="submit" class="btn-default back_wh1 inline btn-square" style="margin-left: 7px;font-size: 18px;width: 30px;height: 30px;border-radius: 2px">
+                                        <i class="fa fa-search" style="color:#fff"></i>
+                                    </button>
+                                </div>
+                                <div class="fl_left" style="padding-left: 16px">
+                                    <a href="{:U('daily',array('action'=>'export','begin_time'=>$begin_time,'end_time'=>$end_time,'status'=>$status))}" class="btn btn-s-md btn-blue btn-rounded1"><i
+                                            class="fa fa-file-text-o"></i> 匯出報表</a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </form>
+
+
+                        <section>
+
+
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="" style="min-width:80px"><div class="text-left border_top">日期</div></th>
+                                        <th><div class="text-left border_top">總入金金額</div></th>
+                                        <th><div class="text-left border_top">總入金手續費</div></th>
+                                        <th><div class="text-left border_top">結算金額</div></th>
+                                        <th><div class="text-left border_top">總出金金額</div></th>
+                                        <th><div class="text-left border_top">總出金手續費</div></th>
+                                        <th><div class="text-left border_top">總出金失敗手續費</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <foreach name="list" item="v">
+                                        <tr>
+                                            <td class="text-left "><div class="border_margin">{$v.day}</div></td>
+                                            <td class="text-left "><div class="border_margin">{$v.iordermoney|number_format=###,2,'.',','}</div></td>
+                                            <td class="text-left "><div class="border_margin">{$v.ifree|number_format=###,2,'.',','}</div></td>
+                                            <td class="text-left"><div class="border_margin">{$v['iordermoney']-$v['ifree']}</div></td>
+                                            <td class="text-left "><div class="border_margin">{$v.otransfermoney|number_format=###,2,'.',','}</div></td>
+                                            <td class="text-left "><div class="border_margin">{$v.ofree|number_format=###,2,'.',','}</div></td>
+                                            <td class="text-left "><div class="border_margin">0.00</div></td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td class=" "><div class="border_botton">總共：</div></td>
+                                        <td class=" "><div class="border_botton">{$list_all.aiordermoney|number_format=###,2,'.',','}</div></td>
+                                        <td class=" "><div class="border_botton">{$list_all.aifree|number_format=###,2,'.',','}</div></td>
+                                        <td class=" "><div class="border_botton">{$list_all['aiordermoney']-$list_all['aifree']}</div></td>
+                                        <td class=" "><div class="border_botton">{$list_all.aotransfermoney|number_format=###,2,'.',','}</div></td>
+                                        <td class=" "><div class="border_botton">{$list_all.aofree|number_format=###,2,'.',','}</div></td>
+                                        <td class=" "><div class="border_botton">0.00</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="50" colspan="12" align="left">
+                                            {$page}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+<include file="Public:footer"/>

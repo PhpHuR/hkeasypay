@@ -1,0 +1,33 @@
+<div id="sidebar2" class="sidebar h-sidebar navbar-collapse collapse sidebar-fixed menu-min" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
+	<div class="nav-wrap-up pos-rel" style="color: #fff">
+		<div class="nav-wrap">
+			<ul class="nav nav-list">
+				<li>
+					<a href="/">
+						<o class="font12">首页</o>
+					</a>
+					<i class="iconfont icon-youbian"></i>
+				</li>
+				<if condition="$id_curr neq ''">
+				<foreach name="menus_name" item="k" key="n">
+				<li>
+					<a href="{:U(''.$k['name'].'')}">
+					<o class="font12">{$k.title}</o>
+					</a>
+				<if condition="$count neq $n">
+					<i class="iconfont icon-youbian"></i>
+				</if>
+				</li>
+				</foreach>
+				<else />
+				<li>
+					<a href="{:U('Index/index')}">
+						<o style="font-size: 20px">hi 欢迎使用{$sys.site_name}后台系统管理</o>
+					</a>
+					<b class="arrow"></b>
+				</li>
+				</if>
+			</ul>
+		</div>
+	</div><!-- /.nav-list -->
+</div>

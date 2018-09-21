@@ -1,0 +1,120 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>登录<?php echo preg_replace('/.com/', ' ', $_SERVER['SERVER_NAME']);?></title>
+    <meta name="keywords" content="<?php echo ($site_seo_keywords); ?>"/>
+    <meta name="description" content="<?php echo ($site_seo_description); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link href="/public/speedlink/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="/public/speedlink/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/speedlink/css/animate.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/speedlink/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/speedlink/css/font.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/speedlink/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/speedlink/css/style-themecolor.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="/public/speedlink/js/ie/html5shiv.js"></script>
+    <script src="/public/speedlink/js/ie/respond.min.js"></script>
+    <script src="/public/speedlink/js/ie/excanvas.js"></script>
+    <![endif]-->
+</head>
+<body class="">
+<section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+    <div class="container aside-xl">
+        <section class="m-b-lg">
+            <header class="wrapper text-center m-b-md">
+               
+            </header>
+            <form id="login" class="form-light ajaxForm2" action="<?php echo UU('Login/runlogin');?>" method="post">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <input type="text" id="input_username" name="member_list_username" placeholder="用户名" class="form-control no-border">
+                    </div>
+                    <div class="list-group-item">
+                        <input type="password" id="input_password" name="member_list_pwd" placeholder="Password" class="form-control no-border">
+                    </div>
+                    <div class="list-group-item">
+                        <input type="text" class="form-control no-border" id="verify" placeholder="识别码" style="height:40px;" name="verify" required>
+                    </div>
+                    <div class="list-group-item">
+                        <img class="verify_img" id="verify_img" src="<?php echo UU('Login/verify');?>" onClick="this.src='<?php echo UU('Login/verify');?>'+<?php if(in_array((C("url_model")), explode(',',"1,2"))): ?>'?'<?php else: ?>'&'<?php endif; ?>+Math.random()" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;height:40px;" title="点击获取">
+                    </div>
+                </div>
+
+
+<!--                <div style="margin-bottom:15px;">
+                    <div class="checkbox i-checks">
+                        <label style="font-weight:normal">
+                            <input type="checkbox"><i></i> Remember
+                        </label>
+                    </div>
+                </div>-->
+
+
+                <button type="submit" class="btn btn-lg btn-info btn-block" style="padding:10px 10px">
+                    <i class="ace-icon fa fa-key"></i>
+                    <span class="bigger-110">登录</span>
+                </button>
+
+                <!-- <div class="text-center m-t m-b"><a href="#"><small>Forgot password?</small></a></div>-->
+
+            </form>
+        </section>
+    </div>
+    <!--<a href="http://webscan.360.cn/index/checkwebsite/url/pay.hkeasypay.com"><img border="0" src="http://webscan.360.cn/status/pai/hash/3ad0f180480103265038ab16385dcedf"/></a>-->
+</section>
+
+<!-- 基本的js -->
+<!--[if !IE]> -->
+<script src="/public/others/jquery.min-2.2.1.js"></script>
+<!-- <![endif]-->
+<!-- 如果为IE,则引入jq1.12.1 -->
+<!--[if IE]>
+<script src="/public/others/jquery.min-1.12.1.js"></script>
+<![endif]-->
+<!-- jquery.form、layer、yfcmf的js -->
+<script src="/public/others/jquery.form.js"></script>
+<script src="/public/layer/layer.js"></script>
+<script src="/public/yfcmf/yfcmf.js"></script>
+
+
+<script type="text/javascript">
+    //添加操作
+    $(function(){
+        $('#login').ajaxForm({
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+        function complete(data){
+            if(data.status==1){
+                layer.alert(data.info, {icon: 6}, function(index){
+                    layer.close(index);
+                    window.location.href=data.url;
+                });
+            }else{
+                layer.alert(data.info, {icon: 5}, function(index){
+                    layer.close(index);
+                    if(data.info=='验证码错误'){
+                        $('#verify').val("");
+                    }else{
+                        $(':input').val("");
+                    }
+                });
+                var $verify_img=$('#verify_img');
+                var $url=$verify_img.attr("src");
+                if($url.indexOf('?')>0){
+                    $url=$url+'&'+Math.random();
+                }else{
+                    $url=$url+'?'+Math.random();
+                }
+                $verify_img.attr("src",$url);
+            }
+            return false;
+        }
+    });
+</script>
+
+</body>
+</html>

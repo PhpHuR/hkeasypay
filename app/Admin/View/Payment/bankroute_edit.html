@@ -1,0 +1,230 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="row" style="color: #fff">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="bankroute_edit" method="post" action="{:U('bankroute_runedit')}">
+                    <input type="hidden" name="id" id="id" value="{$bankroute_edit.id}" />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择所属支付公司： </label>
+                        <div class="col-sm-4">
+                            <select name="p_id"  class="col-sm-12 selector bgtouming white" required>
+                                <option value="">选择所属支付公司</option>
+                                <foreach name="payment_name" item="v">
+                                    <option  value="{$v.api_id}" <if condition="$bankroute_edit['p_id'] eq $v['api_id']">selected</if>>{$v.api_china_name}</option>
+                                    <!--<option value="{$v.api_id}">{$v.api_china_name}</option>-->
+                                </foreach>
+                            </select>
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择银行卡类型： </label>
+                        <div class="col-sm-4">
+                            <select name="bank_type"  class="col-sm-12 selector bgtouming white" required>
+                                <option value="">选择银行卡类型</option>
+                                <option value="1" <if condition="$bankroute_edit['bank_type'] eq 1">selected</if>>储蓄卡</option>
+                                <option value="2" <if condition="$bankroute_edit['bank_type'] eq 2">selected</if>>信用卡</option>
+                                <option value="3" <if condition="$bankroute_edit['bank_type'] eq 3">selected</if>>综合</option>
+                                <option value="4" <if condition="$bankroute_edit['bank_type'] eq 4">selected</if>>公对公</option>
+                                <option value="5" <if condition="$bankroute_edit['bank_type'] eq 5">selected</if>>快捷</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国工商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="gonghang" id="gonghang" value="{$bankroute_edit.gonghang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国建设银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jianhang" id="jianhang" value="{$bankroute_edit.jianhang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国农业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="nonghang" id="nonghang" value="{$bankroute_edit.nonghang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 招商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhaohang" id="zhaohang" value="{$bankroute_edit.zhaohang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhonghang" id="zhonghang" value="{$bankroute_edit.zhonghang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海浦东发展银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="pufa" id="pufa" value="{$bankroute_edit.pufa}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 交通银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jiaohang" id="jiaohang" value="{$bankroute_edit.jiaohang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 民生银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="minsheng" id="minsheng" value="{$bankroute_edit.minsheng}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 兴业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="xingye" id="xingye" value="{$bankroute_edit.xingye}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 光大银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="guangda" id="guangda" value="{$bankroute_edit.guangda}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 广发银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="guangfa" id="guangfa" value="{$bankroute_edit.guangfa}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中信银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhongxin" id="zhongxin" value="{$bankroute_edit.zhongxin}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国邮政储蓄：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="chuxu" id="chuxu" value="{$bankroute_edit.chuxu}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 平安银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shenfa" id="shenfa" value="{$bankroute_edit.shenfa}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 北京银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="beijing" id="beijing" value="{$bankroute_edit.beijing}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shanghai" id="shanghai" value="{$bankroute_edit.shanghai}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 北京农商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="bjnongshang" id="bjnongshang" value="{$bankroute_edit.bjnongshang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 华夏银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="huaxia" id="huaxia" value="{$bankroute_edit.huaxia}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 南京银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="nanjing" id="nanjing" value="{$bankroute_edit.nanjing}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 渤海银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="bohai" id="bohai" value="{$bankroute_edit.bohai}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 杭州银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="hangzhou" id="hangzhou" value="{$bankroute_edit.hangzhou}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海农村商业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shnongshang" id="shnongshang" value="{$bankroute_edit.shnongshang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浙商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zheshang" id="zheshang" value="{$bankroute_edit.zheshang}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 微信：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="weixin" id="weixin" value="{$bankroute_edit.weixin}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 支付宝：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="alipay" id="alipay" value="{$bankroute_edit.alipay}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 京东：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jd" id="jd" value="{$bankroute_edit.jd}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 百度：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="baidu" id="baidu" value="{$bankroute_edit.baidu}" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

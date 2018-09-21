@@ -1,0 +1,226 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <div class="row maintop">
+            <div class="col-xs-12 col-sm-3">
+                <form name="turnFoOrderPage" class="form-search" method="post" action="{:U('turnFoAuditOrderPage')}">
+                    <div class="input-group">
+										<span class="input-group-addon">
+											<i class="ace-icon fa fa-check"></i>
+										</span>
+                        <input type="text" name="key" id="key" class="form-control search-query admin_sea" value="{$val}" placeholder="输入商户ID或者订单号" />
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-xs  btn-purple">
+                                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                搜索
+                                            </button>
+										</span>
+                    </div>
+                </form>
+            </div>
+            <div class="input-group-btn">
+                <a href="{:U('turnFoAuditOrderPage')}">
+                    <button type="button" class="btn btn-xs  btn-purple">
+                        <span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+                        显示全部
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form class="ajaxForm" name="audit" method="post" action="{:U('turnFoAuditOrderPage')}" >
+                        <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs">ID</th>
+                                <th class="hidden-xs">日期時間</th>
+                                <th class=" hidden-xs">客戶名稱</th>
+                                <th class=" hidden-xs">商戶號MID</th>
+                                <th class=" hidden-xs">支付公司名稱</th>
+                                <th class=" hidden-xs">支付公司MID</th>
+                                <th class="hidden-xs">客戶訂單號碼</th>
+                                <th class="hidden-sm hidden-xs">收款銀行</th>
+                                <th class="hidden-sm hidden-xs ">收款人名</th>
+                                <th class="hidden-sm hidden-xs ">銀行帳號</th>
+                                <th class="hidden-sm hidden-xs ">分行(省市)</th>
+                                <th class="hidden-xs ">出金金額RMB</th>
+                                <th class="hidden-xs ">出金手續費RMB</th>
+                                <th class="hidden-xs ">狀態</th>
+                                <th style="border-right:#CCC solid 1px;">操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="audit_list" item="v">
+                                <tr>
+                                    <td class="hidden-xs" height="28" >{$v.payout_id}</td>
+                                    <td class="hidden-xs">{$v.begin_time|date="Y-m-d H:i:s",###}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.member_name}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.uid}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.api_china_name}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.title}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.payout_orderid}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.bankname|getBankName}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.reaccname}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.reaccno}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.proname|getRegionName}-{$v.cityname|getRegionName}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.transfermoney}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.free}</td>
+                                    <td class="hidden-sm hidden-xs">
+                                        <switch name="v.status">
+                                            <case value="1"><span class="label label-success arrowed-in arrowed-in-right">审核通过</span></case>
+                                            <case value="2"><span class="label label-sm label-fiale">审核失败</span></case>
+                                            <case value="3"><span class="label label-info arrowed-right arrowed-in">处理中</span></case>
+                                            <case value="4"><span class="label label-sm label-success">转账成功</span></case>
+                                            <case value="5"><span class="label label-danger arrowed">转账失败</span></case>
+                                            <default /><span class="label label-sm label-inverse arrowed-in">待审核</span>
+                                        </switch>
+                                    </td>
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a class="green payoutAudit"  href="{:U('turnFoAuditOrderPage')}" data-id="{$v.payout_id}" title="审核">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+                                        </div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="{:U('turnFoAuditOrderPage')}" data-id="{$v.payout_id}" class="tooltip-success payoutAudit" data-rel="tooltip" title="" data-original-title="审核">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="16" align="left">
+                                    <a class="btn btn-sm btn-warning"  href="{:U('turnFoAuditOrderPage',array('action'=>'export'))}"  title="导出报表">
+                                        <i class="ace-icon fa fa-fire bigger-110"></i>
+                                        <span class="bigger-110 no-text-shadow">导出报表</span>
+                                    </a>
+                                    {$page}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+
+    <!-- 显示模态框（Modal） -->
+    <div class="modal fade in" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-backdrop fade in" id="gbbb" style="height: 100%;"></div>
+        <form class="form-horizontal ajaxForm2" name="runAuditOrder" method="post" action="{:U('runAuditOrder')}">
+            <input type="hidden" name="payout_id" id="editpayout_id" value="" />
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="gb"  data-dismiss="modal"
+                                aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            审核订单状态
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 客戶訂單號碼：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="batchnum" id="editbatchnum" value="" class="col-xs-10" readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 收款銀行：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="bankname" id="editbankname" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 收款人名：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="reaccname" id="editreaccname" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 銀行帳號：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="reaccno" id="editreaccno" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 出金金額RMB：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="transfermoney" id="edittransfermoney" readonly class="col-xs-10 "  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 出金手續費：  </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="free" id="editfree" value="" class="col-xs-10 " readonly  required/>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 订单状态： </label>
+                                    <div class="col-sm-8">
+                                        <select name="status" class="col-xs-10 selector" required>
+                                            <option value="">请选择订单状态</option>
+                                            <!--<option value="2">审核失败</option>-->
+                                            <option value="3">处理中</option>
+                                            <!--<option value="5">转账失败</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="space-4"></div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            提交保存
+                        </button>
+                        <button type="button" class="btn btn-default"  id="gbb" >
+                            关闭
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+</block>

@@ -1,0 +1,113 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel-default">
+                            <div class="m-b-md">
+                                <span class="white font20">申請列表</span>
+                            </div>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th><div class="border_top border_dashed text-center">編號</div></th>
+                                        <th><div class="border_top border_dashed text-center">客戶名稱</div></th>
+                                        <th><div class="border_top border_dashed text-center">行業</div></th>
+                                        <th><div class="border_top border_dashed text-center">預計每日交易金額</div></th>
+
+                                        <th><div class="border_top border_dashed text-center">系統整合型式</div></th>
+
+                                        <th><div class="border_top border_dashed text-center">網銀支付</div></th>
+
+                                        <th><div class="border_top border_dashed text-center">微信支付</div></th>
+
+                                        <th><div class="border_top border_dashed text-center">支付寶支付</div></th>
+
+                                        <th><div class="border_top text-center">申請狀態</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="aglist_list" item="v">
+                                        <tr>
+                                            <td><div class="border_margin text-center">{$v.agent_sub_id}</div></td>
+                                            <td><div class="border_margin text-center">{$v.agent_sub_name}</div></td>
+                                            <td><div class="border_margin text-center">{$v.agent_sub_industry}</div></td>
+                                            <td><div class="border_margin text-center">{$v.agent_sub_expect}</div></td>
+                                            <td>
+                                                <div class="border_margin text-center">
+                                                <switch name="v.agent_sub_pay_type">
+                                                    <case value="1">
+                                                        <a class="btn btn-danger btn-xs-square delete-btn bgdanger" href="#">API</a></case>
+                                                    <case value="2"><span class="text-success">Payment Page</span></case>
+                                                </switch>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="border_margin text-center">
+                                                代理：{$v['netgate']['agent']|number_format=###,2,'.',','}%<br />
+                                                介紹人A：{$v['netgate']['agent1']|number_format=###,2,'.',','}%<br />
+                                                介紹人B：{$v['netgate']['agent2']|number_format=###,2,'.',','}%<br />
+                                                客戶：{$v['netgate']['client']|number_format=###,2,'.',','}%<br />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="border_margin text-center">
+                                                代理：{$v['weixin']['agent']|number_format=###,2,'.',','}%<br />
+                                                介紹人A：{$v['weixin']['agent1']|number_format=###,2,'.',','}%<br />
+                                                介紹人B：{$v['weixin']['agent2']|number_format=###,2,'.',','}%<br />
+                                                客戶：{$v['weixin']['client']|number_format=###,2,'.',','}%<br />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="border_margin text-center">
+                                                代理：{$v['alipay']['agent']|number_format=###,2,'.',','}%<br />
+                                                介紹人A：{$v['alipay']['agent1']|number_format=###,2,'.',','}%<br />
+                                                介紹人B：{$v['alipay']['agent2']|number_format=###,2,'.',','}%<br />
+                                                客戶：{$v['alipay']['client']|number_format=###,2,'.',','}%<br />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="border_margin text-center">
+                                                <switch name="v.agent_sub_status">
+                                                    <case value="1">
+                                                        <a class="btn btn-danger btn-xs-square delete-btn bgdanger" href="#">成  &nbsp;&nbsp;功</a></case>
+                                                    <case value="0"><span class="text-success">待處理</span></case>
+                                                    <default/>
+                                                    <a class="btn btn-danger btn-xs-square delete-btn bgfinish" href="#">待處理</a>
+                                                </switch>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </foreach>
+
+                                    <tr>
+                                        <td height="50" colspan="9" align="left">
+                                            {$page}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

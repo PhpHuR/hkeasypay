@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{$site_seo_title} {$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}" />
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link href="__PUBLIC__/globe/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="__PUBLIC__/globe/js/datepicker/datepicker.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/animate.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/icon.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/font.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/js/calendar/bootstrap_calendar.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/js/chosen/chosen.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/globe/css/style-themecolor.css" type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/globe/js/ie/html5shiv.js"></script>
+    <script src="__PUBLIC__/globe/js/ie/respond.min.js"></script>
+    <script src="__PUBLIC__/globe/js/ie/excanvas.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        function initArray() {
+            for (i = 0; i < initArray.arguments.length; i++)
+                this[i] = initArray.arguments[i];
+        }
+        today = new Date();
+        hrs = today.getHours();
+        min = today.getMinutes();
+        sec = today.getSeconds();
+        clckh = "" + ((hrs > 12) ? hrs - 12 : hrs);
+        clckm = ((min < 10) ? "0" : "") + min;
+        clcks = ((sec < 10) ? "0" : "") + sec;
+        clck = (hrs >= 12) ? "下午" : "上午";
+        var stnr = "";
+        var ns = "0123456789";
+        var a = "";
+
+        function getFullYear(d) {
+            yr = d.getYear();
+            if (yr < 1000)
+                yr += 1900;
+            return yr;
+        }
+    </script>
+
+</head>
+<body class="">
+<section class="vbox">
+    <section>
+        <section class="hbox stretch">
+            <!-- .aside -->
+            <aside class="bg-black aside-md hidden-print" id="nav">
+                <section class="vbox">
+                    <section class="w-f scrollable">
+                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+                             data-size="10px" data-railOpacity="0.2">

@@ -1,0 +1,137 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+
+</script>
+<form id="orderForm" action='order.php' method='post'>
+    <table>
+        <tr>
+            <td width=200>接口类型:跨境汇款下单</td>
+        </tr>
+        <tr>
+            <td width=200>订单号</td>
+            <td><input type='text' name='requestId' id="requestId" value=''></td>
+        </tr>
+        <tr>
+            <td width=200>汇款金额</td>
+            <td><input type='text' name='amount' value=''>(分)</td>
+        </tr>
+        <tr>
+            <td width=200>汇单金额币种</td>
+            <td><input type='text' name='currency' value=''></td>
+        </tr>
+
+        <tr>
+            <td width=200>预计到账币种</td>
+            <td><input type='text' name='creditedCurrency' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>汇款类型</td>
+            <td><input type='text' name='transferMode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>是否单账户</td>
+            <td><input type='text' name='singleReceiveAccount' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>是否合并</td>
+            <td><input type='text' name='isMerger' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>上传明细地址</td>
+            <td><input type='text' name='detailPath' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>上传合同地址</td>
+            <td><input type='text' name='contractPath' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>锁定牌价标识</td>
+            <td><input type='text' name='listpriceToken' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>通知地址</td>
+
+            <td><input type='text' name='notifyUrl' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>回调地址</td>
+            <td><input type='text' name='callbackUrl' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><font color="red">---------------------汇款信息-----------------------------------</font></td>
+        </tr>
+        <tr>
+            <td width=200>收款方姓名</td>
+            <td><input type='text' name='recName' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款方账号</td>
+            <td><input type='text' name='accountNumber' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款方地址</td>
+            <td><input type='text' name='recAddress' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款方常驻国家代码</td>
+            <td><input type='text' name='countryCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>IBAN</td>
+            <td><input type='text' name='ibanCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行名称</td>
+            <td><input type='text' name='bankName' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行SWIFT</td>
+            <td><input type='text' name='swiftCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>Routing Number</td>
+            <td><input type='text' name='routingCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>BSB Number</td>
+            <td><input type='text' name='bsbCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行地址</td>
+            <td><input type='text' name='bankAddress' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>汇款附言</td>
+            <td><input type='text' name='postScript' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行在其代理行账号</td>
+            <td><input type='text' name='proxyBankAccountNumber' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行之代理行名称</td>
+            <td><input type='text' name='proxyBankName' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行之代理行SWIFT</td>
+            <td><input type='text' name='proxySwiftCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>收款行之代理行地址</td>
+            <td><input type='text' name='proxyBankAddress' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type='submit' name='' value='提交'></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    document.getElementById("requestId").value = new Date().valueOf();
+</script>
+</body>
+</html>

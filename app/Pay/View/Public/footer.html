@@ -1,0 +1,34 @@
+
+
+<script lang="javascript">
+	$(document).ready(function () {
+		$.post("/home/ajax/curoffer", {
+					user_id: $("#company_code").val(),
+		},
+				function (data, status) {
+					var json_str = $.parseJSON(data);
+					if (status == "success") {
+						var hkd = json_str.hkd;
+						var usd = json_str.usd;
+						$("#order_amount").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+							var keyCode = evt.which;
+							var t = $(this).val();
+							if (hkd * t > 0) {
+								$("#HKD").text("等值 HKD  "+ (t * hkd).toFixed(2));
+							}
+                            var hkd2 =  (t * hkd).toFixed(2);
+							if (usd * t > 0) {
+								$("#USD").text("等值 USD  "+ (hkd2 * usd).toFixed(2));
+							}
+						});
+					} else {
+						alert("数据: \n" + data + "\n状态: " + status);
+					}
+				});
+
+
+	});
+
+</script>
+</body>
+</html>

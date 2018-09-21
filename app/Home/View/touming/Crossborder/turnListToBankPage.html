@@ -1,0 +1,153 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">批量出金</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal ajaxForm2" name="turnListToBankPage" method="post" action="{:U('turnListToBankPage')}"  enctype="multipart/form-data">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                上傳訂單 （單次允許最多20條數據）
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <table class="table ach-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="grey"><span class="red">*</span>子賬戶</td>
+                                        <td>
+                                            <select class="form-control inline currency-selector" name="sub_balance"
+                                                    id="sub_balance" required>
+                                                <option selected>子賬戶</option>
+                                                <volist name="sub_balance_list" id="va">
+                                                    <option value="{$va.sub_balance_id}">{$va.attribute|getSubUserBalanceAttributeName}</option>
+                                                </volist>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-xs-12 panel-body text-sm">
+                                    <div class="fileUpload btn btn-default">
+                                        <span>選擇檔案</span>
+                                        <input id="upload"  name="file_stu" type="file" class="upload">
+                                    </div>
+                                    <input name="file_stu" id="uploadFile" placeholder="" disabled="disabled"
+                                           class="form-control input-sm inline v-middle" style="width:180px"><input class="input-sm inline v-middle form-control text-left"
+                                                                                                                    style="width:150px;  display:inline-block" value=""
+                                                                                                                    id="balance_availablecount" readonly>
+                                    <br>
+                                    <div class="line line-dashed b-b line-lg pull-in m-t-sm m-b-sm"></div>
+                                    <button class="btn btn-danger nextBtn btn-md m-t-sm m-b-sm btn-rounded" type="submit">上傳
+                                    </button>
+                                    <a href="__PUBLIC__/Excel/sample/batchpayout.xls" class="btn btn-primary nextBtn btn-md btn-rounded m-t-sm m-b-sm "
+                                           >下載範例
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                        </form>
+                        <div class="padder">
+                            <div class="line line-dashed b-b line-lg pull-in m-t-md"></div>
+                        </div>
+
+                        <section class="panel panel-default">
+
+                            <header class="panel-heading">
+                                批量出金詳情
+                            </header>
+
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th>Excel名稱</th>
+                                        <th style="min-width:80px">收款銀行</th>
+                                        <th>收款人名</th>
+                                        <th>銀行帳號</th>
+                                        <th>省-市-開戶網點</th>
+
+                                        <th>出金金額 </th>
+                                        <th>備註 </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="audit_list" item="v">
+                                        <tr>
+                                            <td class="hidden-sm hidden-xs">{$v.filename}</td>
+
+                                            <td class="hidden-sm hidden-xs">{$v.bankname|getBankName}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.reaccname}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.reaccno}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.proname|getRegionName}-{$v.cityname|getRegionName}-{$v.reaccdept}</td>
+
+                                            <td class="hidden-sm hidden-xs">{$v.transfermoney}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.remark}</td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td height="50" colspan="6" align="left">
+                                            {$page}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </section>
+    </section>
+</section>
+
+<include file="Public:footer"/>
+<script lang="javascript">
+    function getFileName(path) {
+        var pos1 = path.lastIndexOf('/');
+        var pos2 = path.lastIndexOf('\\');
+        var pos = Math.max(pos1, pos2);
+        if (pos < 0) {
+            return path;
+        }
+        else {
+            return path.substring(pos + 1);
+        }
+    }
+
+    $(document).ready(function () {
+        $('#upload').change(function () {
+            var str = $(this).val();
+            var fileName = getFileName(str);
+            var fileExt = str.substring(str.lastIndexOf('.') + 1);
+            $("#uploadFile").val(fileName);
+        });
+        $("#sub_balance").bind('input', function () {
+            $.post("/home/ajax/getBalance", {
+                        id: $(this).val(),
+                    },
+                    function (data, status) {
+                        if (status == "success") {
+                            $("#balance_availablecount").val("可用餘額："+data.sub_user_balance);
+                        } else {
+                            alert("数据: \n" + data + "\n状态: " + status);
+                        }
+                    });
+        });
+    });
+</script>

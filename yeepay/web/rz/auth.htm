@@ -1,0 +1,55 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script language="JavaScript" src="../js/jquery.js"></script>
+</head>
+<body>
+<form id="orderForm" name="orderForm" action='auth.php' method='post'>
+    <table>
+        <tr>
+            <td width=200>接口类型:认证请求</td>
+        </tr>
+        <tr>
+            <td width=200>订单号</td>
+            <td><input type='text' name='requestId' id="requestId" value='1534567933'></td>
+        </tr>
+        <tr>
+            <td width=200>认证类型</td>
+            <td>
+                <select name="authType" id="authType">
+                    <option value="AUTH_USER" selected="selected">实名认证</option>
+                    <option value="AUTH_USER_ATTENTION">关注认证</option>
+                    <option value="AUTH_BANK_CARD">银行卡认证</option>
+                    <option value="AUTH_BANK_CARD_ENHANCE">银行卡增强认证</option>
+                    <option value="AUTH_USER_ENHANCE">实名增强认证</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width=200>姓名</td>
+            <td><input type='text' name='name' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>证件号码</td>
+            <td><input type='text' name='idCardNum' id="idCardNum" value=''></td>
+        </tr>
+        <tr>
+            <td width=200>银行卡号</td>
+            <td><input type='text' name='bankCardNumber' id="bankCardNumber" value=''></td>
+        </tr>
+        <tr/>
+        <tr>
+            <td width=200>银行卡预留手机号</td>
+            <td><input type='text' name='phoneNumber' id='phoneNumber' value=''></td>
+        </tr>
+        <tr>
+            <td width=200><input type='submit' name='' value='提交'></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    document.getElementById("requestId").value=new Date().valueOf();
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">出金訂單</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                出金
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <table class="table ach-table">
+                                    <form action="{:U('turnOneToBaknPage')}" method="post" class="ajaxForm2">
+
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="grey">出金金額：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-center"
+                                                   style="width:50px" placeholder="RMB" disabled="disabled">
+                                            <input name="transfermoney" class="input-sm inline v-middle form-control calculator-amount text-left"
+                                                   style="width:150px; display:inline-block" placeholder="1,000">
+                                        </td>
+                                        <td class="grey">收款銀行：</td>
+                                        <td><select class="form-control inline currency-selector"
+                                                    style=" min-width:210px">
+                                            <option selected="selected">-- 請選擇 --</option>
+                                            <option>中國銀行</option>
+                                            <option>交通銀行</option>
+                                            <option>中國農業銀行</option>
+                                            <option>中國建設銀行</option>
+                                            <option>招商銀行</option>
+                                            <option>中國工商銀行</option>
+                                        </select>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="grey">手續費：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-center"
+                                                   style="width:50px" placeholder="RMB" disabled="disabled">
+                                            <input name="free" value="{$payout_rate}" class="input-sm inline v-middle form-control calculator-amount text-left"
+                                                   style="width:150px ;display:inline-block" placeholder="{$payout_rate}"
+                                                   readonly="readonly">
+                                        </td>
+                                        <td class="grey">收款人名：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-left"
+                                                   style="width:100% ;display:inline-block"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="grey">總共費用：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-center"
+                                                   style="width:50px" placeholder="RMB" disabled="disabled">
+                                            <input name="allmoney" class="input-sm inline v-middle form-control calculator-amount text-left"
+                                                   style="width:150px ;display:inline-block"
+                                                   readonly="readonly">
+                                        </td>
+                                        <td class="grey">銀行帳號：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-left"
+                                                   style="width:100% ;display:inline-block"></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="grey"></td>
+                                        <td></td>
+                                        <td class="grey">分行：</td>
+                                        <td><input class="input-sm inline v-middle form-control text-left"
+                                                   style="width:100% ;display:inline-block"></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="grey"></td>
+                                        <td></td>
+                                        <td class="grey">省：</td>
+                                        <td>
+                                            <select class="form-control inline currency-selector"
+                                                    style=" min-width:210px" name="prov">
+                                                <option selected="selected">-- 請選擇 --</option>
+                                                <option value="北京">北京</option>
+                                                <option value="天津">天津</option>
+                                                <option value="河北">河北</option>
+                                                <option value="山西">山西</option>
+                                                <option value="內蒙古">內蒙古</option>
+                                                <option value="遼寧">遼寧</option>
+                                                <option value="吉林">吉林</option>
+                                                <option value="黑龍江">黑龍江</option>
+                                                <option value="上海">上海</option>
+                                                <option value="江蘇">江蘇</option>
+                                                <option value="浙江">浙江</option>
+                                                <option value="安徽">安徽</option>
+                                                <option value="福建">福建</option>
+                                                <option value="江西">江西</option>
+                                                <option value="山東">山東</option>
+                                                <option value="河南">河南</option>
+                                                <option value="湖北">湖北</option>
+                                                <option value="湖南">湖南</option>
+                                                <option value="廣東">廣東</option>
+                                                <option value="廣西">廣西</option>
+                                                <option value="海南">海南</option>
+                                                <option value="重慶">重慶</option>
+                                                <option value="四川">四川</option>
+                                                <option value="貴州">貴州</option>
+                                                <option value="雲南">雲南</option>
+                                                <option value="西藏">西藏</option>
+                                                <option value="陜西">陜西</option>
+                                                <option value="甘肅">甘肅</option>
+                                                <option value="青海">青海</option>
+                                                <option value="寧夏">寧夏</option>
+                                                <option value="新疆">新疆</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="grey"></td>
+                                        <td></td>
+                                        <td class="grey">市：</td>
+                                        <td>
+                                            <select class="form-control inline currency-selector"
+                                                    style=" min-width:210px" name="city">
+                                                <option>-- 請選擇 --</option>
+                                                <option value="廣州">廣州</option>
+                                                <option value="韶關">韶關</option>
+                                                <option value="深圳">深圳</option>
+                                                <option value="珠海">珠海</option>
+                                                <option value="汕頭">汕頭</option>
+                                                <option value="佛山">佛山</option>
+                                                <option value="江門">江門</option>
+                                                <option value="湛江">湛江</option>
+                                                <option value="茂名">茂名</option>
+                                                <option value="肇慶">肇慶</option>
+                                                <option value="惠州">惠州</option>
+                                                <option value="梅州">梅州</option>
+                                                <option value="汕尾">汕尾</option>
+                                                <option value="河源">河源</option>
+                                                <option value="陽江">陽江</option>
+                                                <option value="清遠">清遠</option>
+                                                <option value="東莞">東莞</option>
+                                                <option value="中山">中山</option>
+                                                <option value="潮州">潮州</option>
+                                                <option value="揭陽">揭陽</option>
+                                                <option value="雲浮">雲浮</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="grey" height="33"></td>
+                                        <td></td>
+                                        <td class="grey">參巧編號</td>
+                                        <td>商戶號MID+Random</td>
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td colspan="4">
+                                            <button href="modal-payout-preview.php" data-toggle="ajaxModal"
+                                                    class="btn btn-default nextBtn btn-lg btn-rounded m-t-sm m-b-sm"
+                                                    type="button">預覽
+                                            </button>
+                                            <button type="submit"
+                                                    class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm "
+                                                    >提交
+                                            </button>
+
+                                        </td>
+
+
+                                    </tr>
+
+                                    </tbody>
+                                    </form>
+                                </table>
+
+
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--/END scrollable padder-->
+<script language="javascript">
+    function add()
+    {
+        var a1 = parseFloat(f1.transfermoney.value);
+        var a2 = parseFloat(f1.free.value);
+        if(!(isNaN(a1)||isNaN(a2)))
+            f1.allmoney.value = a1+a2;
+    }
+</script>
+
+<include file="Public:footer"/>
+
+
+<div class="modal fade" id="modal-form">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body wrapper-lg">
+                <div class="row text-center m-b-lg">
+                    <div class="col-md-12" style="font-size:15px">
+
+                        <img src="../common/images/form.png" style=" width:100%">
+
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs"
+                           data-dismiss="modal">確定</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs">列印</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-default m-b-xs"
+                           data-dismiss="modal">關閉</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--送出訂單-->
+<div class="modal fade" id="modal-preview">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body wrapper-lg">
+                <div class="row text-center m-b-lg">
+                    <div class="col-md-12" style="font-size:15px">
+
+                        <img src="__PUBLIC__/ebpays/images/form.png" style=" width:100%">
+
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs"
+                           data-dismiss="modal">送出訂單</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs">列印</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-default m-b-xs"
+                           data-dismiss="modal">關閉</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--預覽-->

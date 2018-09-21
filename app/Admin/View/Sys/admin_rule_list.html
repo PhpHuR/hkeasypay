@@ -1,0 +1,146 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+		<div class="row maintop">
+			<div style="margin:10px 0;" id="rule-add">
+				<form class="form-horizontal ajaxForm2" name="admin_rule_add" method="post" action="{:U('admin_rule_runadd')}">
+					<div class="col-xs-12 col-sm-12 white">
+						<div class="fl_left search_rule line29">状态：</div>
+						<div class="fl_left search_rule">
+							<select name="status" class="rule_search">
+								<option value="1">显示</option>
+								<option value="0">不显示</option>
+							</select>
+						</div>
+						<div class="sl-left27 fl_left search_rule line29">父级：</div>
+						<div class="fl_left search_rule">
+							<select name="pid" required class="rule_search" style="padding: 0 26px">
+								<option value="0">--默认顶级--</option>
+								<foreach name="admin_rule" item="v">
+									<option value="{$v.id}" style="margin-left:55px;">{$v.lefthtml}{$v.title}</option>
+								</foreach>
+							</select>
+						</div>
+						<div class="sl-left27 fl_left search_rule line29">名称：</div>
+						<div class="fl_left search_rule"><input name="title" id="title" class="rule_search"  placeholder=" 输入名称" width="106%" height="40px" required/></div>
+						<div class="sl-left27 fl_left search_rule line29">控/方：</div>
+						<div class="fl_left search_rule"><input name="name" id="name" class="rule_search"  placeholder=" 输入控制器/方法" width="170px" height="40px" required/></div>
+						<div class="sl-left27 fl_left search_rule line29">css：</div>
+						<div class="fl_left search_rule"><input name="css" id="css" class="wh82 rule_search"  placeholder=" css样式" /></div>
+						<div class="sl-left27 fl_left search_rule line29">排序：</div>
+						<div class="fl_left search_rule"><input name="sort" id="sort" class=" rule_search" value="50" style="text-align: center;width: 50px"/></div>
+						<div class="sl-left27 fl_left search_rule">
+							<button class="rule_search pad_btn">
+								添加权限
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12 col-sm-12 rule-tishi alert top10">
+				<button type="button" class="close" data-dismiss="alert">
+					<i class="ace-icon fa fa-times" style="color:#f5f5f5;"></i>
+				</button>
+				1、《控/方》：意思是 控制器/方法; 例如 Sys/sys_list<br />
+				2、菜单name检测规则：一级菜单=>控制器名，二级菜单=>不限制，但建议控制器/方法(选择默认的方法)，三级、四级菜单=>控制器/方法<br />
+				3、css为控制左侧导航顶级栏目前图标样式(仅一级菜单有效)，具体可查看FontAwesome图标CSS样式
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div>
+						<form class="ajaxForm" name="ruleorder" method="post" action="{:U('admin_rule_order')}" >
+							<table class="urllist white" id="dynamic-table">
+								<thead>
+								<tr>
+									<th class="hidden-sm"><p>ID</p></th>
+									<th class="hidden-xs hidden-sm"><p>权限名称</p></th>
+									<th class="hidden-sm"><p>控制器/方法</p></th>
+									<th class="hidden-sm"><p>显示</p></th>
+									<th class="hidden-sm hidden-xs"><p>级别</p></th>
+									<th class="hidden-sm hidden-xs"><p>添加时间</p></th>
+									<th class="hidden-sm hidden-xs"><p>排序</p></th>
+									<th class="hidden-sm"><p>操作</p></th>
+								</tr>
+								</thead>
+								<tbody>
+								<foreach name="admin_rule" item="v">
+									<tr>
+										<td height="28" class="hidden-sm"><p>{$v.id}</p></td>
+										<td class="hidden-xs hidden-sm" ><p style='padding-left:<if condition="$v.leftpin neq 0">{$v.leftpin}px</if>'>{$v.lefthtml}{$v.title}</p></td>
+										<td class="hidden-sm"><p>{$v.name}</p></td>
+										<td class="hidden-sm">
+											<if condition="$v['status'] eq 1">
+												<div class="border_margin">
+													<a class="red display-btn" href="{:U('admin_rule_state')}" data-id="{$v.id}" title="显示">
+														<div id="zt{$v.id}"><button class="btn_green">显示</button></div>
+													</a>
+												</div>
+												<else/>
+												<div class="border_margin">
+													<a class="red display-btn" href="{:U('admin_rule_state')}" data-id="{$v.id}" title="隐藏">
+														<div id="zt{$v.id}"><button class="btn_red">隐藏</button></div>
+													</a>
+												</div>
+											</if>
+										</td>
+										<td class="hidden-sm hidden-xs"><p>{$v.level}级</p></td>
+										<td class="hidden-sm hidden-xs"><p>{$v.addtime|date='Y-m-d',###}</p></td>
+										<td class="hidden-wrl hidden-xs"><p><input name="{$v.id}" value=" {$v.sort}" class="list_order"/></p></td>
+										<td class="hidden-sm">
+											<div class="border_margin">
+												<div class="hidden-xs action-buttons">
+													<a class="white_ye" href="{:U('admin_rule_copy',array('id'=>$v['id']))}" title="复制">
+														<i class="ace-icon fa fa-exchange bigger-130"></i>
+													</a>
+													<a class="blue2" href="{:U('admin_rule_edit',array('id'=>$v['id']))}" title="修改">
+														<i class="ace-icon fa fa-pencil bigger-130"></i>
+													</a>
+													<a class="red confirm-rst-url-btn" href="{:U('admin_rule_del',array('id'=>$v['id']))}" data-info="你确定要删除吗？" title="删除">
+														<i class="ace-icon fa fa-trash-o bigger-130"></i>							</a>
+												</div>
+												<div class="hidden-md hidden-lg">
+													<div class="inline position-relative">
+														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+															<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+														</button>
+														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+															<li>
+																<a href="{:U('admin_rule_edit',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																			<span class="green">
+																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																			</span>
+																</a>
+															</li>
+															<li>
+																<a href="{:U('admin_rule_copy',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="复制">
+																			<span class="green">
+																				<i class="ace-icon fa fa-exchange bigger-120"></i>
+																			</span>
+																</a>
+															</li>
+															<li>
+																<a href="{:U('admin_rule_del',array('id'=>$v['id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																			<span class="red">
+																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</foreach>
+								<tr>
+									<td colspan="8" align="left"><button type="submit"  id="btnorder" class="btn btn-white btn-yellow btn-sm">排序</button></td>
+								</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.page-content -->
+</block>

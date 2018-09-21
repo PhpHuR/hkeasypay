@@ -1,0 +1,520 @@
+<include file="Public:header"/>
+
+<section>
+    <div class="top" style=" display:inline-block">
+        <!--<img src="__PUBLIC__/pay/common/logo.png" class="logo">-->
+        <!--<div style="float:right"></div>-->
+</section>
+<form method="post" action="{:U('post')}">
+    <!--<form method="post" action="#" name="payment" class="form-horizontal" id="commentForm" >-->
+    <section>
+        <if condition="$company_code eq 8843">
+            <div class="paypal_header1">
+                <div class="dynasty8843"><img src="__PUBLIC__/pay/img/dynasty8843.jpg" alt=""></div>
+                填写账户信息：<span style="font-weight:normal; color:#f8b62b;"> (<span class="red">*</span>为必填项)</span>
+            </div>
+            <else/>
+            <div class="title1">
+                填写账户信息：(*为必填项)
+            </div>
+        </if>
+        <div class="clearfix"></div>
+
+
+        <div class="box_payin">
+            <div class="">
+                <div class="form-group">
+                    <label class="xin-label">商户名称</label>
+                    <div class="">
+                        <input type="text" class="form-input bgtouming" value="{$userinfo.member_name}" disabled><span class="zhuyi">*</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="xin-label">交易账号</label>
+                    <div class="">
+                        <input name="company_code" value="{$userinfo.user_id}" id="company_code" type="hidden" class="form-control">
+                        <input name="md5key" value="{$userinfo.md5key}" type="hidden" class="form-control">
+                        <input name="source" value="{$source}" type="hidden" class="form-control">
+                        <input name="customer_id" value="" type="text" class="form-input bgtouming"><span class="zhuyi">*</span>
+                        <input type="hidden" name="order_number" value="<?php echo time(); ?>">
+                        <input name="card_type" id="card_type" type="hidden" value="1"/>
+                        <input name="payin_method" type="hidden" value="PaymentPage">
+                        <div class="m-b-none write-60" style="padding-top: 10px">交易账号是{$userinfo.member_name}为客户提供的一组数位的身份辨识代码。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-group">
+                    <label class="xin-label">客户姓名</label>
+                    <div class="">
+                        <input name="customer_name" type="text" class="form-input bgtouming">
+                        <input name="timestamp" type="hidden" class="input" size="30" value="<?php echo time(); ?>"/><span class="zhuyi">*</span>
+                        <div class="m-b-none write-60" style="padding-top: 10px">您填写的客户姓名必须与您所提供交易的银联卡持卡人姓名相同。</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="xin-label" style="float: left;width: 15%">证件类型</label>
+                    <div class="col-xs-9">
+
+                        <div class="radio-group">
+                            <div class="radio inline ">
+                                <label class="normalfont">
+                                    <input type="radio" name="cert_type" value="1" checked="checked">身份证
+                                </label>
+                                <label class="normalfont">
+                                <input type="radio" name="cert_type" value="2">護照
+                                </label>
+                                <label class="normalfont">
+                                    <input type="radio" name="cert_type" value="3">台胞证
+                                </label>
+                                <label class="normalfont">
+                                    <input type="radio" name="cert_type" value="4">其他证件
+                                </label>
+                            </div>
+                            &nbsp;&nbsp;
+                        </div>
+
+                    </div>
+                </div>
+                <if condition="$bank_type eq 'kuaijie'">
+                    <div class="form-group">
+                        <label class="xin-label" style="float: left;width: 15%">支付方式</label>
+                        <div class="col-xs-9">
+
+                            <div class="radio-group">
+                                <div class="radio inline ">
+                                    <label class="normalfont">
+                                        <input type="radio" name="bank_type" value="1" checked="checked">网关支付
+                                    </label>
+                                    <label class="normalfont">
+                                        <input type="radio" name="bank_type" value="2">快捷支付
+                                    </label>
+                                </div>
+                                &nbsp;&nbsp;
+                            </div>
+
+                        </div>
+                    </div>
+                </if>
+                <div class="form-group">
+                    <label class="xin-label">证件编号</label>
+                    <div class="">
+                        <input type="text" class="form-input bgtouming" name="cert_number"><span class="zhuyi">*</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="">
+                <div class="form-group">
+                    <label class="xin-label">Email</label>
+                    <div class="">
+                        <input type="text" name="email" class="form-input bgtouming">
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-group">
+                    <label class="xin-label">联络电话</label>
+                    <div class="">
+                        <input type="text" name="tel" class="form-input bgtouming"><span class="zhuyi">*</span>
+                        <div class="m-b-none write-60" style="padding-top: 10px">请提供银行卡号绑定的手机号，以便支付成功和我们就交易事宜与您联繫。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="box_bank">
+    <section>
+
+            <div class="fund_money" style="float: left;margin-right: 20px;width: 50%">
+                <div style="color:#fff;margin-bottom: 5px">支付卡号 *</div>
+                <input name="bank_number" class="input-blue" style="width: 100%;padding:4px 17px;color:#fff" type="text">
+            </div>
+
+            <div class="fund_money" style="float: left;width: 45%">
+                <div style="color:#fff;margin-bottom: 5px">金额(人民币) *</div>
+                <input name="order_amount" class="input-blue" id="order_amount" value="0.00" type="text"
+                       style="width:100%;color:#fff;padding:4px 17px" required>
+            <!--<span id="HKD"> </span> &nbsp;&nbsp; <span id="USD"> </span>-->
+            </div>
+            <div class="clear"></div>
+    </section>
+
+    <div class="xin_header">
+        网银支付&nbsp;&nbsp;(只支持借记卡)
+    </div>
+    <section class="paypal">
+        <div class="clearfix"></div>
+        <div class="bankList1" id="kqh_neirong1" style="display: block;">
+            <ul>
+                <if condition="$product_list.gonghang eq true">
+                    <li>
+                        <label for="b01" class="pos-rel">
+                            <a href="#" >
+                                    <input type="radio" name="pay_id" value="gonghang" class="banking" id="bankradio_ICBC">
+                                <img onclick="xianer('gonghang')" style="float: left" src="__PUBLIC__/pay/img/1002.jpg" alt="中国工商银行" required>
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.jianhang eq true">
+                    <li>
+                        <label for="b04" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="jianhang" class="banking" id="bankradio_CCB">
+                                <img onclick="xianer('jianhang')" src="__PUBLIC__/pay/img/1003.jpg" alt="中国建设银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.nonghang eq true">
+                    <li>
+                        <label for="b03" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="nonghang" class="banking" id="bankradio_ABC">
+                                <img onclick="xianer('nonghang')" src="__PUBLIC__/pay/img/1005.jpg" alt="中国农业银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.zhaohang eq true">
+                    <li>
+                        <label for="b02" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="zhaohang" class="banking" id="bankradio_CMB">
+                                <img onclick="xianer('zhaohang')" src="__PUBLIC__/pay/img/1001.jpg" alt="招商银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.zhonghang eq true">
+                    <li>
+                        <label for="b05" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="zhonghang" class="banking" id="bankradio_BOC">
+                                <img onclick="xianer('zhonghang')" src="__PUBLIC__/pay/img/1026.jpg" alt="中国银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.pufa eq true">
+                    <li>
+                        <label for="b14_080910" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="pufa" class="banking" id="bankradio_SPDB">
+                                <img onclick="xianer('pufa')" src="__PUBLIC__/pay/img/1004.jpg" alt="上海浦东发展银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.jiaohang eq true">
+                    <li>
+                        <label for="b06" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="jiaohang" class="banking" id="bankradio_BCOM">
+                                <img onclick="xianer('jiaohang')" src="__PUBLIC__/pay/img/1020.jpg" alt="交通银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.minsheng eq true">
+                    <li>
+                        <label for="b07" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="minsheng" class="banking" id="bankradio_CMBC">
+                                <img onclick="xianer('minsheng')" src="__PUBLIC__/pay/img/1006.jpg" alt="中国民生银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.xingye eq true">
+                    <li>
+                        <label for="b13" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="xingye" class="banking" id="bankradio_CIB">
+                                <img onclick="xianer('xingye')" src="__PUBLIC__/pay/img/1009.jpg" alt="兴业银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.guangda eq true">
+                    <li>
+                        <label for="b_ceb" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="guangda" class="banking" id="bankradio_CEB">
+                                <img onclick="xianer('guangda')" src="__PUBLIC__/pay/img/1022.jpg" alt="光大银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.zhongxin eq true">
+                    <li>
+                        <label for="b12" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="zhongxin" class="banking" id="bankradio_CITIC">
+                                <img onclick="xianer('zhongxin')" src="__PUBLIC__/pay/img/1039.jpg" alt="中信银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.chuxu eq true">
+                    <li>
+                        <label for="bbank_psbc" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="chuxu" class="banking" id="bankradio_PSBC">
+                                <img onclick="xianer('chuxu')" src="__PUBLIC__/pay/img/1038.jpg" alt="中国邮政储蓄银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.shenfa eq true">
+                    <li>
+                        <label for="b_pab" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="shenfa" class="banking" id="bankradio_shenfa">
+                                <img onclick="xianer('shenfa')" src="__PUBLIC__/pay/img/1035.jpg" alt="平安银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.guangfa eq true">
+                    <li>
+                        <label for="b_pab" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="guangfa" class="banking"
+                                       id="bankradio_guangfa">
+                                <img onclick="xianer('guangfa')" src="__PUBLIC__/pay/img/1036.jpg" alt="广发银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.beijing eq true">
+                    <li>
+                        <label for="b19" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="beijing" class="banking" id="bankradio_BOB">
+                                <img onclick="xianer('beijing')" src="__PUBLIC__/pay/img/1032.jpg" alt="北京银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.huaxia eq true">
+                    <li>
+                        <label for="b_nbcb" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="huaxia" class="banking" id="bankradio_NBCB">
+                                <img onclick="xianer('huaxia')" src="__PUBLIC__/pay/img/1050.jpg" alt="华夏银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.shnongshang eq true">
+                    <li>
+                        <label for="b_hsb" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="shnongshang" onclick="CheckedAll(this)" class="banking"
+                                       id="bankradio_HSB">
+                                <img onclick="xianer('shnongshang')" src="__PUBLIC__/pay/img/1037.jpg" alt="上海农商银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$product_list.bjnongshang eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="bjnongshang" class="banking"
+                                       id="bankradio_bjnongshang">
+                                <img src="__PUBLIC__/pay/img/1061.jpg" alt="北京农商银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <!--20170107新增 上海 南京 渤海 杭州 浙商 天津 东亚 宁波-->
+
+                <if condition="$product_list.shanghai eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#" >
+                                <input type="radio" name="pay_id" value="shanghai" class="banking"
+                                       id="shanghai">
+                                <img onclick="xianer('shanghai')" src="__PUBLIC__/pay/img/BOS.jpeg" alt="上海银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+
+
+                <if condition="$product_list.bohai eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="bohai" class="banking"
+                                       id="bohai">
+                                <img src="__PUBLIC__/pay/img/cbhb.png" alt="渤海银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+
+
+                <if condition="$product_list.tianjin eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="zheshang" class="banking"
+                                       id="zheshang">
+                                <img src="__PUBLIC__/pay/img/bank_czb.gif" alt="浙商银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+
+
+                <if condition="$product_list.tianjin eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="tianjin" class="banking"
+                                       id="tianjin">
+                                <img src="__PUBLIC__/pay/img/tianjin.jpg" alt="天津银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+                <if condition="$product_list.dongya eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="dongya" class="banking"
+                                       id="dongya">
+                                <img src="__PUBLIC__/pay/img/bank_bea.gif" alt="东亚银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+                <if condition="$product_list.ningbo eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="ningbo" class="banking"
+                                       id="ningbo">
+                                <img src="__PUBLIC__/pay/img/bank_nbcb.gif" alt="宁波银行">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+
+
+
+
+
+                <if condition="$weixin eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="weixin" class="banking"
+                                       id="bankradio_weixin">
+                                <img src="__PUBLIC__/pay/img/WePayLogo.png" alt="微信支付">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+                <if condition="$alipay eq true">
+                    <li>
+                        <label for="b_shb" class="pos-rel">
+                            <a href="#">
+                                <input type="radio" name="pay_id" value="alipay" class="banking"
+                                       id="bankradio_alipay">
+                                fff
+                                <img src="__PUBLIC__/pay/img/alipay165x58.png" alt="支付宝">
+                            </a>
+                        </label>
+                    </li>
+                </if>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+        <div style="margin:15px 0;color: #fff">
+            <label>附言:</label>
+            <textarea name="base64_memo" class="form-control fuyan-input" rows="4" id="remark" style="max-width:938px"></textarea>
+            <input name="return_url" type="hidden" class="input" size="60"
+                   value="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/Pay/Paymentpage/return_url' ?>"/>
+            <input name="notify_url" type="hidden" class="input" size="60"
+                   value="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/Pay/Paymentpage/NotifyUrl' ?>"/>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+
+<section>
+        <div style="text-align:center; font-size: 26px;">
+            <div class="checkbox i-checks">
+                <label>
+
+                    <i></i>
+
+                </label>
+            </div>
+        </div>
+        <!--        <button type="submit" class="submit_button" id="submit">确认付款</button>-->
+        <input type="submit" class="submit_payin" value="确认付款">
+    <div style="color:#fff;text-align: center"><input type="checkbox" checked id="agree" name="agree" style="width:16px;height:16px; margin-top:8px; margin-right:5px;" required><span class="pos_rel_4">我已阅读并同意接受<a href="{:U('term',array('u_name'=>$userName))}" class="shenming" target="_blank">免责声明</a></span></div>
+    <div class="clearfix"></div>
+    <div class="box_tishi">
+        <div style="color:#fff;float: left;padding-top: 10px;padding-left:40px;font-size: 17px">
+            温馨提示
+        </div>
+        <div class="tishi">
+            <ul>
+                <li>为保障您的利益，请在完成所有付款程序后，必须将含有交易编号的页面打印或抓图制成电子档桉</li>
+                <li>本次交易，仅限使用银联借记卡(银行卡)，用以支付保证金、定金、按金。</li>
+                <li>為了進一步保障安全的交易，本次交易會檢驗銀行卡四要素、實名認證、反欺詐和多頭借貸，每次交易會對商家收取一定的費用，如有不便，還請海涵</li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</section>
+</form>
+<br>
+<script>
+    function CheckedAll(form) {
+        for (var i = 0; i < form.elements.length; i++) {
+            var e = form.elements[i];
+
+            if (e.Name != 'chkAll' && e.disabled == false) {
+                e.checked = form.chkAll.checked;
+                if(e.checked){
+                    $("#chkAll").siblings(".icon-dagou").attr("style","color:#51b90b");
+                    $("input[name='tables[]']").siblings(".icon-dagou").attr("style","color:#51b90b");
+                }else{
+                    $("#chkAll").siblings(".icon-dagou").attr("style","color:#fff");
+                    $("input[name='tables[]']").siblings(".icon-dagou").attr("style","color:#fff");
+                };
+            }
+        }
+    }
+    var int = 1;
+    function xianer(data){
+
+           var url = "/pay/paymentpage/ajaxXian/banklist/"+data;
+            layer.open({
+                type: 2,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['1146px', '440px'], //宽高
+                content: url,
+                shade:0.4,
+                shadeClose:true,
+                id:'xianer',
+                title: ['限额列表', 'text-align:left;']
+            });
+    }
+</script>
+<include file="Public:footer"/>

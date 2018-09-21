@@ -1,0 +1,154 @@
+
+
+</section><!--END hbox stretch-->
+
+<!-- 基本的js -->
+<!--[if !IE]> -->
+<script src="__PUBLIC__/others/jquery.min-2.2.1.js"></script>
+<!-- <![endif]-->
+<!-- 如果为IE,则引入jq1.12.1 -->
+<!--[if IE]>
+<script src="__PUBLIC__/others/jquery.min-1.12.1.js"></script>
+<![endif]-->
+<!-- jquery.form、layer、yfcmf的js -->
+<script src="__PUBLIC__/others/jquery.form.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script src="__PUBLIC__/yfcmf/yfcmf.js"></script>
+
+
+<script src="__PUBLIC__/cpay88/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="__PUBLIC__/cpay88/js/bootstrap.js"></script>
+
+<!-- slider -->
+<script src="__PUBLIC__/cpay88/js/slider/bootstrap-slider.js"></script>
+
+<!-- App -->
+<script src="__PUBLIC__/cpay88/js/app.js"></script>
+<script src="__PUBLIC__/cpay88/js/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/sparkline/jquery.sparkline.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.tooltip.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.spline.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.pie.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.resize.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/jquery.flot.grow.js"></script>
+<script src="__PUBLIC__/cpay88/js/charts/flot/demo.js"></script>
+
+<!-- wizard -->
+<script src="__PUBLIC__/cpay88/js/parsley/parsley.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/wizard/jquery.bootstrap.wizard.js"></script>
+<script src="__PUBLIC__/cpay88/js/wizard/demo.js"></script>
+
+<!-- datepicker -->
+<script src="__PUBLIC__/cpay88/js/datepicker/bootstrap-datepicker.js"></script>
+
+<!-- file input -->
+<script src="__PUBLIC__/cpay88/js/file-input/bootstrap-filestyle.min.js"></script>
+
+
+<script src="__PUBLIC__/cpay88/js/calendar/bootstrap_calendar.js"></script>
+<script src="__PUBLIC__/cpay88/js/calendar/demo.js"></script>
+<script src="__PUBLIC__/cpay88/js/sortable/jquery.sortable.js"></script>
+
+<!-- wysiwyg -->
+<script src="__PUBLIC__/cpay88/js/wysiwyg/jquery.hotkeys.js"></script>
+<script src="__PUBLIC__/cpay88/js/wysiwyg/bootstrap-wysiwyg.js"></script>
+<script src="__PUBLIC__/cpay88/js/wysiwyg/demo.js"></script>
+
+<!-- markdown -->
+<script src="__PUBLIC__/cpay88/js/markdown/epiceditor.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/markdown/demo.js"></script>
+
+<script src="__PUBLIC__/cpay88/js/chosen/chosen.jquery.min.js"></script>
+<script src="__PUBLIC__/cpay88/js/app.plugin.js"></script>
+
+<!--Region-->
+<script type="text/javascript" src="__PUBLIC__/others/region.js"></script>
+<!--彈出插件-->
+<script src="__PUBLIC__/others/jquery.form.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script src="__PUBLIC__/yfcmf/yfcmf.js"></script>
+<!-- themes color -->
+<script type="text/javascript" src="__PUBLIC__/cpay88/js/changeskin.js"></script>
+
+<script language="javascript" type="text/javascript">
+    function OpenPopupCenter(pageURL, title, w, h) {
+        var left = (screen.width - w) / 2;
+        var top = (screen.height - h) / 3;
+        var targetWin = window.open(pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    }
+</script>
+
+
+
+<script>
+    var speed=25;
+    var tab=document.getElementById("marquee");
+    var tab1=document.getElementById("marquee1");
+    var tab2=document.getElementById("marquee2");
+    tab2.innerHTML=tab1.innerHTML;
+    function Marquee(){
+        if(tab2.offsetWidth-tab.scrollLeft<=0)
+            tab.scrollLeft-=tab1.offsetWidth
+        else{
+            tab.scrollLeft++;
+        }
+    }
+    var MyMar=setInterval(Marquee,speed);
+    /**
+     tab.onmouseover=function() {clearInterval(MyMar)};
+     tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+     **/
+</script>
+
+<script>
+    document.getElementById("uploadBtn").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
+</script>
+
+<script type="text/javascript">
+
+    // When the document is ready
+
+    $(document).ready(function () {
+
+        $('#datepicker-months-start').datepicker({
+
+            format: "yyyy-mm",
+            viewMode: "months",
+            minViewMode: "months"
+
+        });
+
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    // When the document is ready
+
+    $(document).ready(function () {
+
+        $('#datepicker-months-end').datepicker({
+
+            format: "yyyy-mm",
+            viewMode: "months",
+            minViewMode: "months"
+
+        });
+
+
+
+    });
+
+</script>
+
+
+</body>
+</html>

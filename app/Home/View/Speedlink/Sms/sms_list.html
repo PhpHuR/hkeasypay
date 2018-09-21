@@ -1,0 +1,113 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">提示短信管理</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                提示充值
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light text-right tablesorter">
+                                    <form action="{:U('sms_list')}" class="form-horizontal ajaxForm2" name="sms_list" method="post">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">钱包金额</td>
+                                            <td class="jian-left" id="balance_availablecount">{$wallet_data['money']}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">可用条数</td>
+                                            <td class="jian-left">{$sms_data['sms_count']}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">销售价格</td>
+                                            <td class="jian-left"><input type="text" value="{$sms_data['sms_money']}" id="price" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">充值金额</td>
+                                            <td class="jian-left"><input type="text" name="money" id="transfermoney"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="jian-right">充值条数</td>
+                                            <td class="jian-left"><input type="text" id="number" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><button style="float: left" class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm" type="submit" id="submit">充值</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+
+                                </table>
+                            </div>
+                        </section>
+
+
+                        <form action="{:U('sms_state')}" class="form-horizontal ajaxForm2" name="warring_state" method="post">
+                            <section class="panel panel-default">
+                                <header class="panel-heading">
+                                    手机短信警报管理
+                                </header>
+
+                                <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                    <table class="table table-striped b-t b-light text-right tablesorter">
+                                        <tbody>
+                                        <tr>
+                                            <td class="jian-right">是否启用</td>
+                                            <td class="jian-left">
+                                                <if condition="$sms_data['sms_state'] eq 1">
+                                                    <button class="btn btn-minier btn-info nextBtn" type="submit" name="id" value="{$sms_data['id']}" title="已开启">
+                                                        开启
+                                                    </button>
+                                                    <else/>
+                                                    <button class="btn btn-minier btn-warning nextBtn"  type="submit" name="id" value="{$sms_data['id']}" title="已禁用">
+                                                        禁用
+                                                    </button>
+                                                </if>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>
+<script>
+        $("#transfermoney").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+            var keyCode = evt.which;
+            //可用餘額總數
+            var t0 = $("#balance_availablecount").text();
+//            每条价格
+            var t1 = $('#price').val();
+            //當前輸入額度
+            var t2 = $(this).val();
+
+            var num = Math.floor(t2/t1);
+            $('#number').val(num);
+
+            if (t2 > Math.floor(t0)) {
+                layer.alert("可用餘額不夠，請重新核對金額後填寫！", {icon: 5});
+                console.log($('#number').val());
+                $('#number').val(0);
+                $(this).val(0.00);
+
+            }
+        });
+
+</script>

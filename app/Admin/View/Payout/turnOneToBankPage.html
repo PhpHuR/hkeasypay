@@ -1,0 +1,260 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <!--主题-->
+        <div class="row">
+            <div class="liangzipao">
+                <foreach name="menus_child" item="v" key="k">
+                    <if condition="$k eq 0">
+                        <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                        <else/>
+                        <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                    </if>
+                </foreach>
+                <div class="clear"></div>
+            </div>
+            <div class="box_chujin white">
+                <form class="form-horizontal ajaxForm2" name="turnOneToBankPage" method="post"
+                      action="{:U('turnOneToBankPage')}">
+                    <div class="fl_left w50">
+                        <input type="hidden" name="type" id="id" value="1"/>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 所属商户： </label>
+                            <div class="col-sm-10">
+                                <select name="member_list_userinfoid"  class="w93 selector bgtouming radius4" id="user_id" >
+                                    <option value="">请选择所属商户</option>
+                                    <foreach name="userinfo" item="v">
+                                        <option value="{$v.user_id}" <if condition="$v['user_id'] eq $member_list_edit.member_list_userinfoid">selected</if>>{$v.member_name}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 貨幣類型： </label>
+                            <div class="col-sm-10">
+                                <select name="currency_id"  class="w93 selector bgtouming radius4" id="currency_id">
+                                    <option value="">请选择貨幣類型</option>
+                                    <foreach name="currency_list" item="va">
+                                        <option value="{$va.ccy_id}" >{$va.ccy_code}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 可用餘額： </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="balance" id="balance" value=""
+                                       class="col-xs-10 bgtouming w93" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 子账号： </label>
+                            <div class="col-sm-10">
+                                <select name="sub_balance" style="border-radius: 4px" class="bgtouming w93 selector" id="sub_balance">
+                                    <option value="">请选择子账号</option>
+                                    <foreach name="sub_user_list" item="vb">
+                                        <option value="{$vb.ccy_id}" >{$vb.ccy_code}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1">子账号-可用餘額： </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="user_sub_balance" id="user_sub_balance" value=""
+                                       class="bgtouming col-xs-10 w93" readonly/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <!-- #section:plugins/input.chosen -->
+
+                        <!-- #section:plugins/input.chosen -->
+                        <div class="form-group" style="padding-top: 5px">
+                            <div class="no-padding-right fl_left" style="font-size: 14px" for="form-field-select-3"> 收款方银行名称： </div>
+                            <!--<label for="form-field-select-3">Chosen</label>-->
+                            <div class="col-sm-10 fl_left">
+                                <select name="bankname" class="yinghang col-xs-10 col-sm-4" id="form-field-select-3" data-placeholder="選擇收款银行...">
+                                    <option value="">选择收款银行</option>
+                                    <option value="gonghang">工商银行</option>
+                                    <option value="jianhang">建设银行</option>
+                                    <option value="nonghang">农业银行</option>
+                                    <option value="zhaohang">招商银行</option>
+                                    <option value="zhonghang">中国银行</option>
+                                    <option value="pufa">浦发银行</option>
+                                    <option value="jiaohang">交通银行</option>
+                                    <option value="minsheng">民生银行</option>
+                                    <option value="xingye">兴业银行</option>
+                                    <option value="guangda">光大银行</option>
+                                    <option value="guangfa">广发银行</option>
+                                    <option value="zhongxin">中信银行</option>
+                                    <option value="chuxu">邮政储蓄</option>
+                                    <option value="shenfa">平安银行</option>
+                                    <option value="beijing">北京银行</option>
+                                    <option value="shanghai">上海银行</option>
+                                    <option value="bjnongshang">北京农商银行</option>
+                                    <option value="huaxia">华夏银行</option>
+                                    <option value="nanjing">南京银行</option>
+                                    <option value="bohai">渤海银行</option>
+                                    <option value="hangzhou">杭州银行</option>
+                                    <option value="shnongshang">上海农村商业银行</option>
+                                    <option value="zheshang">浙商银行</option>
+                                    <option value="other">其他银行</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <!-- /section:plugins/input.chosen -->
+                    </div>
+                    <div class="fl_left w50">
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 收款方开户行： </label>
+                            <div class="col-sm-10">
+                                <select name="proname" class="bgtouming radius4" id="province"
+                                        onChange="loadRegion('province',2,'city','{:U('Ajax/getRegion')}');">
+                                    <option value="0" selected>省份/直辖市</option>
+                                    <volist name="province" id="vo">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </volist>
+                                </select>
+                                <select name="cityname" class="bgtouming radius4" id="city"
+                                        onchange="loadRegion('city',3,'town','{:U('Ajax/getRegion')}');">
+                                    <option value="0">市/县</option>
+                                </select>
+                                <select name="townname" class="bgtouming radius4" id="town">
+                                    <option value="0">镇/区</option>
+                                </select>
+                                <input type="text" name="reaccdept" class="bgtouming fenhang" id="reaccdept" placeholder="分行名"/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 收款方银行开户名： </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="reaccname" id="reaccname" placeholder="收款方-银行-开户名"
+                                       class="col-xs-10 bgtouming w93" required/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 收款方银行帐号： </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="reaccno" id="reaccno" placeholder="收款方银行帐号"
+                                       class="col-xs-10 bgtouming w93" required/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="w20 no-padding-right" for="form-field-1"> 付款金额 (元)： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="transfermoney" id="transfermoney" placeholder="付款金额 (元)"
+                                   class="col-xs-10 bgtouming w93" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="w20 no-padding-right" for="form-field-1"> 备注： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="remark" id="remark" placeholder="备注"
+                                   class="col-xs-10 bgtouming w93"/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    </div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/others/region.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            if (!ace.vars['touch']) {
+                $('.chosen-select').chosen({allow_single_deselect: true});
+                //resize the chosen on window resize
+                $(window)
+                        .off('resize.chosen')
+                        .on('resize.chosen', function () {
+                            $('.chosen-select').each(function () {
+                                var $this = $(this);
+                                $this.next().css;
+                            })
+                        }).trigger('resize.chosen');
+                //resize chosen on sidebar collapse/expand
+                $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+                    if (event_name != 'sidebar_collapsed') return;
+                    $('.chosen-select').each(function () {
+                        var $this = $(this);
+                        $this.next().css;
+                    })
+                });
+
+            }
+
+        });
+
+        $(document).ready(function () {
+            $("#currency_id").bind('input', function () {
+                $.post("/Admin/Ajax/getBalance", {
+                            user_id: $("#user_id").val(),
+                            currency_id: $(this).val(),
+                        },
+                        function (data, status) {
+                            if (status == "success") {
+                                $("#balance").val(data.availablecount);
+                            } else {
+                                alert("数据: \n" + data + "\n状态: " + status);
+                            }
+                        });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#user_id").bind('input', function () {
+                $.post("/Admin/Ajax/getSubuser", {
+                            currency_id: $("#currency_id").val(),
+                            user_id: $(this).val(),
+                        },
+                        function (data, status) {
+                            if (status == "success") {
+                                alert(data);
+                            } else {
+                                alert("数据: \n" + data + "\n状态: " + status);
+                            }
+                        });
+            });
+        });
+    </script>
+</block>
+
+

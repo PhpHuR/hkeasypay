@@ -1,0 +1,224 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+		<div class="liangzipao">
+			<foreach name="menus_child" item="v" key="k">
+				<if condition="$v['id'] eq $id_curr">
+					<div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+					<else/>
+					<div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+				</if>
+			</foreach>
+			<div class="clear"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div style="margin-top: 20px">
+					<form class="ajaxForm" name="source_order" method="post" action="{:U('source_order')}" >
+						<table class="urllist white" id="dynamic-table">
+							<thead>
+							<tr>
+								<th class="hidden-sm"><div class="border_margin">ID</div></th>
+								<th class="hidden-sm"><div class="border_margin">来源名称</div></th>
+								<th class="hidden-sm"><div class="border_margin">排序</div></th>
+								<th class="hidden-sm"><div class="border_margin">操作</div></th>
+							</tr>
+							</thead>
+
+							<tbody>
+
+							<foreach name="source" item="v">
+								<tr>
+									<td class="hidden-sm" ><div class="border_margin">{$v.source_id}</div></td>
+									<td class="hidden-sm"><div class="border_margin">{$v.source_name}</div></td>
+									<td class="hidden-sm"><div class="border_margin"><input name="{$v.source_id}" value=" {$v.source_order}" class="list_order"/></div></td>
+									<td class="hidden-sm"><div class="border_margin">
+										<div class="hidden-sm hidden-xs action-buttons">
+											<a class="green sourceedit-btn"  href="{:U('source_edit')}" data-id="{$v.source_id}"  title="修改">
+												<i class="ace-icon fa fa-pencil bigger-130"></i>
+											</a>
+											<a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('source_del',array('source_id'=>$v['source_id'],'p'=>I('p',1)))}" title="删除">
+												<i class="ace-icon fa fa-trash-o bigger-130"></i>
+											</a>
+										</div>
+										<div class="hidden-md hidden-lg">
+											<div class="inline position-relative">
+												<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+													<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+												</button>
+												<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+													<li>
+														<a href="{:U('source_edit')}" data-id="{$v.source_id}" class="tooltip-success sourceedit-btn" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+														</a>
+													</li>
+
+													<li>
+														<a href="{:U('source_del',array('source_id'=>$v['source_id'],'p'=>I('p',1)))}"  class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-info="你确定要删除吗？" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									</td>
+								</tr>
+							</foreach>
+							<tr>
+								<td height="50" align="left"><button  id="btnorder" class="btn btn-white btn-yellow btn-sm">排序</button></td>
+								<td height="50" colspan="3" align="right">{$page}</td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- 显示添加模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<form class="form-horizontal ajaxForm2" name="source_add" method="post" action="{:U('source_runadd')}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">×
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								添加来源
+							</h4>
+						</div>
+						<div class="modal-body">
+
+
+							<div class="row">
+								<div class="col-xs-12">
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 来源名称：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="source_name" id="source_name" placeholder="输入链接名称" class="col-xs-10 col-sm-5" required/>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序：  </label>
+										<div class="col-sm-10">
+											<input type="number" name="source_order" id="source_order" value="50" class="col-xs-10 col-sm-3" required/>
+											<span class="lbl">&nbsp;&nbsp;<span class="red">*</span>从小到大排序</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+								</div>
+							</div>
+
+
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">
+								提交保存
+							</button>
+							<button class="btn btn-info" type="reset">
+								重置
+							</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								关闭
+							</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</form>
+		</div><!-- /.modal -->
+
+
+
+
+
+
+		<!-- 显示修改模态框（Modal） -->
+		<div class="modal fade in" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-backdrop fade in" id="gbbb" style="height: 100%;"></div>
+			<form class="form-horizontal ajaxForm2" name="source_runedit" method="post" action="{:U('source_runedit')}">
+				<input type="hidden" name="source_id" id="editsource_id" value="" />
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" id="gb"  data-dismiss="modal"
+									aria-hidden="true">×
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								修改来源
+							</h4>
+						</div>
+						<div class="modal-body">
+
+
+							<div class="row">
+								<div class="col-xs-12">
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 来源名称：  </label>
+										<div class="col-sm-10">
+											<input type="text" name="source_name" id="editsource_name" placeholder="输入链接名称" class="col-xs-10 col-sm-5" required/>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序：  </label>
+										<div class="col-sm-10">
+											<input type="number" name="source_order" id="editsource_order" value="50" class="col-xs-10 col-sm-3" required/>
+											<span class="lbl">&nbsp;&nbsp;<span class="red">*</span>从小到大排序</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+								</div>
+							</div>
+
+
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">
+								提交保存
+							</button>
+							<button type="button" class="btn btn-default"  id="gbb" >
+								关闭
+							</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</form>
+		</div><!-- /.modal -->
+
+	</div><!-- /.page-content -->
+	<script>
+        $("#dynamic-table").children("tbody").children("tr").each(function(){
+            var hgt = $(this).children("td").children("p").height();
+            var hgdiv = $(this).children("td").children(".border_margin").height();
+            $(this).children("td").children("p").height(hgt);
+            $(this).children("td").children(".border_margin").height(hgdiv);
+        });
+
+        $("#dynamic-table").children("thead").children("tr").each(function(){
+            var hgt = $(this).children("th").children("p").height();
+            $(this).children("th").children("p").height(hgt);
+        })
+	</script>
+</block>
+
+

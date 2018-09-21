@@ -1,0 +1,169 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <div class="row maintop">
+            <div class="fl_left">
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('bankroute_list')}">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="key" id="key" class="back_wh1" value="{$val}" style="width: 100%;color:#fff" placeholder="输入通道ID" />
+
+                        </div>
+                    </div>
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </form>
+            </div>
+
+            <div class="fl_left">
+                <a href="{:U('bankroute_list')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        显示全部
+                    </button>
+                </a>
+            </div>
+
+            <div class="fl_left">
+                <a href="{:U('bankroute_add')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        添加银行路由
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="white" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs hidden-sm"><div class="border_margin">ID</div></th>
+                            <!--<th class="hidden-sm hidden-xs">通道ID</th>-->
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">通道 ID&名称</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">银行类别</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">工商银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">建设银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">农业银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">招商银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">中国银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">上海浦东发展银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">交通银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">民生银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">兴业银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">光大银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">广发银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">中信银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">邮政储蓄</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">平安银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">北京银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">上海银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">北京农商银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">华夏银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">南京银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">渤海银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">杭州银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">上海农村商业银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">浙商银行</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">微信</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">支付宝</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">京东</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">百度</div></th>
+                            <th class="hidden-sm"><div class="border_margin">操作</div></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="bankroute_list" item="v">
+                            <tr>
+                                <td class="hidden-xs hidden-sm"><div class="border_margin">{$v.id}</div></td>
+                                <!--<td class="hidden-xs hidden-xs">{$v.p_id}</td>-->
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">[{$v.p_id}]&{$v.api_china_name}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.bank_type}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.gonghang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.jianhang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.nonghang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.zhaohang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.zhonghang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.pufa}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.jiaohang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.minsheng}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.xingye}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.guangda}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.guangfa}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.zhongxin}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.chuxu}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.shenfa}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.beijing}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.shanghai}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.bjnongshang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.huaxia}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.nanjing}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.bohai}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.hangzhou}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.shnongshang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.zheshang}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.weixin}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.alipay}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.jd}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.baidu}</div></td>
+                                <td class="hidden-sm">
+                                    <div class="border_margin">
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a class="green"
+                                               href="{:U('bankroute_edit',array('id'=>$v['id']))}"
+                                               title="修改">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+                                            <a class="red confirm-rst-url-btn"
+                                               href="{:U('bankroute_del',array('id'=>$v['id'],'p'=>I('p',1)))}"
+                                               data-info="你确定要删除吗？" title="删除">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+                                        </div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="{:U('bankroute_edit',array('id'=>$v['id']))}"
+                                                           class="tooltip-success" data-rel="tooltip" title=""
+                                                           data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="{:U('bankroute_del',array('id'=>$v['id'],'p'=>I('p',1)))}"
+                                                           class="tooltip-error confirm-rst-url-btn" data-info="你确定要删除吗？"
+                                                           data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td height="50" colspan="31" align="left">{$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

@@ -1,0 +1,115 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        
+        <div class="row maintop">
+            <div class="fl_left">
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('telegram_user_list')}">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="val" id="val" class="back_wh1" value="{$testval}" style="color:#fff;width: 100%;" placeholder="客戶ID" />
+
+                        </div>
+                    </div>
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </form>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('telegram_user_list')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        显示全部
+                    </button>
+                </a>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('telegram_user_add')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;width: 111%;font-size: 15px">
+                        添加客戶Telegram_Group_Id
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form id="leftnav" name="leftnav" method="post" action="" >
+                        <table class="urllist white" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>ID</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>用戶名稱</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>TelegramGroupId</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>TelegramGroupName</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>类型</div></th>
+                                <th class="hidden-sm hidden-xs"><div class='border_margin'>狀態</div></th>
+                                <th class="hidden-sm hidden-xs blue"><div class='border_margin'>創建時間</div></th>
+                                <th class="hidden-sm hidden-xs red2"><div class='border_margin'>更新時間</div></th>
+                                <th class="hidden-sm hidden-xs red2"><div class='border_margin'>備註</div></th>
+                                <th class="hidden-sm"><div class="border_margin">操作</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="telegram_user_list" item="v">
+                                <tr>
+                                    <td height="28" class="hidden-sm"><div class='border_margin'>{$v.telegram_id}</div></td>
+                                    <td height="28" class="hidden-sm"><div class='border_margin'>{$v.member_name}</div></td>
+                                    <td height="28" class="hidden-sm"><div class='border_margin'>{$v.telegram_user_id}</div></td>
+                                    <td height="28" class="hidden-sm"><div class='border_margin'>{$v.telegram_user_name}</div></td>
+                                    <td height="28" class="hidden-sm">
+                                        <div class='border_margin'>
+                                        <if condition="$v.telegram_type eq 0">
+                                            入金
+                                        <else />
+                                            出金
+                                        </if>
+                                        </div>
+                                    </td>
+                                    <td class="hidden-sm hidden-xs">
+                                        <div class='border_margin'>
+                                        <if condition='$v.status eq 1'>
+                                            <a class="red open-btn" href="{:U('telegram_user_status')}" data-id="{$v.telegram_id}" title="已开启">
+                                                <div id="zt{$v.telegram_id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+                                            </a>
+                                            <else/>
+                                            <a class="red open-btn" href="{:U('telegram_user_status')}" data-id="{$v.telegram_id}" title="已禁用">
+                                                <div id="zt{$v.telegram_id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+                                            </a>
+                                        </if>
+                                        </div>
+                                    </td>
+                                    <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.created_at|date="Y-m-d H:i:s",###}</div></td>
+                                    <td class="hidden-sm hidden-xs blue"><div class='border_margin'>{$v.update_at|date="Y-m-d H:i:s",###}</div></td>
+                                    <td class="hidden-sm hidden-xs blue"><div class='border_margin'>{$v.remark}</div></td>
+                                    <td class="hidden-sm">
+                                        <div class="hidden-sm border_margin hidden-xs action-buttons">
+                                            <a class="green" href="{:U('telegram_user_edit',array('telegram_id'=>$v['telegram_id']))}" title="修改">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+
+                                            <a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('telegram_user_del',array('telegram_id'=>$v['telegram_id']))}" title="删除">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="10" align="left">{$page}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

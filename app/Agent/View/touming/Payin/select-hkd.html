@@ -1,0 +1,245 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open hidden-print">
+    <section class="hbox stretch">
+        <section class="vbox">
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">入金紀錄</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <form name="admin_list_sea" class="form-search form-horizontal" method="post"
+                              action="{:U('select')}">
+                            <section class="panel panel-default">
+                                <div class="table-responsive evenodd tablethinred" style="overflow-x: auto;">
+                                    <table class="table table-striped b-t b-light tablesorter remittance-record">
+                                        <thead>
+                                        <tr class="panel-heading">
+                                            <th>日期</th>
+                                            <th>客戶訂單號碼</th>
+                                            <th>訂單狀態</th>
+                                            <th width="100"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="white-space: nowrap;">
+                                                <input name="begin_time"
+                                                       class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                       size="16" type="text" value="{$begin_time}"
+                                                       data-date-format="yyyy-mm-dd">
+                                                -
+                                                <input name="end_time"
+                                                       class="input-sm input-s-xssm datepicker-input inline form-control clean_data"
+                                                       size="16" type="text" value="{$end_time}"
+                                                       data-date-format="yyyy-mm-dd">
+                                            </td>
+
+                                            <td>
+                                                <input name="key" value="{$keyy}" type="text"
+                                                       class="form-control input-sm inline v-middle clean_data"
+                                                       style="min-width:60px">
+                                            </td>
+
+                                            <td>
+                                                <select name="status"
+                                                        class="input-xs input-s-xsssm form-control inline v-middle selectCus selectCus-xs clean_data"
+                                                        style="min-width:80px">
+                                                    <option value="">---</option>
+                                                    <option value="0"
+                                                    <if condition="$status eq '0'">selected="selected"</if>
+                                                    >待支付</option>
+                                                    <option value="1"
+                                                    <if condition="$status eq '1'">selected="selected"</if>
+                                                    >成功</option>
+                                                </select>
+                                            </td>
+
+
+                                            <td width="100" style="white-space: nowrap;">
+                                                <button type="submit" id="query_btn"
+                                                        class="btn btn-default btn-danger btn-square inline">
+                                                    <i class="fa fa-search"></i></button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </form>
+                        <div class="padder">
+                            <div class="line line-dashed b-b line-lg pull-in m-t-md"></div>
+                        </div>
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                交易列表
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th>創建時間|交易時間</th>
+                                        <th>系統訂單號碼|客戶訂單號碼</th>
+                                        <th>入金金額</th>
+                                        <th>入金手續費</th>
+                                        <th>訂單狀態</th>
+                                        <th>通知狀態</th>
+                                        <th>入金銀行</th>
+                                        <th>備註</th>
+                                        <th>提交方式</th>
+                                        <th>詳情</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="select_list" item="v">
+                                        <tr>
+                                            <td>{$v.begin_time|date="Y-m-d H:i:s",###}
+                                                <br>
+                                                <if condition="empty($v['end_time'])">
+                                                    <else/>
+                                                    {$v.end_time|date="Y-m-d H:i:s",###}
+                                                </if>
+                                            </td>
+                                            <td>{$v.orderid}
+                                                <br>
+                                                {$v.transid}
+                                            </td>
+                                            <td>CNY&nbsp;&nbsp;{$v.ordermoney}&nbsp;&nbsp;
+                                                <if condition="$v['ordermoney_hkd'] gt 0">
+                                                    {$v.currency_id|getCurrencyName}&nbsp;&nbsp;{$v.ordermoney_hkd|number_format=###,2,'.',','}
+                                                </if>
+                                            </td>
+                                            <td>{$v.free}
+                                                <if condition="$v['free_hkd'] gt 0">
+                                                    HKD&nbsp;&nbsp;{$v.free_hkd|number_format=###,2,'.',','}
+                                                </if>
+                                            </td>
+                                            <td>
+                                                <switch name="v.status">
+                                                    <case value="1">
+                                                        <a class="btn btn-danger btn-xs-square delete-btn bgdanger"
+                                                           href="#">成 &nbsp;&nbsp;功</a></case>
+                                                    <case value="-1"><span class="text-success">支付失败</span></case>
+                                                    <case value="2">
+                                                        <span class="text-success">退款中</span></case>
+                                                    <case value="3"><span class="text-success">退款失败</span></case>
+                                                    <case value="4"><span class="text-success">退款成功</span></case>
+                                                    <default/>
+                                                    <a class="btn btn-danger btn-xs-square delete-btn bgfinish"
+                                                       href="#">待支付</a>
+                                                </switch>
+                                            </td>
+                                            <td>
+                                                <if condition="$v['status'] eq 1">
+                                                    <if condition="$v['notice_status'] eq 1 ">
+                                                        <div>
+                                                            <button class="btn btn-danger btn-xs-square delete-btn bgdanger">
+                                                                已通知
+                                                            </button>
+                                                        </div>
+                                                        <else/>
+                                                        <a class="red payin-state-btn" href="{:U('select_state')}"
+                                                           data-id="{$v.payin_id}" title="未通知">
+                                                            <div id="zt{$v.payin_id}">
+                                                                <button class="btn btn-danger btn-xs-square delete-btn bgfinish">
+                                                                    未通知
+                                                                </button>
+                                                            </div>
+                                                        </a>
+                                                    </if>
+                                                </if>
+                                            </td>
+                                            <td>{$v.paybank|getBankName}</td>
+                                            <td>{$v.remark}</td>
+                                            <td>{$v.payin_method}</td>
+                                            <td class="text-center"><a href="{:U('orderInfo',array('id'=>$v['payin_id'],'transid'=>$v['transid']))}" class="btn-xs-square" data-toggle="ajaxModal"><i class="fa fa-file-text-o"></i></a></td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <th>統計</th>
+                                        <th>訂單總數：{$num}</th>
+                                        <th colspan="3">成功入金金額：{$a_OrderMoney|number_format=###,2,'.',','}</th>
+                                        <th colspan="3">成功入金手續費：{$a_free|number_format=###,2,'.',','}</th>
+                                        <th colspan="3">結算金額：{$a_OrderMoney-$a_free|number_format=###,2,'.',','}</th>
+                                    </tr>
+                                    <tr>
+                                        <td height="50" colspan="12" align="left">
+                                            <a class="btn btn-sm btn-warning"
+                                               href="{:U('select',array('action'=>'export','begin_time'=>$begin_time,'end_time'=>$end_time,'status'=>$status))}"
+                                               title="匯出報表">
+                                                <i class="ace-icon fa fa-fire bigger-110"></i>
+                                                <span class="bigger-110 no-text-shadow">匯出報表</span>
+                                            </a>
+                                            {$page}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>
+
+
+<div class="modal fade" id="modal-form">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body wrapper-lg">
+                <div class="row text-center m-b-lg">
+                    <div class="col-md-12" style="font-size:15px">
+
+                        <img src="__PUBLIC__/speedlink/images/form.png" style=" width:100%">
+
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs" data-dismiss="modal">確定</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs">列印</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-default m-b-xs" data-dismiss="modal">關閉</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--送出訂單-->
+<div class="modal fade" id="modal-preview">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body wrapper-lg">
+                <div class="row text-center m-b-lg">
+                    <div class="col-md-12" style="font-size:15px">
+
+                        <img src="__PUBLIC__/speedlink/images/form.png" style=" width:100%">
+
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs" data-dismiss="modal">送出訂單</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-danger m-b-xs">列印</a>
+                        <a href="#" class="btn btn-md btn-s-md btn-default m-b-xs" data-dismiss="modal">關閉</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--預覽-->

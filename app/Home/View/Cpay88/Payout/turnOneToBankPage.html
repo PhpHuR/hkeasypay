@@ -1,0 +1,182 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">出金訂單</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                出金
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <table class="table ach-table">
+                                    <form class="form-horizontal ajaxForm2" name="turnOneToBankPage" method="post" action="{:U('turnOneToBankPage')}">
+                                        <tbody>
+
+                                        <tr>
+                                            <td class="grey">出金金額：</td>
+                                            <td><input class="input-sm inline v-middle form-control text-center" style="width:50px" placeholder="RMB" disabled="disabled">
+                                                <input name="transfermoney"
+                                                       class="input-sm inline v-middle form-control calculator-amount text-left"
+                                                       style="width:150px; display:inline-block" placeholder="1,000">
+                                            </td>
+                                            <td class="grey">收款銀行：</td>
+                                            <td><select name="bankname" class="form-control inline currency-selector"
+                                                        style=" min-width:210px">
+                                                <option selected="selected">-- 請選擇 --</option>
+                                                <option value="gonghang">工商银行</option>
+                                                <option value="jianhang">建设银行</option>
+                                                <option value="nonghang">农业银行</option>
+                                                <option value="zhaohang">招商银行</option>
+                                                <option value="zhonghang">中国银行</option>
+                                                <option value="pufa">浦发银行</option>
+                                                <option value="jiaohang">交通银行</option>
+                                                <option value="minsheng">民生银行</option>
+                                                <option value="xingye">兴业银行</option>
+                                                <option value="guangda">光大银行</option>
+                                                <option value="guangfa">广发银行</option>
+                                                <option value="zhongxin">中信银行</option>
+                                                <option value="chuxu">邮政储蓄</option>
+                                                <option value="shenfa">平安银行</option>
+                                                <option value="beijing">北京银行</option>
+                                                <option value="shanghai">上海银行</option>
+                                                <option value="bjnongshang">北京农商银行</option>
+                                                <option value="huaxia">华夏银行</option>
+                                                <option value="nanjing">南京银行</option>
+                                                <option value="bohai">渤海银行</option>
+                                                <option value="hangzhou">杭州银行</option>
+                                                <option value="shnongshang">上海农村商业银行</option>
+                                                <option value="zheshang">浙商银行</option>
+                                                <option value="other">其他银行</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey">手續費：</td>
+                                            <td><input class="input-sm inline v-middle form-control text-center"
+                                                       style="width:50px" placeholder="RMB" disabled="disabled">
+                                                <input name="free" value="{$payout_rate}"
+                                                       class="input-sm inline v-middle form-control calculator-amount text-left"
+                                                       style="width:150px ;display:inline-block"
+                                                       placeholder="{$payout_rate}"
+                                                       readonly="readonly">
+                                            </td>
+                                            <td class="grey">收款人名：</td>
+                                            <td><input name="reaccname" class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td>
+                                            </td>
+                                            <td class="grey">銀行帳號：</td>
+                                            <td><input name="reaccno" class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block"></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td></td>
+                                            <td class="grey">分行：</td>
+                                            <td><input class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block"></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td></td>
+                                            <td class="grey">省：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px" name="proname" id="province"
+                                                        onChange="loadRegion('province',2,'city','{:U('Ajax/getRegion')}');">
+                                                    <option value="0" selected>省份/直辖市</option>
+                                                    <volist name="province" id="vo">
+                                                        <option value="{$vo.id}">{$vo.name}</option>
+                                                    </volist>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td></td>
+                                            <td class="grey">市：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px" name="cityname" id="city"
+                                                        onchange="loadRegion('city',3,'town','{:U('Ajax/getRegion')}');">
+                                                    <option value="0">市/县</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey"></td>
+                                                <td></td>
+                                            <td class="grey">县：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px"  name="townname" id="town">
+                                                    <option value="0">镇/区</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey" height="33"></td>
+                                            <td></td>
+                                            <td class="grey">備註</td>
+                                            <td><input name="remark" class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block"></td>
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td colspan="4">
+
+                                                <button type="submit"
+                                                        class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm ">提交
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+
+
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--/END scrollable padder-->
+<script language="javascript">
+    function add() {
+        var a1 = parseFloat(f1.transfermoney.value);
+        var a2 = parseFloat(f1.free.value);
+        if (!(isNaN(a1) || isNaN(a2)))
+            f1.allmoney.value = a1 + a2;
+    }
+</script>
+
+<include file="Public:footer"/>
+

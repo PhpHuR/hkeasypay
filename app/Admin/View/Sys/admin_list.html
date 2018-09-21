@@ -1,0 +1,125 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+
+		<div class="row maintop white">
+			<div class="fl_right">
+				<form name="admin_list_sea" class="form-search" method="post" action="{:U('admin_list')}">
+					<div class="fl_left" style="padding-left: 36px">
+						<input type="text" name="val" id="val" class="admin_search bgtouming" value="{$testval}" placeholder="输入需查询的用户名" />
+						<span class="ace-icon fa fa-search icon-on-right bigger-110 ace-pos"></span>
+						<span>
+							<button type="submit" class="select_search">
+								显示全部
+							</button>
+						</span>
+					</div>
+					<a href="{:U('admin_add')}" class="add_rule fl_left">
+						<i class="iconfont icon-tubiaozhizuomoban-2"></i>
+						添加管理员
+					</a>
+					<div class="clear"></div>
+				</form>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div>
+					<form id="leftnav" name="leftnav" method="post" action="" >
+						<input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+						<table class="urllist white" id="dynamic-table">
+							<thead>
+							<tr>
+								<th class="hidden-sm"><p>登录用户名</p></th>
+								<th class="hidden-sm hidden-xs"><p>邮箱</p></th>
+								<th class="hidden-sm"><p>用户组</p></th>
+								<th class="hidden-sm"><p>真实姓名</p></th>
+								<th class="hidden-sm hidden-xs"><p>电话号码</p></th>
+								<th class="hidden-sm hidden-xs"><p>登陆次数</p></th>
+								<th class="hidden-sm hidden-xs"><p>IP地址</p></th>
+								<th class="hidden-sm"><p>状态</p></th>
+								<th class="hidden-sm"><p>操作</p></th>
+							</tr>
+							</thead>
+
+							<tbody>
+
+							<foreach name="admin_list" item="v">
+								<tr>
+									<td height="28" class="hidden-sm"><p>{$v.admin_username}</p></td>
+									<td class="hidden-sm hidden-xs"><p>{$v.admin_email}</p></td>
+									<td class="hidden-sm"><p>{$v.group}</p></td>
+									<td class="hidden-sm"><p>{$v.admin_realname}</p></td>
+									<td class="hidden-sm hidden-xs"><p>{$v.admin_tel}</p></td>
+									<td class="hidden-sm hidden-xs"><p>{$v.admin_hits}</p></td>
+									<td class="hidden-sm hidden-xs"><p>{$v.admin_ip}</p></td>
+									<td class="hidden-sm">
+										<if condition="$v['admin_open'] eq 1">
+											<div class="border_margin">
+												<a class="red open-btn" href="{:U('admin_state')}" data-id="{$v.admin_id}" title="已开启">
+													<div id="zt{$v.admin_id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+												</a>
+											</div>
+											<else/>
+											<div class="border_margin">
+												<a class="red open-btn" href="{:U('admin_state')}" data-id="{$v.admin_id}" title="已禁用">
+													<div id="zt{$v.admin_id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+												</a>
+											</div>
+										</if>
+									</td>
+									<td class="hidden-sm">
+										<div class="border_margin">
+											<div class="hidden-xs action-buttons">
+												<a class="green" href="{:U('admin_edit',array('admin_id'=>$v['admin_id']))}" title="修改">
+													<i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+												<if condition="$v['admin_id'] neq 1">
+													<a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('admin_del',array('admin_id'=>$v['admin_id']))}" title="删除">
+														<i class="ace-icon fa fa-trash-o bigger-130"></i>
+													</a>
+												</if>
+											</div>
+											<div class="hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+														<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+													</button>
+													<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+														<li>
+															<a href="{:U('admin_edit',array('admin_id'=>$v['admin_id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+														<if condition="$v['admin_id'] neq 1">
+															<li>
+																<a href="{:U('admin_del',array('admin_id'=>$v['admin_id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+																</a>
+															</li>
+														</if>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</foreach>
+							<tr>
+								<td height="50" colspan="10" align="left">{$page}</td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- /.page-content -->
+</block>

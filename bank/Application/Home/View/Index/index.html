@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>globalspeedlink</title>
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="__PUBLIC__/css/jquery.fullPage.css">
+    <style type="text/css">
+        .container-thumbnails{
+            margin-top: 60px;
+        }
+        .thumbnails li a{
+            color: #888;
+            font-weight: bold;
+            height: 100px;
+        }
+        .thumbnails li a:hover,
+        .thumbnails li a:focus{
+            border-color:#f2f5e9;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+            text-decoration: none;
+            background-color: #f2f5e9;
+        }
+    </style>
+</head>
+
+<body>
+<div class="row header  ">
+    <hr>
+
+    <div class="container-thumbnails">
+        <ul class="thumbnails">
+
+                <li class="span3 text-center">
+                    <a class="thumbnail" href="/home/item/show/item_id/3" title="bank_list">
+                        <p class="my-item">bank_list</p>
+                    </a>
+                </li>
+
+        </ul>
+    </div>
+
+
+
+
+    <div class="right pull-right">
+        <ul class="inline pull-right">
+            <if condition="$login_user">
+                <li><a href="{:U('Home/Item/index')}">{$Think.lang.my_item}</a></li>
+                <else/>
+                <li><a href="{:U('Home/User/login')}">{$Think.lang.index_login_or_register}</a></li>
+            </if>
+        </ul>
+    </div>
+</div>
+
+
+<include file="Common/footer"/>
+</body>
+</html>

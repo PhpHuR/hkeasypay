@@ -1,0 +1,121 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <div class="row white">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="userinfo_add" method="post" action="{:U('sms_add')}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属商户： </label>
+                        <div class="col-sm-10">
+                            <select name="user_id" class="col-sm-4 selector" >
+                                <option value="0">所属商户</option>
+                                <foreach name="userdata" item="v">
+                                    <option value="{$v.user_id}">{$v.member_name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> sms用户名称：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_username" id="sms_username" placeholder="sms用户名称" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> sms密码：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_pass" id="sms_pass" placeholder="sms密码" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> sms产品id： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_product_id" id="sms_product_id" placeholder="sms产品id" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 销售价格： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_money" id="sms_money" value="{$sms_data['sms_money']}" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 可用条数： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_count" id="sms_count" value="{$sms_data['sms_count']}" class="col-xs-10 col-sm-4" required/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 提示手机号： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sms_mobile" id="sms_mobile" placeholder="提示手机号" class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 入款通知：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="payin_msg" id="payin_msg" placeholder="入款通知" class="col-xs-10 col-sm-4" />
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 出款通知：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="payout_msg" id="payout_msg" placeholder="出款通知" class="col-xs-10 col-sm-4" />
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 小号：  </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="small_mobile" placeholder="小号" class="col-xs-10 col-sm-4" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/others/region.js"></script>
+</block>

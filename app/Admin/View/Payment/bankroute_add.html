@@ -1,0 +1,228 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="row white">
+            <div class="col-xs-12 bgtouming white">
+                <form class="form-horizontal ajaxForm2" name="bankroute_add" method="post" action="{:U('bankroute_add')}">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择所属支付公司： </label>
+                        <div class="col-sm-4">
+                            <select name="p_id"  class="col-sm-12 selector bgtouming white" required>
+                                <option value="">选择所属支付公司</option>
+                                <foreach name="payment_name" item="v">
+                                    <option value="{$v.api_id}">{$v.api_china_name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择银行卡类型： </label>
+                        <div class="col-sm-4">
+                            <select name="bank_type"  class="col-sm-12 selector bgtouming white" required>
+                                <option value="">选择银行卡类型</option>
+                                    <option value="1">储蓄卡</option>
+                                    <option value="2">信用卡</option>
+                                    <option value="3">综合</option>
+                                    <option value="4">公对公</option>
+                                    <option value="5">快捷</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国工商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="gonghang" id="gonghang" placeholder="中国工商银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国建设银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jianhang" id="jianhang" placeholder="中国建设银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国农业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="nonghang" id="nonghang" placeholder="中国农业银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 招商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhaohang" id="zhaohang" placeholder="招商银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhonghang" id="zhonghang" placeholder="中国银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海浦东发展银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="pufa" id="pufa" placeholder="上海浦东发展银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 交通银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jiaohang" id="jiaohang" placeholder="交通银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 民生银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="minsheng" id="minsheng" placeholder="民生银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 兴业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="xingye" id="xingye" placeholder="兴业银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 光大银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="guangda" id="guangda" placeholder="光大银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 广发银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="guangfa" id="guangfa" placeholder="广发银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中信银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zhongxin" id="zhongxin" placeholder="中信银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 中国邮政储蓄：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="chuxu" id="chuxu" placeholder="中国邮政储蓄" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 平安银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shenfa" id="shenfa" placeholder="平安银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 北京银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="beijing" id="beijing" placeholder="北京银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shanghai" id="shanghai" placeholder="上海银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 北京农商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="bjnongshang" id="bjnongshang" placeholder="北京农商银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 华夏银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="huaxia" id="huaxia" placeholder="华夏银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 南京银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="nanjing" id="nanjing" placeholder="南京银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 渤海银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="bohai" id="bohai" placeholder="渤海银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 杭州银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="hangzhou" id="hangzhou" placeholder="杭州银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上海农村商业银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="shnongshang" id="shnongshang" placeholder="上海农村商业银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 浙商银行：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="zheshang" id="zheshang" placeholder="浙商银行" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 微信：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="weixin" id="weixin" placeholder="微信" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 支付宝：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="alipay" id="alipay" placeholder="支付宝" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 京东：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="jd" id="jd" placeholder="京东" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 百度：  </label>
+                        <div class="col-sm-2">
+                            <input type="text" name="baidu" id="baidu" placeholder="百度" class="col-xs-12 bgtouming white" />
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+
+
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

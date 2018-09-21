@@ -1,0 +1,179 @@
+<!-- nav -->
+<nav class="nav-primary hidden-xs">
+    <div>
+        <!-- 导航左侧正常样式开始 -->
+        <div style="padding: 5px 0">
+            <!-- logo -->
+            <a href="{:U('Index/index')}" class="hkeasypay">
+                <div>
+                    <i class="fa fa-leaf"></i>
+                    HKEASYPAY
+                </div>
+            </a>
+        </div><!-- 导航左侧正常样式结束 -->
+        <div class="user-img">
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <if condition="$_SESSION['admin_avatar'] neq ''">
+                    <img class="nav-user-photo radius-img" style="margin: 10px 0" src="__UPLOAD__avatar/{$_SESSION['admin_avatar']}" alt="{$_SESSION['admin_username']}" />
+                    <else />
+                    <img class="nav-user-photo radius-img" style="margin: 10px 0" src="__PUBLIC__/img/girl.jpg" alt="{$_SESSION['admin_username']}" />
+                </if>
+                <div class="user-info">
+                    <small>欢迎,</small>
+                    {$_SESSION['user']['member_list_username']}
+                </div>
+            </a>
+            <ul class="dropdown-menu animated fadeInDown">
+                <span class="arrow top"></span>
+                <li>
+                <li class="divider"></li>
+                <li style="padding-left:15px">
+                    <a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_hk.png"></a>
+                    <a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_cn.png"></a>
+                    <a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_en.png"></a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="{:UU('Login/logout')}" style="font-weight:bold">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul class="nav nav-main" data-ride="collapse">
+        <!--一级菜单遍历开始-->
+
+        <foreach name="menus" item="v">
+            <if condition="!empty($v['_child'])">
+                <li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa {$v.css}"></i>
+                <span class="font-bold">{$v.title}</span>
+            </a>
+            <ul class="nav dk">
+                <!--二级菜单遍历开始-->
+                <foreach name="v._child" item="vv">
+                    <if condition="!empty($vv['_child'])">
+                        <li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active</if>">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span>{$vv.title}</span>
+                    </a>
+                    <ul class="nav dk">
+                        <!--三级菜单遍历开始-->
+                        <foreach name="vv._child" item="vvv">
+                            <li class="<if condition="(count($menus_curr) egt 3) AND ($menus_curr[2] eq $vvv['id'])">active</if>">
+                            <a href="{:U($vvv['name'])}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span>{$vvv.title}</span>
+                            </a>
+                            </li>
+                        </foreach><!--三级菜单遍历结束-->
+                    </ul>
+                    </li>
+                    <else />
+                    <li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active</if>">
+                    <a href="{:U($vv['name'])}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        {$vv.title}
+                    </a>
+                    <b class="arrow"></b>
+                    </li>
+                    </if>
+                </foreach><!--二级菜单遍历结束-->
+            </ul>
+            </li>
+            <else />
+            <li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+            <a href="{:U($v['name'])}">
+                <i class="fa fa-angle-right icon"></i>
+                 <span class="font-bold">{$v.title}</span>
+            </a>
+            <b class="arrow"></b>
+            </li>
+            </if>
+        </foreach><!--一级菜单遍历结束-->
+
+       <!-- <li class="active"> <a href="balance.php" class="auto"> <i class="i i-stack icon"></i> <span class="font-bold">帳戶餘額</span> </a> </li>
+        <li> <a href="payin-history.php" class="auto"> <i class="i i-login icon"></i> <span class="font-bold">入金紀錄</span> </a> </li>
+        <li> <a href="payout-history.php" class="auto"> <i class="i i-logout icon"></i> <span class="font-bold">出金紀錄</span> </a> </li>
+        <li>
+            <a href="#" class="auto">
+                <i class="fa fa-calendar"></i>
+                <span class="font-bold">報告</span>
+            </a>
+            <ul class="nav dk">
+                <li>
+                    <a href="daily-report.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>每日報告</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="monthly-report.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>每月報告</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="total-report.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>累計報告</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="auto">
+                <i class="i i-retweet icon"></i>
+                <span class="font-bold">出金訂單</span>
+            </a>
+            <ul class="nav dk">
+                <li>
+                    <a href="payout-order.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>出金訂單</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="payout-order-batch.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>批量出金</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="payout-order-history.php" class="auto">
+                        <i class="fa fa-angle-right icon"></i>
+                        <span>出金紀錄</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>-->
+        <!--<li> <a href="cross-border-settlement-report.php" class="auto"> <i class="fa fa-random"></i> <span class="font-bold">跨境結算報表</span> </a> </li>-->
+    </ul>
+
+
+
+
+
+</nav>
+<!-- / nav -->
+</section>
+<footer class="footer hidden-xs no-padder text-center-nav-xs">
+    <div class="pd-md copyright hidden-nav-xs hide" id="moreless-copyright"><span class="hidden-nav-xs">&copy; <script>document.write(new Date().getFullYear())</script> HKEASYPAY. <br>All rights reserved.</span></div>
+    <a href="#moreless-copyright" data-toggle="class:show" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs hidden-nav-xs">
+        <i class="i i-info"></i>
+    </a>
+    <a href="#nav" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs">
+        <i class="i i-circleleft text"></i>
+        <i class="i i-circleright text-active"></i>
+    </a>
+</footer>
+</section>
+</aside>
+<!-- / aside -->

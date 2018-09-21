@@ -1,0 +1,16 @@
+<include file="Public:head"/>
+<div class="m-t-md wrapper-md" style="word-wrap: break-word; word-break: break-all;">
+    <div class="container aside-xxxl text-center">
+        <img src="__PUBLIC__/pay/common/logo.png" style=" max-height:75px"><br><br>
+        <div class="panel panel-default" style="padding-bottom:30px">
+            <div class="panel-body">
+                <span style="font-size:49px; font-weight:bold;" class="panel-default">{$message}</span><br>
+                <span style="font-size:13px"><b>訂單號:</b>{$info.outOrderId}</span><br><br>
+                <span style="font-size:13px"><b>訂單金額:</b>{$info.transAmt}</span><br><br>
+                <span style="font-size:13px"><b>時間:</b>{$info.dateTime}</span><br><br>
+                <a class="btn btn-danger nextBtn btn-lg btn-rounded" href="{$source}">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:foot"/>

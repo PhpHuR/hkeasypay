@@ -1,0 +1,97 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('monthly')}">
+            <div class="row maintop">
+                <div class="col-xs-12 col-sm-5 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date" value="{$sldate}" placeholder="点击选择日期范围"/>
+                        <button type="submit" class="btn btn-small btm-input btn-purple">
+                            <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>搜索
+                        </button>
+                        <a href="{:U('monthly')}">
+                            <button type="button" class="btn btn-xs all-btn btn-purple">
+                                <span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+                                显示全部
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                        <thead>
+                        <tr>
+
+                            <th class="hidden-xs">日期</th>
+                            <th class="hidden-xs">總入金金額</th>
+                            <th class="hidden-xs">總入金手續費</th>
+                            <th class="hidden-sm hidden-xs">結算金額</th>
+                            <th class="hidden-sm hidden-xs ">總出金金額</th>
+                            <th class="hidden-sm hidden-xs ">總出金手續費</th>
+                            <th class="hidden-sm hidden-xs ">總出金失敗手續費</th>
+                            <!--<th class="hidden-sm hidden-xs ">详情</th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs">{$v.day}</td>
+                                <td class="hidden-sm hidden-xs">{$v.iordermoney}</td>
+                                <td class="hidden-sm hidden-xs">{$v.ifree}</td>
+                                <td class="hidden-sm hidden-xs">{$v['iordermoney']-$v['ifree']}</td>
+                                <td class="hidden-sm hidden-xs">{$v.otransfermoney}</td>
+                                <td class="hidden-sm hidden-xs">{$v.ofree}</td>
+                                <td class="hidden-sm hidden-xs">0</td>
+                                <!--<td>-->
+                                <!--<div class="hidden-sm hidden-xs action-buttons">-->
+                                <!--<a class="green"  href="#" title="详情">-->
+                                <!--<i class="ace-icon fa fa-pencil bigger-130"></i>-->
+                                <!--</a>-->
+                                <!--{$v.status}-->
+                                <!--</div>-->
+                                <!--</td>-->
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td class="hidden-sm hidden-xs">總共：</td>
+                            <td class="hidden-sm hidden-xs">{$list_all.aiordermoney}</td>
+                            <td class="hidden-sm hidden-xs">{$list_all.aifree}</td>
+                            <td class="hidden-sm hidden-xs">{$list_all['aiordermoney']-$list_all['aifree']}</td>
+                            <td class="hidden-sm hidden-xs">{$list_all.aotransfermoney}</td>
+                            <td class="hidden-sm hidden-xs">{$list_all.aofree}</td>
+                            <td class="hidden-sm hidden-xs">{$list_all.aofree}</td>
+                        </tr>
+                        <tr>
+                            <td height="50" colspan="12" align="left">
+                                <a class="btn btn-sm btn-warning"  href="{:U('monthly',array('action'=>'export'))}"  title="导出报表">
+                                    <i class="ace-icon fa fa-fire bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">导出报表</span>
+                                </a>
+                                {$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker({format: 'YYYY-MM'}, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

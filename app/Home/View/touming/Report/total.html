@@ -1,0 +1,75 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <span class="white font20">報告-累計報告</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <section>
+
+
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white">
+                                    <thead>
+                                    <tr>
+                                        <th><div class="border_top">年份</div></th>
+                                        <th><div class="border_top">總入金金額</div></th>
+                                        <th><div class="border_top">總入金手續費</div></th>
+                                        <th><div class="border_top">結算金額</div></th>
+                                        <th><div class="border_top">總出金金額</div></th>
+                                        <th><div class="border_top">總出金手續費</div></th>
+                                        <th><div class="border_top">總出金失敗手續費</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <foreach name="list" item="v">
+                                        <tr>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.day}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.iordermoney|number_format=###,2,'.',','}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.ifree|number_format=###,2,'.',','}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v['iordermoney']-$v['ifree']|number_format=###,2,'.',','}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.otransfermoney|number_format=###,2,'.',','}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.ofree|number_format=###,2,'.',','}</div></td>
+                                            <td class="hidden-sm hidden-xs"><div class="border_margin">0.00</div></td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">總共：</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">{$list_all.aiordermoney|number_format=###,2,'.',','}</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">{$list_all.aifree|number_format=###,2,'.',','}</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">{$list_all['aiordermoney']-$list_all['aifree']|number_format=###,2,'.',','}</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">{$list_all.aotransfermoney|number_format=###,2,'.',','}</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">{$list_all.aofree|number_format=###,2,'.',','}</div></td>
+                                        <td class="hidden-sm hidden-xs"><div class="border_botton">0.00</div></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

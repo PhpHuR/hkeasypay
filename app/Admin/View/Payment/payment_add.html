@@ -1,0 +1,49 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <!--主题-->
+        <div class="row" style="color: #fff">
+            <div class="col-xs-12 box_chujin">
+                <form class="form-horizontal ajaxForm2" name="payment_list_add" method="post" action="{:U('payment_add')}">
+                    <div class="fl_left w50">
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 添加支付公司中文名：</label>
+                            <div class="col-sm-4" style="float: none">
+                                <input type="text" name="api_china_name" id="api_china_name" placeholder="输入支付公司中文名"
+                                       class="col-xs-10 bgtouming w93" required/>
+                                <span style="display: inline-block" class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+                    <div class="fl_right w50">
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 支付公司英文名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="api_name" id="api_name" placeholder="输入支付公司英文名"
+                                       class="col-xs-10 bgtouming w93" required/>
+                                <span style="display: inline-block" class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

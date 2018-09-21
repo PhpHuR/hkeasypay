@@ -1,0 +1,20 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{$notifyUrl}">
+            <div class="row maintop">
+                <div class="col-xs-12 col-sm-4 btn-sespan">
+                    <div class="input-group">
+                        <input type="hidden" name="ordermoney" id="ordermoney" value="{$orderMoney}" />
+                        <input type="hidden" name="orderid" id="orderid" value="{$orderId}" />
+                        <span class="input-group-btn">
+							<button type="submit" class="btn btn-xs btm-input btn-purple">
+                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>成功
+                            </button>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div><!-- /.page-content -->
+</block>

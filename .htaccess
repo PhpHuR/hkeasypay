@@ -1,0 +1,9 @@
+RewriteEngine on
+#RewriteCond %{HTTP} !=on
+#RewriteRule ^(.*)  http://%{SERVER_NAME}/$1 [L,R]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+RewriteCond %{SERVER_PORT} !^443$
+RewriteCond %{REQUEST_URI} !^/tz.php
+#RewriteRule (.*) https://%{SERVER_NAME}/$1 [R]

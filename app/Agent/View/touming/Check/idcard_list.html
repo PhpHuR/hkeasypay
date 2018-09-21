@@ -1,0 +1,76 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <span class="white font20">身份證認證</span>
+                </div>
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('idcard_list')}">
+                    <div class="main-top" style="margin-top: 20px">
+                        <div class="hidden-xs btn-sespan fl_left">
+                            <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                                <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;padding-left: 15px;margin-left: 15px" value="{$sldate}"
+                                       placeholder="点击选择日期范围"/>
+                            </div>
+                        </div>
+                        <div class="fl_left">
+                            <button type="submit" class="btn-default back_wh1 inline btn-square" style="margin-left: 7px;font-size: 18px;width: 30px;height: 30px;border-radius: 2px">
+                                <i class="fa fa-search" style="color:#fff"></i>
+                            </button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+
+                        <section class="panel-default">
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="urllist white" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:80px"><div class="border_top">查询时间</div></th>
+                                        <th style="min-width:80px"><div class="border_top">姓名</div></th>
+                                        <th><div class="border_top">身份证</div></th>
+                                        <th><div class="border_top">状态</div></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="idcard_data" item="v">
+                                        <tr>
+                                            <td><div class="border_margin"><div>{$v.datetime|date="Y-m-d",###}</div></div></td>
+                                            <td><div class="border_margin"><div>{$v.realname}</div></div></td>
+                                            <td><div class="border_margin">{$v.idcard}</div></td>
+                                            <td>
+                                                <div class="border_margin">
+                                                <if condition="$v['state'] eq 1">
+                                                    一致
+                                                    <elseif condition="$v['state'] eq 2"/>
+                                                    不一致
+                                                    <else/>
+                                                    {$v.reason}
+                                                </if>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td height="50" colspan="12" align="left">{$page}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

@@ -1,0 +1,128 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <!--主题-->
+        <div class="row white">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="agentadd" method="post" action="{:U('runedit')}">
+                    <input type="hidden" name="parentid" value="{$agent_list.agent_list_pid}" />
+                    <input type="hidden" name="agent_list_id" value="{$agent_list.agent_list_id}" />
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 所属代理商组： </label>
+                        <div class="col-sm-9">
+                            <select name="agent_list_memberid" class="col-sm-4 selector" required>
+                                <option value="">所属代理商组</option>
+                                <foreach name="auth_group" item="v">
+                                    <option value="{$v.id}" <if condition="$v['id'] eq $agent_list['agent_list_memberid']">selected</if>>{$v.title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 代理商用户名： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="username" id="username"  class="col-xs-10 col-sm-5" value="{$agent_list.agent_list_username}"  readonly/>
+                                            <span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle" id="resone"></span>
+											</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 代理商昵称： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="nickname" id="nickname" value="{$agent_list.agent_list_nickname}" class="col-xs-10 col-sm-5" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 登陆密码： </label>
+                        <div class="col-sm-9">
+                            <input type="password" name="user_passwd" id="user_passwd"  value="" class="col-xs-10 col-sm-5" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 入金佣金费率： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="payin_rate" id="payin_rate" value="{$agent_list['agent_list_payin_rate']*100}" class="col-xs-10 col-sm-5" />%
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 微信费率： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="weixin_rate" id="weixin_rate" value="{$agent_list['agent_list_weixin_rate']*100}" class="col-xs-10 col-sm-5" />%
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付宝费率： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="alipay_rate" id="alipay_rate" value="{$agent_list['agent_list_alipay_rate']*100}" class="col-xs-10 col-sm-5" />%
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 出金佣金： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="payout_rate" id="payout_rate" value="{$agent_list.agent_list_payout_rate}" class="col-xs-10 col-sm-5" />元
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 货币兑款佣金： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="change_rate" id="change_rate" value="{$agent_list.agent_list_change_rate}" class="col-xs-10 col-sm-5" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 境外出金佣金： </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="cross_rate" id="cross_rate" value="{$agent_list.agent_list_cross_rate}" class="col-xs-10 col-sm-5" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+
+
+
+
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+
+</block>

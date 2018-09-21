@@ -1,0 +1,272 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;	
+}
+
+
+body{
+	width: 980px;
+	height:100%;
+	margin: 0 auto;
+	color:#333;
+}
+
+.bgback{
+	background: url(/public/index/images/bgpublic.jpg);
+	position: fixed;
+	background-repeat:no-repeat;
+	zoom: 1;
+	top:0;
+	background-size: 100% 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -10;
+	background-position: center 0 ;
+	min-width: 1000%;
+}
+.container { padding:0 10px}
+section{
+	display: block;
+}
+.top { margin-top:20px; margin-bottom:10px}
+.logo { max-height:50px; float:left; margin-right:10px}
+
+h1{ 
+	padding: 10px 0px;
+	overflow: hidden;
+	color:#3f3a39;
+	font-size:32px;
+}
+
+section.top a img{
+	height: 70px;
+	width: auto;
+}
+
+section.fund{
+	width: 100%;
+	height: 50px;  
+	line-height: 50px;
+	background:#f8b62b;
+	border:1px solid #e0e0e0;
+	overflow: hidden;
+	border-radius:5px;
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+padding:0 20px
+}
+
+section.fund label { color:#BB9730}
+
+section.fund label,section.fund .fund_money{
+	float: left;
+	
+}
+
+section.fund .fund_money input{
+	display: block;
+	height: 26px;
+	line-height: 26px;
+	margin-top: 12px;
+	border-radius:2px;
+	border:1px solid #d5d5d5;
+	padding:0px 5px;
+	font-size:15px;
+	font-weight:bold;
+	color:#555;
+}
+
+section.paypal{
+	width: 100%;
+	height: auto;	
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.paypal_header{
+	height: 35px;
+	line-height: 35px;
+	margin-top: 15px;
+	background:#3f3a39;
+	border: 1px solid #e0e0e0;
+	padding:0 20px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	color:#fff;
+	font-weight:bold;
+	font-size:16px
+}
+
+.paypal_header label,.paypal_header div{
+	float: left;
+}
+
+.paypal_header label{
+	color:#BB9730;
+}
+
+.paypal_header div{
+	padding: 0 20px;
+	color:#BB9730;
+	font-weight: 600;
+}
+
+.paypal_header div.active{
+	line-height: 37px;
+	margin-top: -4px;
+	color:#fff;
+	border-top:1px solid #e0e0e0;
+	border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background:#BB9730;
+}
+
+.bankList{
+	border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	border-bottom:1px solid #e0e0e0;
+	overflow: hidden;
+	padding: 20px 20px 10px 20px;
+	background-color:#fff;
+	
+}
+
+.bankList label span{
+	font-size: 14px;
+	color: #888;
+	margin-left: 10px;
+}
+
+.bankList ul li{
+	list-style: none;
+	float: left;
+	width:25%;
+	margin-bottom: 5px;
+}
+
+.bankList ul li a{
+	text-decoration: none;
+	display: inline-block;
+	margin: 0 auto; 
+}
+
+.bankList ul li input[type="radio"]{
+	 
+}
+.bankList label { margin-bottom:0px}
+.bankList ul li img{
+	border:1px solid #EDEDED;
+        width: 160px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	vertical-align:middle ;
+	height:42px;
+}
+.submit_button{
+	display:block;
+	margin:0 auto;
+	margin-top:20px;
+	height: 40px;   
+	background: #f8b62b;
+	border:1px solid #f8b62b;
+	padding:0 20px;
+	overflow: hidden; 
+	color:#ffffff;
+	border-radius:5px;
+	font-size:18px;
+	cursor:pointer
+}
+
+#caidan1 { cursor:pointer}
+#caidan2 { cursor:pointer}
+
+.box { border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	border-bottom:1px solid #e0e0e0;
+	overflow: hidden;
+	padding: 15px 20px;
+	background-color:#fff;
+	margin-bottom:15px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+	
+	}
+	
+.form-control {
+  border-color: #d5d5d5;
+  border-radius: 2px;
+  padding:0px 5px;
+  height:26px;
+  font-size:12px;
+}
+.form-control,
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-group label.control-label { font-size:14px; font-weight:bold; padding-top:4px}	
+.red { color:#F00}
+.b-b {  border-bottom: 1px solid #eaeef1; margin-bottom:20px}
+.help-block{ font-size:14px}
+.alert {
+  font-size: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.alert .close i {
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+}
+
+ol { padding-left:20px; font-size:13px }
+
+ul.term { padding:20px; padding-top:0; padding-bottom:0}
+ul.term li { margin-bottom:8px}
+ul.term ul { padding-left:0px; list-style:none}
+.currencyoption {display:inline; float:left; width:55px; margin-top:12px; border-radius:0px !important;}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.m-b-none { margin-bottom:0px}
+.inline { display:inline-block !important}
+.form-horizontal .radio { padding-top:4px}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12
+
+{padding-left:0px; padding-right:10px}
+
+.form-horizontal .control-label { text-align:right}
+.paypal_header1{
+	height: 93px;
+	line-height: 93px;
+	margin-top: 15px;
+	background:#000;
+	border: 1px solid #e0e0e0;
+	padding:0 366px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	color:#fff;
+	font-weight:bold;
+	position: relative;
+	font-size:16px
+}
+.dynasty8843{position: absolute;left:1px}
+.dynasty8843 img{width:70px;margin-left: 22px}

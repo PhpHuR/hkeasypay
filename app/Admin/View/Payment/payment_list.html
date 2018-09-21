@@ -1,0 +1,111 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="row maintop" style="margin-top: 20px">
+            <div class="fl_left">
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('payment_list')}">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="val" id="val" class="back_wh1" value="{$testval}" style="width: 100%;" placeholder="输入需查询的公司名" />
+
+                        </div>
+                    </div>
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </form>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('payment_list')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        显示全部
+                    </button>
+                </a>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('payment_add')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        添加支付公司
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form id="leftnav" name="leftnav" method="post" action="" >
+                        <input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+                        <table class="white urllist" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs hidden-sm"><div class="border_margin">ID</div></th>
+                                <th class="hidden-sm"><div class="border_margin">支付公司名称</div></th>
+                                <th class="hidden-sm hidden-xs"><div class="border_margin">英文名</div></th>
+                                <!--<th>MID数量</th>-->
+                                <th class="hidden-sm"><div class="border_margin">操作</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="payment_list" item="v">
+                                <tr>
+                                    <td height="28" class="hidden-sm"><div class="border_margin">{$v.api_id}</div></td>
+                                    <td height="28" class="hidden-sm"><div class="border_margin">{$v.api_china_name}</div></td>
+                                    <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.api_name}</div></td>
+                                    <!--<td class="hidden-sm hidden-xs">{$v.api_mid_total}20</td>-->
+                                    <td class="hidden-sm">
+                                        <div class="border_margin">
+                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                <a class="green" href="{:U('payment_edit',array('api_id'=>$v['api_id']))}" title="修改">
+                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+
+                                                <a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('payment_del',array('api_id'=>$v['api_id']))}" title="删除">
+                                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                </a>
+
+                                            </div>
+                                            <div class="hidden-md hidden-lg">
+                                                <div class="inline position-relative">
+                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a href="{:U('admin_edit',array('admin_id'=>$v['admin_id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+                                                        <if condition="$v['admin_id'] neq 1">
+                                                            <li>
+                                                                <a href="{:U('admin_del',array('admin_id'=>$v['admin_id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+                                                                </a>
+                                                            </li>
+                                                        </if>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="4" align="left">{$page}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

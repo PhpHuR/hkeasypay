@@ -1,0 +1,114 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder">
+
+                <div class="m-b-md">
+                    <h3 class="m-b-none">批量出金</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form id="wizardform" method="post" action="{:U('turnListToBankPage',array('setup'=>'3'))}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs font-bold">
+                                        <li class="col-xs-4">1 信息上传</li>
+                                        <li class="col-xs-4">2 信息确认</li>
+                                        <li class="col-xs-4"><a href="#step3" data-toggle="tab">3 结果内容</a></li>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <p>如果您还没有"批量付款到银行"的模版， 请先下载：<a href="__PUBLIC__/Excel/sample/batchpayout.xls" class="btn btn-primary nextBtn btn-md btn-rounded m-t-sm m-b-sm "
+                                    >下載範例
+                                    </a></p>
+                                    <div class="line line-lg"></div>
+                                    <h4>信息上传</h4>
+
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane" id="step3">
+                                            <p class="h4">提交成功 <span id="count"></span> time(s), [<span id="num"></span> ]</p>
+                                        </div>
+
+                                        <ul class="pager wizard m-b-sm">
+                                            <!--<li class="previous first" style="display:none;"><a href="#">First</a></li>-->
+                                            <li class="previous"><a href="#">Previous</a></li>
+                                            <!--<li class="next last" style="display:none;"><a href="#">Last</a></li>-->
+                                            <li class="next" id="toNextStep"><a href="javascript:void(0);" onclick="submitUpload()">Next</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+
+
+        </section>
+    </section>
+</section>
+
+<include file="Public:footer"/>
+<script lang="javascript">
+    function getFileName(path) {
+        var pos1 = path.lastIndexOf('/');
+        var pos2 = path.lastIndexOf('\\');
+        var pos = Math.max(pos1, pos2);
+        if (pos < 0) {
+            return path;
+        }
+        else {
+            return path.substring(pos + 1);
+        }
+    }
+
+    $(document).ready(function () {
+        $('#upload').change(function () {
+            var str = $(this).val();
+            var fileName = getFileName(str);
+            var fileExt = str.substring(str.lastIndexOf('.') + 1);
+            $("#uploadFile").val(fileName);
+//            alert(fileName + "\r\n" + fileExt);
+        });
+    });
+    // 下一步
+    function submitUpload() {
+        var fileName = $("#uploadFile").val();
+        if (fileName == "") {
+            layer.alert("请选择上传文档", {icon: 5});
+            return;
+        }
+        if (!checkPaymentFile(fileName)) {
+            layer.alert("上传文档必须为Excel", {icon: 5});
+            return;
+        }
+    }
+
+    $('#wizardform').bootstrapWizard({
+        'tabClass': 'nav nav-tabs',
+        'onNext': function(tab, navigation, index) {
+            var valid = false;
+            //提交等待效果
+
+            return valid;
+        },
+        onTabClick: function(tab, navigation, index) {
+            return false;
+        },
+        onTabShow: function(tab, navigation, index) {
+            var $total = navigation.find('li').length;
+            var $current = index+3;
+            var $percent = ($current/$total) * 100;
+            $('#wizardform').find('.progress-bar').css({width:$percent+'%'});
+        }
+    });
+
+</script>

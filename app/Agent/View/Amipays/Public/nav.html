@@ -1,0 +1,75 @@
+<!-- nav -->
+<nav class="nav-primary hidden-xs">
+
+    <ul class="nav nav-main" data-ride="collapse">
+        <!--一级菜单遍历开始-->
+
+        <foreach name="menus" item="v">
+            <if condition="!empty($v['_child'])">
+                <li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa {$v.css}"></i>
+                <span class="font-bold">{$v.title}</span>
+            </a>
+            <ul class="nav dk">
+                <!--二级菜单遍历开始-->
+                <foreach name="v._child" item="vv">
+                    <if condition="!empty($vv['_child'])">
+                        <li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active</if>">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span>{$vv.title}</span>
+                    </a>
+                    <ul class="nav dk">
+                        <!--三级菜单遍历开始-->
+                        <foreach name="vv._child" item="vvv">
+                            <li class="<if condition="(count($menus_curr) egt 3) AND ($menus_curr[2] eq $vvv['id'])">active</if>">
+                            <a href="{:U($vvv['name'])}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span>{$vvv.title}</span>
+                            </a>
+                            </li>
+                        </foreach><!--三级菜单遍历结束-->
+                    </ul>
+                    </li>
+                    <else />
+                    <li class="<if condition="(count($menus_curr) egt 2) AND ($menus_curr[1] eq $vv['id'])">active</if>">
+                    <a href="{:U($vv['name'])}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        {$vv.title}
+                    </a>
+                    <b class="arrow"></b>
+                    </li>
+                    </if>
+                </foreach><!--二级菜单遍历结束-->
+            </ul>
+            </li>
+            <else />
+            <li class="<if condition="(count($menus_curr) egt 1) AND ($menus_curr[0] eq $v['id'])">active</if>">
+            <a href="{:U($v['name'])}">
+                <i class="fa fa-angle-right icon"></i>
+                 <span class="font-bold">{$v.title}</span>
+            </a>
+            <b class="arrow"></b>
+            </li>
+            </if>
+        </foreach><!--一级菜单遍历结束-->
+
+    </ul>
+
+</nav>
+<!-- / nav -->
+</section>
+<footer class="footer hidden-xs no-padder text-center-nav-xs">
+    <div class="pd-md copyright hidden-nav-xs hide" id="moreless-copyright"><span class="hidden-nav-xs">&copy; <script>document.write(new Date().getFullYear())</script> Alliedmotions. <br>All rights reserved.</span></div>
+    <a href="#moreless-copyright" data-toggle="class:show" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs hidden-nav-xs">
+        <i class="i i-info"></i>
+    </a>
+    <a href="#nav" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs">
+        <i class="i i-circleleft text"></i>
+        <i class="i i-circleright text-active"></i>
+    </a>
+</footer>
+</section>
+</aside>
+<!-- / aside -->

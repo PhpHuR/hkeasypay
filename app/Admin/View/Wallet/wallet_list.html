@@ -1,0 +1,99 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+		<div class="liangzipao">
+			<foreach name="menus_child" item="v" key="k">
+				<if condition="$v['id'] eq $id_curr">
+					<div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+					<else/>
+					<div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+				</if>
+			</foreach>
+			<div class="clear"></div>
+		</div>
+		<div class="fl_left" style="margin: 10px 0">
+			<a href="{:U('wallet_add')}">
+				<button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+					添加商户钱包
+				</button>
+			</a>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div>
+					<form id="leftnav" name="leftnav" method="post" action="" >
+						<input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+						<table class="urllist white" id="dynamic-table">
+							<thead>
+							<tr>
+								<th class="hidden-sm"><div class="border_margin">ID</div></th>
+								<th class="hidden-sm"><div class="border_margin">商户名</div></th>
+								<th class="hidden-sm"><div class="border_margin">钱包余额</div></th>
+								<th class="hidden-sm"><div class="border_margin">管理</div></th>
+							</tr>
+							</thead>
+
+							<tbody>
+
+							<foreach name="wallet_data" item="v">
+								<tr>
+									<td class="hidden-sm" height="28"><div class="border_margin">{$v.id}</div></td>
+									<td class="hidden-sm"><div class="border_margin">{$v.user_id|getUserinfoName}</div></td>
+									<td class="hidden-sm hidden-xs"><div class="border_margin">{$v.money}</div></td>
+									<td class="hidden-sm">
+										<div class="border_margin">
+											<div class="hidden-sm hidden-xs action-buttons">
+												<a class="green" href="{:U('wallet_edit',array('id'=>$v['id']))}" title="修改">
+													<i class="ace-icon fa fa-pencil bigger-130"></i>
+												</a>
+												<a class="red confirm-rst-url-btn" href="{:U('wallet_del',array('id'=>$v['id']))}" data-info="你确定要删除吗？" title="删除">
+													<i class="ace-icon fa fa-trash-o bigger-130"></i>
+												</a>
+											</div>
+											<div class="hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+														<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+													</button>
+													<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+														<li>
+															<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="配置规则">
+																	<span class="green">
+																		<i class="ace-icon fa fa-cog bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+														<li>
+															<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+
+														<li>
+															<a href="{:U('admin_group_del',array('id'=>$v['id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</foreach>
+							<tr>
+								<td height="50" colspan="6" align="left">&nbsp;</td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.page-content -->
+</block>

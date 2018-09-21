@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<!--<if condition="$userinfo['user_id'] eq 8824">-->
+		<!--<title>爱点击未来</title>-->
+	<!--<else />-->
+		<!--<title>易通财电子商务有限公司</title>-->
+	<!--</if>-->
+
+	<title>在线支付频道</title>
+	<link href="__PUBLIC__/pay/common/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/pay/common/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/pay/common/css/style.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/pay/common/css/xin.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/ace/icon/iconfont.css" rel="stylesheet" type="text/css">
+	<script src="__PUBLIC__/pay/common/js/jquery-1.11.3.min.js"></script>
+	<script src="__PUBLIC__/pay/common/js/bootstrap.js"></script>
+	<script src="__PUBLIC__/pay/common/js/jquery.validate.min.js"></script>
+	<script src="__PUBLIC__/pay/common/layer/layer.js"></script>
+	<script>
+
+		$().ready(function() {
+			$("#commentForm").validate({
+				rules:{
+					agree: "required"
+				},
+				messages:{
+					agree: "请接受我们的声明"
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+<div class="bgback"></div>

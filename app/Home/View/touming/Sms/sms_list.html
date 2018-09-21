@@ -1,0 +1,78 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+            <section class=" scrollable padder remittance-form">
+                <div class="rela-box white">
+                    <div class="rela-title">提示短信管理-提示充值</div>
+                    <form action="{:U('sms_list')}" class="form-horizontal ajaxForm2" name="sms_list" method="post">
+                        <div class="rela-content">
+                            <div class="wallet-box">
+                                <div class="wallet-yuan">钱包金额（元）</div>
+                                <div class="wallet-val" id="balance_availablecount">{$wallet_data['money']}</div>
+                            </div>
+                            <div class="tiao-box">
+                                <div class="tiao-1">可用条数 <span class="tiao-2">{$sms_data['sms_count']}</span></div>
+                                <div class="tiao-1">每条短信价格 <span class="tiao-2" id="price">{$sms_data['sms_money']}</span></div>
+                            </div>
+                            <div class="clearboth chongzhi-box">
+                                <div class="fl_left"><span style="padding-right: 10px;font-size: 18px">充值短信金额</span> <input type="text" class="chong-input" name="money" id="transfermoney"></div>
+                                <div class="fl_left chong-money"><span style="padding-right: 10px;font-size: 18px">充值条数</span> <input type="text" class="chong-input"  id="number" readonly></div>
+                                <div class="tongzhi clearboth">
+                                    <span style="padding-right: 10px;font-size: 18px">通知手机号</span> <input type="text" class="chong-input" name="mobile" value="{$sms_data['mobile']}">
+                                </div>
+                            </div>
+                            <div class="sub-box1">
+                                <input type="submit" class="sub-chong" value="充值">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="white radio-wa">
+                    <form action="sms_state" class="form-horizontal ajaxForm2" name="warring_state" method="post">
+                        <span>短信启用警报管理</span>
+                        <span style="padding-left: 20px">
+                    <input type="radio" class="pa-l" name="status" value="1" <?php if($sms_data['sms_state'] == 1){echo "checked";}?>>开启
+                </span>
+                        <span style="padding-left: 20px">
+                    <input type="radio" class="pa-l" name="status" value="2" <?php if($sms_data['sms_state'] != 1){echo "checked";}?>>禁用
+                </span>
+                        <input type="hidden" name="id" value="{$sms_data['id']}">
+                        <button class="btn btn-minier btn-info nextBtn"  type="submit" >
+                            变更
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>
+<script>
+        $("#transfermoney").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+            var keyCode = evt.which;
+            //可用餘額總數
+            var t0 = $("#balance_availablecount").html();
+//            每条价格
+            var t1 = $('#price').html();
+            //當前輸入額度
+            var t2 = $(this).val();
+
+            var num = Math.floor(t2/t1);
+            $('#number').val(num);
+
+            if (t2 > Math.floor(t0)) {
+                layer.alert("可用餘額不夠，請重新核對金額後填寫！", {icon: 5});
+                console.log($('#number').val());
+                $('#number').val(0);
+                $(this).val(0.00);
+
+            }
+        });
+
+</script>

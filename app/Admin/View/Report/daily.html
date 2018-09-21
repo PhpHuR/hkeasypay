@@ -1,0 +1,112 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('daily')}">
+            <div class="row maintop" style="margin-top: 20px">
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                               placeholder="点击选择日期范围"/>
+
+                    </div>
+                </div>
+                <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                    搜索
+                </button>
+                <div class="fl_left">
+                    <a href="{:U('daily')}">
+                        <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="urllist white" id="dynamic-table">
+                        <thead>
+                        <tr>
+
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>日期</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>總入金金額</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>總入金手續費</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>結算金額</div></th>
+                            <th class="hidden-sm hidden-xs "><div class='border_margin'>總出金金額</div></th>
+                            <th class="hidden-sm hidden-xs "><div class='border_margin'>總出金手續費</div></th>
+                            <th class="hidden-sm hidden-xs "><div class='border_margin'>總出金失敗手續費</div></th>
+                            <!--<th class="hidden-sm hidden-xs ">详情</th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.day}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.iordermoney|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.ifree|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v['iordermoney']-$v['ifree']}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.otransfermoney|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.ofree|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>0.00</div></td>
+                                <!--<td>-->
+                                    <!--<div class="hidden-sm hidden-xs action-buttons">-->
+                                        <!--<a class="green"  href="#" title="详情">-->
+                                            <!--<i class="ace-icon fa fa-pencil bigger-130"></i>-->
+                                        <!--</a>-->
+                                        <!--{$v.status}-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>總共：</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>{$list_all.aiordermoney|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>{$list_all.aifree|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>{$list_all['aiordermoney']-$list_all['aifree']}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>{$list_all.aotransfermoney|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>{$list_all.aofree|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class='border_margin'>0.00</div></td>
+                        </tr>
+                        <tr>
+                            <td height="50" colspan="12" align="left">
+                                <a class="btn btn-sm btn-warning"  href="{:U('daily',array('action'=>'export'))}"  title="导出报表">
+                                    <i class="ace-icon fa fa-fire bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">导出报表</span>
+                                </a>
+                                {$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

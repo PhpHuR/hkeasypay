@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<form name="yeepay" action='order.php' method='post'>
+		<table>
+			<tr>
+				<td width=400>接口类型:转账订单(批量)</td>
+			</tr>
+			<tr>
+				<td width=200>订单号</td>
+				<td><input type='text' name='requestId' id="requestId" value='1442216566767'></td>
+			</tr>
+			<tr>
+				<td width=200>金额</td>
+				<td><input type='text' name='amount' value='100'></td>
+			</tr>
+			<tr>
+				<td width=200>转账金额币种</td>
+				<td><input type='text' name='currency' value='CNY'></td>
+			</tr>
+			<tr>
+				<td width=200>汇款类型</td>
+				<td><input type='text' name='transferMode' value='TRANSFERTOBANKCARD'></td>
+			</tr>
+			<tr>
+				<td width=200>上传明细地址 </td>
+				<td><input type='text' name='detailPath' value='test00001_20150311.xlsx'></td>
+			</tr>
+			<tr>
+				<td width=200>通知地址</td>
+				<td><input type='text' name='notifyUrl' value=''></td>
+			</tr>
+			<tr>
+				<td width=200>回调地址</td>
+				<td><input type='text' name='callbackUrl' value=''></td>
+			</tr>
+			<tr>
+				<td width=200>备注</td>
+				<td><input type='text' name='remark' value='qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq'></td>
+			</tr>
+			<tr>
+				<td width=200><input type='submit' name='' value='提交'></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+		document.getElementById("requestId").value=new Date().valueOf();
+	</script>	
+</body>
+</html>

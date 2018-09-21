@@ -1,0 +1,105 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+
+</script>
+<form id="orderForm" action='order.php' method='post'>
+    <input type="hidden" name="ciqInfos" id="ciqInfos">
+    <table>
+        <tr>
+            <td width=200>接口类型:国检下单</td>
+        </tr>
+        <tr>
+            <td width=200>支付流水号</td>
+            <td><input type='text' name='paySerialNumber' id="paySerialNumber" value=''>
+            </td>
+        </tr>
+        <tr>
+            <td width=200>通知地址</td>
+
+            <td><input type='text' name='notifyUrl' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><font color="red">---------------------付款人信息-----------------------------------</font></td>
+        </tr>
+        <tr id="payerName">
+            <td width=200>付款人姓名</td>
+            <td><input type='text' name='payerName' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="payerIdNum">
+            <td width=200>身份证号</td>
+            <td><input type='text' name='payerIdNum' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="payerPhoneNum">
+            <td width=200>手机号码</td>
+            <td><input type='text' name='payerPhoneNum' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><font
+                    color="red">---------------------申报国检信息-----------------------------------</font></td>
+        </tr>
+
+        <tr>
+            <td width=200>申报国检通道</td>
+            <td width=200>国检组织代码</td>
+            <td width=200>申报金额</td>
+            <td width=200>备案号</td>
+            <td width=200>备案名称</td>
+            <td width=200>附加信息</td>
+        </tr>
+        <tr class="ciqInfo">
+            <td><input type='text' name='ciqChannel' id="ciqChannel" value=''></td>
+            <td><input type='text' name='ciqCode' value=''></td>
+            <td><input type='text' name='amount' value=''></td>
+            <td><input type='text' name='commerceCode' value=''></td>
+            <td><input type='text' name='commerceName' value=''></td>
+            <td><input type='text' name='ciqJson'
+                       value="{'goodsValue':'','otherValue':'','customsCode':'','receiverId':'','tax':''}"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type='submit' name='' value='提交'></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    document.getElementById("requestId").value = new Date().valueOf();
+</script>
+<script type="text/javascript">
+    $("#orderForm").submit(function () {
+        var json = "[";
+        $(".ciqInfo").each(function (i) {
+            var item = "{";
+            item += "\"ciqChannel\":\"" + $(this).find("input[name=ciqChannel]").val() + "\",";
+            item += "\"ciqCode\":\"" + $(this).find("input[name=ciqCode]").val() + "\",";
+            item += "\"amount\":\"" + $(this).find("input[name=amount]").val() + "\",";
+            item += "\"commerceCode\":\"" + $(this).find("input[name=commerceCode]").val() + "\",";
+            item += "\"commerceName\":\"" + $(this).find("input[name=commerceName]").val() + "\",";
+            item += "\"ciqJson\":\"" + $(this).find("input[name=ciqJson]").val() + "\"";
+            item = item + "}";
+            if (i > 0) {
+                json += ",";
+            }
+            json += item;
+        });
+        json = json + "]";
+        $("#ciqInfos").val(json);
+        console.info(json);
+    });
+
+    function add() {
+        var p = $(".ciqInfo:first");
+        p.after(p.clone());
+    }
+
+    function del() {
+        if ($(".ciqInfo").length > 1) {
+            $(".ciqInfo:last").remove();
+        }
+    }
+</script>
+</body>
+</html>

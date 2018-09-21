@@ -1,0 +1,124 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <div class="row white">
+            <div class="col-xs-12">
+                <form class="form-horizontal ajaxForm2" name="member_list_add" method="post"
+                      action="{:U('runeditproduct')}">
+                    <input type="hidden" name="product_id" value="{$product_list.product_id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所属分类： </label>
+                        <div class="col-sm-10">
+                            <select name="product_category_id" class="col-sm-4 selector" required>
+                                <option value="">请选择所属产品分类</option>
+                                <foreach name="category_list" item="v">
+                                    <option value="{$v.category_id}" <if condition="$v['category_id'] eq $product_list['product_category_id']">selected</if>>{$v.category_title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 请选择产品价格： </label>
+                        <div class="col-sm-10">
+                            <select name="payin_rate_id" class="col-sm-4 selector" required>
+                                <option value="">请选择产品价格</option>
+                                <foreach name="payin_rate_list" item="vo">
+                                    <!--<option value="{$vo.payin_rate_id}">{$vo.payin_rate_title}</option>-->
+                                    <option value="{$vo.payin_rate_id}" <if condition="$vo.payin_rate_id eq $product_list['payin_rate_id']">selected</if>>{$vo.payin_rate_title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 请选择产品属性： </label>
+                        <div class="col-sm-10">
+                            <select name="product_attribute" class="col-sm-4 selector" >
+                                <option value="">请选择产品属性</option>
+                                <foreach name="attribute_list" item="vol">
+                                    <!--<option value="{$vol.attribute_code}">{$vol.attribute_title}</option>-->
+                                    <option value="{$vol.attribute_code}" <if condition="$vol.attribute_code eq $product_list['product_attribute']">selected</if>>{$vol.attribute_title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 选择产品支付通道： </label>
+                        <div class="col-sm-10">
+                            <select name="payment_mid" class="col-sm-4 selector" required>
+                                <option value="">选择产品支付通道</option>
+                                <foreach name="payment_mid_list" item="vm">
+                                    <!--<option value="{$vm.m_id}">{$vm.title}</option>-->
+                                    <option value="{$vm.m_id}" <if condition="$vm.m_id eq $product_list['payment_mid']">selected</if>>{$vm.title}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 产品名称： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="product_title" id="product_title"
+                                   value="{$product_list.product_title}"
+                                   class="col-xs-10 col-sm-4" required/>
+                            <span class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填，产品是给用户提供服务的选项</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 产品描述： </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="product_description" id="product_description"
+                                   value="{$product_list.product_description}"
+                                   class="col-xs-10 col-sm-4"/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 排序（从小到大）： </label>
+                        <div class="col-sm-10" style="padding-top:5px;">
+                            <input type="text" name="priority" id="priority" value="50" class="col-xs-10 col-sm-1"/>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 状态： </label>
+                        <div class="col-sm-10" style="padding-top:5px;">
+                            <input name="status" id="status" value="1"
+                                   class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"/>
+                            <span class="lbl">&nbsp;&nbsp;默认未激活</span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

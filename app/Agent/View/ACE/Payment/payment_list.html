@@ -1,0 +1,115 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+
+        <div class="row maintop">
+            <div class="col-xs-4 col-sm-2">
+                <a href="{:U('payment_add')}">
+                    <button class="btn btn-sm btn-danger">
+                        <i class="ace-icon fa fa-bolt bigger-110"></i>
+                        添加支付公司
+                    </button>
+                </a>
+            </div>
+            <div class="col-xs-10 col-sm-5">
+                <form name="payment_list_sea" class="form-search" method="post" action="{:U('payment_list')}">
+                    <div class="input-group">
+										<span class="input-group-addon">
+											<i class="ace-icon fa fa-check"></i>
+										</span>
+                        <input type="text" name="val" id="val" class="form-control" value="{$testval}" placeholder="输入需查询的公司名" />
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-purple btn-sm">
+                                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                搜索
+                                            </button>
+										</span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-4 col-sm-5">
+                <div class="input-group-btn">
+                    <a href="{:U('payment_list')}">
+                        <button type="button" class="btn btn-sm  btn-purple">
+                            <span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <form id="leftnav" name="leftnav" method="post" action="" >
+                        <input type="hidden" name="checkk" id="checkk" value="1" /><!--用于判断操作类型-->
+                        <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs">ID</th>
+                                <th>支付公司名称</th>
+                                <th class="hidden-sm hidden-xs">英文名</th>
+                                <th style="border-right:#CCC solid 1px;">操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="payment_list" item="v">
+                                <tr>
+                                    <td height="28" >{$v.api_id}</td>
+                                    <td height="28" >{$v.api_china_name}</td>
+                                    <td class="hidden-sm hidden-xs">{$v.api_name}</td>
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a class="green" href="{:U('payment_edit',array('api_id'=>$v['api_id']))}" title="修改">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+
+                                                <a class="red confirm-rst-url-btn" data-info="你确定要删除吗？" href="{:U('payment_del',array('api_id'=>$v['api_id']))}" title="删除">
+                                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                </a>
+
+                                        </div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="{:U('admin_edit',array('admin_id'=>$v['admin_id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+                                                    <if condition="$v['admin_id'] neq 1">
+                                                        <li>
+                                                            <a href="{:U('admin_del',array('admin_id'=>$v['admin_id']))}"  data-info="你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+                                                            </a>
+                                                        </li>
+                                                    </if>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            <tr>
+                                <td height="50" colspan="10" align="left">{$page}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

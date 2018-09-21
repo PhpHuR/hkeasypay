@@ -1,0 +1,106 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">每日報告</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form name="admin_list_sea" class="form-search form-horizontal" method="post"
+                              action="{:U('daily')}">
+                            <section class="panel panel-default">
+
+                                <div class="panel-body">
+                                    <form class="form-inline" role="form">
+
+                                        <div class="form-group col-md-6 no-padder">
+                                            日期：
+                                            <input type="text" name="begin_time"
+                                                   class="input-sm input-s-xssm datepicker-input inline form-control "
+                                                   data-date-format="yyyy-mm-dd" value="{$begin_time}">
+                                            <input type="text" name="end_time"
+                                                   class="input-sm input-s-xssm datepicker-input inline form-control "
+                                                   data-date-format="yyyy-mm-dd" value="{$end_time}">
+
+                                            <button type="submit" class="btn btn-default btn-danger inline btn-square"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </section>
+                        </form>
+
+                        <section class="panel panel-default">
+
+
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:80px">日期</th>
+                                        <th>總入金金額</th>
+                                        <th>總入金手續費</th>
+                                        <!--<th>結算金額</th>-->
+                                        <th>總出金金額</th>
+                                        <th>總出金手續費</th>
+                                        <!--<th>總佣金</th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <foreach name="list" item="v">
+                                        <tr>
+                                            <td class=" ">{$v.day}</td>
+                                            <td class=" ">{$v.iordermoney|number_format=###,2,'.',','}</td>
+                                            <td class=" ">{$v.ifree|number_format=###,2,'.',','}</td>
+                                            <!--<td class="">{$v['iordermoney']-$v['ifree']}</td>-->
+                                            <td class=" ">{$v.otransfermoney|number_format=###,2,'.',','}</td>
+                                            <td class=" ">{$v.ofree|number_format=###,2,'.',','}</td>
+                                            <!--<td class=" ">0.00</td>-->
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td class=" ">總共：</td>
+                                        <td class=" ">{$list_all.aiordermoney|number_format=###,2,'.',','}</td>
+                                        <td class=" ">{$list_all.aifree|number_format=###,2,'.',','}</td>
+                                        <td class=" ">{$list_all.aotransfermoney|number_format=###,2,'.',','}</td>
+                                        <td class=" ">{$list_all.aofree|number_format=###,2,'.',','}</td>
+                                        <!--<td class=" ">0.00</td>-->
+                                    </tr>
+                                    <tr>
+                                        <td height="50" colspan="5" align="left">
+                                            {$page}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </section>
+
+                        <div class="col-md-12">
+                            <!--<a href="{:U('daily',array('action'=>'export','begin_time'=>$begin_time,'end_time'=>$end_time,'status'=>$status))}" class="btn btn-s-md btn-danger m-b-md btn-rounded"><i-->
+                                    <!--class="fa fa-file-text-o"></i> 匯出報表</a>-->
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

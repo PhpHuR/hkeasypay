@@ -1,0 +1,110 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+
+        <div class="row maintop" style="margin-top: 20px">
+            <div class="fl_left">
+                <form name="admin_list_sea" class="form-search" method="post" action="{:U('userinfo_list')}">
+                    <div class="hidden-xs btn-sespan fl_left">
+                        <div class="input-group">
+                            <input type="text" name="key" id="key" class="back_wh1" value="{$val}" style="width: 100%;" placeholder="输入用户名或者邮箱" />
+
+                        </div>
+                    </div>
+                    <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                        搜索
+                    </button>
+                </form>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('userinfo_list')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        显示全部
+                    </button>
+                </a>
+            </div>
+            <div class="fl_left">
+                <a href="{:U('userinfo_add')}">
+                    <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                        添加商户
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="urllist white" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>ID</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>商户名称</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>品牌</div></th>
+                            <th class="hidden-sm hidden-xs"><div class='border_margin'>所属代理</div></th>
+                            <!--<th class="hidden-sm hidden-xs"><div class='border_margin'>手机号码</th>-->
+                            <!--<th class="hidden-sm hidden-xs"><div class='border_margin'>公司地址</th>-->
+                            <th class="hidden-sm hidden-xs blue"><div class='border_margin'>入金货币</div></th>
+                            <th class="hidden-sm hidden-xs blue"><div class='border_margin'>入金产品名称</div></th>
+                            <th class="hidden-xs hidden-sm red"><div class='border_margin'>出款通道</div></th>
+                            <th class="hidden-xs hidden-sm red"><div class='border_margin'>出款通道MID</div></th>
+                            <th class="hidden-xs hidden-sm red"><div class='border_margin'>出款手续费</div></th>
+                            <th class="hidden-sm"><div class='border_margin'>操作</div></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="userinfo_list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs" height="28" ><div class='border_margin'>{$v.user_id}</div></td>
+                                <td class="hidden-sm"><div class='border_margin'>{$v.member_name}</div></td>
+                                <td class="hidden-sm"><div class='border_margin'>{$v.brand}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>
+                                    {$v.agent_id|getAgentName}
+                                </div>
+                                </td>
+                                <!--<td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.tel}</td>-->
+
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.currency_id|getCurrencyCode}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.product_id|getProductName}</div></td>
+
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.api_china_name}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.title}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class='border_margin'>{$v['outrate']}</div></td>
+                                <td class="hidden-sm">
+                                    <div class="hidden-sm border_margin hidden-xs action-buttons">
+                                        <a class="green"  href="{:U('userinfo_edit',array('user_id'=>$v['user_id']))}" title="詳情">
+                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                        </a>
+                                        <a class="green"  href="{:U('userinfo_edit',array('user_id'=>$v['user_id']))}" title="修改">
+                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                        </a>
+                                        <a class="red confirm-rst-url-btn" href="{:U('userinfo_del',array('user_id'=>$v['user_id'],'p'=>I('p',1)))}" data-info="你确定要删除吗？" title="删除">
+                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td height="50" colspan="11" align="left">{$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

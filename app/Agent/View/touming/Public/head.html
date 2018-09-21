@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{$site_seo_title} {$site_name}</title>
+    <meta name="keywords" content="{$site_seo_keywords}" />
+    <meta name="description" content="{$site_seo_description}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link href="__PUBLIC__/touming/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="__PUBLIC__/touming/js/datepicker/datepicker.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/animate.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/icon.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/font.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/xin.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/js/calendar/bootstrap_calendar.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/js/chosen/chosen.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/touming/css/style-themecolor.css" type="text/css"/>
+    <link rel="stylesheet" href="__PUBLIC__/sldate/daterangepicker-bs3.css" />
+
+    <!--自定义页面样式-->
+    <link rel="stylesheet" href="__PUBLIC__/yfcmf/yfcmf.css" />
+    <!-- 此页相关css -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/touming/js/ie/html5shiv.js"></script>
+    <script src="__PUBLIC__/touming/js/ie/respond.min.js"></script>
+    <script src="__PUBLIC__/touming/js/ie/excanvas.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        function initArray() {
+            for (i = 0; i < initArray.arguments.length; i++)
+                this[i] = initArray.arguments[i];
+        }
+        today = new Date();
+        hrs = today.getHours();
+        min = today.getMinutes();
+        sec = today.getSeconds();
+        clckh = "" + ((hrs > 12) ? hrs - 12 : hrs);
+        clckm = ((min < 10) ? "0" : "") + min;
+        clcks = ((sec < 10) ? "0" : "") + sec;
+        clck = (hrs >= 12) ? "下午" : "上午";
+        var stnr = "";
+        var ns = "0123456789";
+        var a = "";
+
+        function getFullYear(d) {
+            yr = d.getYear();
+            if (yr < 1000)
+                yr += 1900;
+            return yr;
+        }
+    </script>
+
+</head>
+<body class="">
+<div class="bgback"></div>
+<section class="vbox">
+    <header >
+        <!--<div class="navbar-header aside-md dk">-->
+            <!--<a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav">-->
+                <!--<i class="fa fa-bars"></i>-->
+            <!--</a>-->
+
+            <!--<a href="__ROOT__/" class="navbar-brand">-->
+                <!--<if condition="!empty($site_logo)">-->
+                    <!--&lt;!&ndash;<img src="__ROOT__{$site_logo}" alt="logo" class="clogo">&ndash;&gt;-->
+                    <!--<else />-->
+                    <!--<img src="{$yf_theme_path}Public/images/logo.png" alt="logo" class="clogo">-->
+                <!--</if>-->
+            <!--</a>-->
+
+            <!--<a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">-->
+                <!--<i class="fa fa-cog"></i>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">-->
+
+            <!--<if condition="$user['member_list_id'] gt 0">-->
+
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+             <!--<span class="thumb-sm avatar pull-left">-->
+                 <!--<if condition="empty($user['member_list_headpic'])">-->
+                     <!--<img src="__PUBLIC__/touming/images/avatar.png">-->
+                     <!--<elseif condition="stripos($user['member_list_headpic'],'://')"/>-->
+                     <!--<img src="__UPLOAD__avatar/{$user.member_list_headpic}" class="img-thumbnail headicon"/>-->
+                 <!--</if>-->
+            <!--</span>-->
+                        <!--{$user['member_list_username']} - {$user['member_list_userinfoid']|getUserinfoName}<b class="caret"></b><span class="systemdt">-->
+			<!--<script type="text/javascript">-->
+                <!--document.write((getFullYear(today) + "").substring(0, 4) + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "&nbsp;");-->
+                <!--document.write(hrs + ":" + clckm + ":" + clcks);-->
+            <!--</script></span><br>-->
+
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu animated fadeInDown">-->
+                        <!--<span class="arrow top"></span>-->
+                        <!--<li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li style="padding-left:15px">-->
+                            <!--<a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_hk.png"></a>-->
+                            <!--<a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_cn.png"></a>-->
+                            <!--<a href="#" class="inline no-padder"><img src="__PUBLIC__/touming/images/lang_en.png"></a>-->
+                        <!--</li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li>-->
+                            <!--<a href="{:UU('Login/logout')}" style="font-weight:bold">登出</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+
+                <!--<else/>-->
+
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+             <!--<span class="thumb-sm avatar pull-left">-->
+              <!--<img src="__PUBLIC__/touming/images/avatar.png">-->
+            <!--</span>-->
+                        <!--登錄 <b class="caret"></b><span class="systemdt">-->
+			<!--<script type="text/javascript">-->
+                <!--document.write((getFullYear(today) + "").substring(0, 4) + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "&nbsp;");-->
+                <!--document.write(hrs + ":" + clckm + ":" + clcks);-->
+            <!--</script></span><br>-->
+
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu animated fadeInDown">-->
+                        <!--<span class="arrow top"></span>-->
+
+                        <!--<li>-->
+                            <!--<a href="{:UU('Login/index')}" style="font-weight:bold">登錄</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+
+            <!--</if>-->
+
+        <!--</ul>-->
+    </header>
+    <section>
+        <section class="hbox stretch">
+            <!-- .aside -->
+            <aside class="bg-black aside-md hidden-print" id="nav">
+                <section class="vbox">
+                    <section class="w-f scrollable">
+                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+                             data-size="10px" data-railOpacity="0.2">

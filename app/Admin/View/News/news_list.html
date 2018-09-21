@@ -1,0 +1,210 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+		<div class="liangzipao">
+			<foreach name="menus_child" item="v" key="k">
+				<if condition="$v['id'] eq $id_curr">
+					<div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+					<else/>
+					<div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+				</if>
+			</foreach>
+			<div class="clear"></div>
+		</div>
+
+		<link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css" />
+		<form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('news_list')}">
+			<div class="row maintop" style="margin-top: 20px">
+				<div class="col-xs-4 col-sm-1 hidden-xs btn-sespan" style="margin-left: 15px">
+					<div class="input-group">
+						<select name="keytype" class="form-control search-query admin_sea back_wh1">
+							<option value="news_title" <if condition="($keytype eq 'news_title') or ($keytype eq '')">selected</if>>按标题</option>
+							<option value="news_auto" <if condition="$keytype eq 'news_auto'">selected</if>>按发布人ID</option>
+							<option value="news_author" <if condition="$keytype eq 'news_author'">selected</if>>按发布人名</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-1 hidden-xs btn-sespan" style="margin-left: 15px">
+					<div class="input-group">
+						<select name="diyflag" class="form-control search-query admin_sea back_wh1">
+							<option value="">按属性</option>
+							<foreach name="diyflag" item="v">
+								<option value="{$v.diyflag_value}" <if condition="$diyflag_check eq $v['diyflag_value']">selected</if>>{$v.diyflag_name}({$v.diyflag_value})</option>
+							</foreach>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-1 hidden-xs btn-sespan" style="margin-left: 15px">
+					<div class="input-group">
+						<select name="opentype_check" class="form-control search-query admin_sea back_wh1">
+							<option value="">状态</option>
+							<option value="1" <if condition="$opentype_check eq '1'">selected="selected"</if>>已审</option>
+							<option value="0" <if condition="$opentype_check eq '0'">selected="selected"</if> >未审</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+					<div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+						<input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+							   placeholder="点击选择日期范围"/>
+					</div>
+				</div>
+
+				<div class="fl_left">
+						<div class="hidden-xs btn-sespan fl_left">
+							<div class="input-group">
+								<input type="text" name="key" id="key" class="back_wh1" value="{$keyy}" style="width: 100%;" placeholder="输入需查询的关键字" />
+
+							</div>
+						</div>
+						<button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+							搜索
+						</button>
+				</div>
+				<div class="fl_left">
+					<a href="{:U('news_list')}">
+						<button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+							显示全部
+						</button>
+					</a>
+				</div>
+
+			</div>
+		</form>
+
+
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div>
+					<form id="alldel" name="alldel" method="post" action="{:U('news_alldel')}" >
+						<input name="p" id="p" value="{:I('p',1)}" type="hidden" />
+						<div class="table-responsive">
+							<table class="urllist white" id="dynamic-table">
+								<thead>
+								<tr>
+									<th class="hidden-sm hidden-xs center">
+										<div class="border_margin">
+											<label class="pos-rel">
+												<input type="checkbox" class="ace"  id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
+												<span class="lbl"></span>
+											</label>
+										</div>
+									</th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>ID</div></th>
+									<th class="hidden-sm"><div class='border_margin'>文章标题</div></th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>所属栏目</div></th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>文章属性</div></th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>点击</div></th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>审核</div></th>
+									<th class="hidden-sm hidden-xs"><div class='border_margin'>发布时间</div></th>
+									<th class="hidden-sm"><div class='border_margin'>操作</div></th>
+								</tr>
+								</thead>
+
+								<tbody>
+
+								<foreach name="news" item="v">
+									<tr>
+										<td class="hidden-sm hidden-xs" align="center">
+											<div class="border_margin">
+												<label class="pos-rel">
+													<input name='n_id[]' id="navid" class="ace"  type='checkbox' value='{$v.n_id}'>
+													<span class="lbl"></span>
+												</label>
+											</div>
+										</td>
+										<td class="hidden-sm hidden-xs" align="center"><div class="border_margin">{$v.n_id}</div></td>
+										<td class="hidden-sm"><div class="border_margin"><a href="" target="_blank" title="{$v.news_title}">{$v.news_title|subtext=25}</a>【{$v['admin_realname']|default=$v['admin_username']}】</div></td>
+										<td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.menu_name}</div></td>
+										<td class="hidden-sm hidden-xs"><div class='border_margin'>
+											<if condition="strstr($v['news_flag'],'h') eq true"><span style="color:#fff">头</span></if>
+											<if condition="strstr($v['news_flag'],'c') eq true"><span style="color:#fff">荐</span></if>
+											<if condition="strstr($v['news_flag'],'f') eq true"><span style="color:#fff">幻</span></if>
+											<if condition="strstr($v['news_flag'],'a') eq true"><span style="color:fff">特</span></if>
+											<if condition="strstr($v['news_flag'],'s') eq true"><span style="color:#fff">滚</span></if>
+											<if condition="strstr($v['news_flag'],'p') eq true"><span style="color:#fff">图</span></if>
+											<if condition="strstr($v['news_flag'],'j') eq true"><span style="color:#fff">跳</span></if>
+											<if condition="strstr($v['news_flag'],'d') eq true"><span style="color:#fff">原</span></if>
+											<if condition="strstr($v['news_flag'],'cp') eq true"><span style="color:#fff">产</span></if>
+										</div>
+										</td>
+										<td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.news_hits}</div></td>
+										<td class="hidden-sm hidden-xs"><div class='border_margin'>
+											<if condition="$v['news_open'] eq 1">
+												<a class="red state-btn" href="{:U('news_state')}" data-id="{$v.n_id}" title="已审">
+													<div id="zt{$v.n_id}"><button class="btn btn-minier btn-yellow">已审</button></div>
+												</a>
+												<else/>
+												<a class="red state-btn" href="{:U('news_state')}" data-id="{$v.n_id}" title="未审">
+													<div id="zt{$v.n_id}"><button class="btn btn-minier btn-danger">未审</button></div>
+												</a>
+											</if>
+										</div>
+										</td>
+										<td class="hidden-sm hidden-xs"><div class='border_margin'>{$v.news_time|date='Y-m-d',###}</div></td>
+										<td class="hidden-sm">
+											<div class="border_margin">
+												<div class="hidden-sm hidden-xs action-buttons">
+													<a class="green" href="{:U('news_edit',array('n_id'=>$v['n_id']))}" title="修改">
+														<i class="ace-icon fa fa-pencil bigger-130"></i>
+													</a>
+													<a class="red confirm-rst-url-btn" data-info="你确定要删除到回收站吗？" href="{:U('news_del',array('n_id'=>$v['n_id'],'p'=>I('p',1)))}" title="回收站">
+														<i class="ace-icon fa fa-trash-o bigger-130"></i>
+													</a>
+												</div>
+												<div class="hidden-md hidden-lg">
+													<div class="inline position-relative">
+														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+															<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+														</button>
+														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+															<li>
+																<a href="{:U('news_edit',array('n_id'=>$v['n_id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																			<span class="green">
+																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																			</span>
+																</a>
+															</li>
+
+															<li>
+																<a href="{:U('news_del',array('n_id'=>$v['n_id'],'p'=>I('p',1)))}" data-info="你确定要删除到回收站吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="回收站">
+																			<span class="red">
+																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+
+										</td>
+									</tr>
+								</foreach>
+								<tr>
+									<td align="left"><button id="btnsubmit" class="btn btn-white btn-yellow btn-sm">删</button> </td>
+									<td colspan="8" align="right" class="hidden-xs"><div class='border_margin'>{$page}</td>
+									<td colspan="8" align="right" class="hidden-lg hidden-md hidden-sm">{$page_min}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.page-content -->
+</block>
+<block name="scripts">
+	<script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

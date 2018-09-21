@@ -1,0 +1,279 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">跨境申請</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                跨境
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <table class="table ach-table">
+                                    <form class="form-horizontal ajaxForm2" name="turnOneToBankPage" method="post"
+                                          action="{:U('turnOneToBankPage')}">
+                                        <tbody>
+
+                                        <tr>
+                                            <td class="grey"><span class="red">*</span>出金貨幣：</td>
+                                            <td>
+                                                <input disabled="disabled" id="currency_id"
+                                                       name="currency_id" value="CNY"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px; display:inline-block" readonly>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>收款銀行：</td>
+                                            <td>
+                                                <input name="bankname" value="" id="bankname"
+                                                       placeholder="填寫銀行名稱"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey"><span class="red">*</span>子賬戶</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector" name="sub_balance"
+                                                        id="sub_balance" required>
+                                                    <option selected>子賬戶</option>
+                                                    <volist name="sub_balance_list" id="va">
+                                                        <option value="{$va.sub_balance_id}">
+                                                            {$va.attribute|getSubUserBalanceAttributeName}
+                                                        </option>
+                                                    </volist>
+                                                </select>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>Swift Code：</td>
+                                            <td>
+                                                <input name="proname" value="" id="proname"
+                                                       placeholder="填寫-Swift Code"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey"><span class="red">*</span>到岸幣種</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        name="sett_currency"
+                                                        id="sett_currency" required>
+                                                    <option selected>--選擇貨幣</option>
+                                                    <volist name="currency_list" id="vb">
+                                                        <option value="{$vb.ccy_id}">
+                                                            {$vb.ccy_code}
+                                                        </option>
+                                                    </volist>
+                                                </select>
+                                            </td>
+
+                                            <td class="grey"><span class="red">*</span>银行所在国/地区：</td>
+                                            <td>
+                                                <input name="cityname" value="" id="cityname"
+                                                       placeholder="填寫-银行所在国/地区"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey">跨境金额：</td>
+                                            <td>
+                                                <input name="transfermoney" value="" id="transfermoney"
+                                                       placeholder="填寫金額"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px ;display:inline-block" required>
+                                            </td>
+
+
+                                            <td class="grey">银行所在城市：</td>
+                                            <td>
+                                                <input name="townname" value="" id="townname"
+                                                       placeholder="填寫-银行所在城市"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="grey">結算金額</td>
+                                            <td>
+                                                <input name="settlementmoney"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px; display:inline-block" value=""
+                                                       id="settlementmoney" readonly>
+
+                                            </td>
+
+                                            <td class="grey"><span class="red">*</span>收款人名：</td>
+                                            <td><input name="reaccname" placeholder="例：张三"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey">可用餘額：</td>
+                                            <td>
+                                                <input class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px;  display:inline-block" value=""
+                                                       id="balance_availablecount" readonly>
+                                            </td>
+
+                                            <td class="grey"><span class="red">*</span>銀行帳號：</td>
+                                            <td><input name="reaccno" id="reaccno" placeholder="例：6217003*****7980111"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td>
+
+                                            </td>
+
+                                            <td class="grey"><span class="red">*</span>FW/ABA清算号：</td>
+                                            <td><input name="reaccdept"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey"></td>
+                                            <td>
+
+                                            </td>
+
+                                            <td class="grey">備註</td>
+                                            <td><input name="remark" placeholder="例：工资"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block">
+                                                <input type="hidden" id="hkd" name="hkd" value="">
+                                                <input type="hidden" id="usd" name="usd" value="">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <button type="submit" id="submit"
+                                                        class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm ">
+                                                    提交
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+
+
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--/END scrollable padder-->
+
+<include file="Public:footer"/>
+<block name="scripts">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/home/ajax/getBalance", {
+                        user_id: "{$user['member_list_userinfoid']}",
+                        currency_id: $("#currency_id").val(),
+                    },
+                    function (data, status) {
+                        var json_str = $.parseJSON(data);
+                        if (status == "success") {
+//                                $("#balance_availablecount").val(json_str.sub_user_balance);
+                            $("#balance_free").val(json_str.free);
+                            $("#balance_max").val(json_str.max);
+                        } else {
+                            alert("数据: \n" + data + "\n状态: " + status);
+                        }
+                    });
+            $("#sub_balance").bind('input', function () {
+                $.post("/home/ajax/getBalance", {
+                            id: $(this).val(),
+                        },
+                        function (data, status) {
+                            if (status == "success") {
+                                $("#balance_availablecount").val(data.sub_user_balance);
+                            } else {
+                                alert("数据: \n" + data + "\n状态: " + status);
+                            }
+                        });
+            });
+
+            $("#sett_currency").bind('input', function () {
+                $.post("/home/ajax/curoffer", {},
+                        function (data, status) {
+                            var json_str = $.parseJSON(data);
+                            if (status == "success") {
+                                var hkd = json_str.hkd;
+                                $("#hkd").val(hkd);
+                                var usd = json_str.usd;
+                                $("#usd").val(usd);
+                            } else {
+                                alert("数据: \n" + data + "\n状态: " + status);
+                            }
+                        });
+            });
+
+
+            $("#transfermoney").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+                var keyCode = evt.which;
+                //可用余额总数
+                var t0 = $("#balance_availablecount").val();
+                //单笔最大金额
+                var t1 = $("#balance_max").val();
+                //当前输入额度
+                var t2 = $(this).val();
+                //获取手续费
+                var t3 = $("#balance_free").val();
+                //获取超过最大金额的总数
+                var num = getOrderNumber(t2, t1);
+                var z = t2 * 1 + t3 * 1 * (num.length);
+                $("#balance").val(z);
+                if (z > t0) {
+                    layer.alert("可用余额不够，请重新核对金额后填写！", {icon: 5});
+                    $(this).val(0.00);
+                    $("#balance").val(0.00);
+                }
+
+                var currency = $("#sett_currency").val();
+                if(currency<3){
+                    var usd1 = $("#usd").val();
+                    $("#settlementmoney").val((t2 * usd1).toFixed(2));
+                }else {
+                    var hkd1 = $("#hkd").val();
+                    $("#settlementmoney").val((t2 * hkd1).toFixed(2));
+                }
+
+            });
+
+        });
+    </script>
+</block>

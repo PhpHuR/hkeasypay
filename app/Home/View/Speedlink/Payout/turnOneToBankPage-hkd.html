@@ -1,0 +1,315 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">出金訂單</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                出金
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <table class="table ach-table">
+                                    <form class="form-horizontal ajaxForm2" name="turnOneToBankPage" method="post"
+                                          action="{:U('turnOneToBankPage')}">
+                                        <tbody>
+
+                                        <tr>
+                                            <td class="grey"><span class="red">*</span>出金貨幣：</td>
+                                            <td>
+                                                <input id="currency_id"
+                                                       name="currency_id" value="HKD"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px; display:inline-block" readonly>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>收款銀行：</td>
+                                            <td><select name="bankname" id="bankname"
+                                                        class="form-control inline currency-selector"
+                                                        style=" min-width:210px" required>
+                                                <option selected="selected">-- 請選擇 --</option>
+                                                <option value="gonghang">工商银行</option>
+                                                <option value="jianhang">建设银行</option>
+                                                <option value="nonghang">农业银行</option>
+                                                <option value="zhaohang">招商银行</option>
+                                                <option value="zhonghang">中国银行</option>
+                                                <option value="pufa">浦发银行</option>
+                                                <option value="jiaohang">交通银行</option>
+                                                <option value="minsheng">民生银行</option>
+                                                <option value="xingye">兴业银行</option>
+                                                <option value="guangda">光大银行</option>
+                                                <option value="guangfa">广发银行</option>
+                                                <option value="zhongxin">中信银行</option>
+                                                <option value="chuxu">邮政储蓄</option>
+                                                <option value="shenfa">平安银行</option>
+                                                <option value="beijing">北京银行</option>
+                                                <option value="shanghai">上海银行</option>
+                                                <option value="bjnongshang">北京农商银行</option>
+                                                <option value="huaxia">华夏银行</option>
+                                                <option value="nanjing">南京银行</option>
+                                                <option value="bohai">渤海银行</option>
+                                                <option value="hangzhou">杭州银行</option>
+                                                <option value="shnongshang">上海农村商业银行</option>
+                                                <option value="zheshang">浙商银行</option>
+                                                <option value="other">其他银行</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey"><span class="red">*</span>子賬戶</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector" name="sub_balance"
+                                                        id="sub_balance" required>
+                                                    <option selected>子賬戶</option>
+                                                    <volist name="sub_balance_list" id="va">
+                                                        <option value="{$va.sub_balance_id}">
+                                                            {$va.attribute|getSubUserBalanceAttributeName}
+                                                        </option>
+                                                    </volist>
+                                                </select>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>省：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px" name="proname" id="province"
+                                                        onChange="loadRegion('province',2,'city','{:U('Ajax/getRegion')}');"
+                                                        required>
+                                                    <option value="0" selected>省份/直辖市</option>
+                                                    <volist name="province" id="vo">
+                                                        <option value="{$vo.id}">{$vo.name}</option>
+                                                    </volist>
+                                                </select>
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey">出金金额：</td>
+                                            <td style="width: 10%">
+                                                <span>CNY</span>
+                                                <input name="cnymoney" value="" id="RMB"
+                                                       placeholder="输入金额"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px ;display:inline-block" required>
+                                                <span>HKD</span>
+                                                <input name="" value="" id="HKD"
+                                                       placeholder=""
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px ;display:inline-block" readonly>
+
+                                                <input type="hidden" name="transfermoney" value="">
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>市：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px" name="cityname" id="city"
+                                                        onchange="loadRegion('city',3,'town','{:U('Ajax/getRegion')}');"
+                                                        required>
+                                                    <option value="0">市/县</option>
+                                                </select>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey">目前可用余额：</td>
+                                            <td>
+                                                <input class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px;  display:inline-block" placeholder=""
+                                                       id="balance_availablecount" readonly>
+                                            </td>
+                                            <td class="grey">區：</td>
+                                            <td>
+                                                <select class="form-control inline currency-selector"
+                                                        style=" min-width:210px" name="townname" id="town">
+                                                    <option value="0">區</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="grey">出金后余额：</td>
+                                            <td>
+                                                <input class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px;  display:inline-block" value=""
+                                                       id="yue" readonly>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>收款人名：</td>
+                                            <td><input name="reaccname" placeholder="例：张三"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey">單筆最大出金</td>
+                                            <td>
+                                                <input class="input-sm inline v-middle form-control text-left"
+                                                       style="width:150px; display:inline-block" value=""
+                                                       id="balance_max" readonly>
+                                            </td>
+                                            <td class="grey"><span class="red">*</span>銀行帳號：</td>
+                                            <td><input name="reaccno" id="reaccno" placeholder="例：6217003*****7980111"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block" required>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="grey">開戶網點：</td>
+                                            <td><input name="reaccdept"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       placeholder="例：国贸支行"
+                                                       style="width:100% ;display:inline-block">
+                                            </td>
+                                            <td class="grey">備註</td>
+                                            <td><input name="remark" placeholder="例：工资"
+                                                       class="input-sm inline v-middle form-control text-left"
+                                                       style="width:100% ;display:inline-block"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="4">
+                                                <button type="submit" id="submit"
+                                                        class="btn btn-danger nextBtn btn-lg btn-rounded m-t-sm m-b-sm ">
+                                                    提交
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+
+
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--/END scrollable padder-->
+
+<include file="Public:footer"/>
+<block name="scripts">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/home/ajax/getBalance", {
+                    user_id: "{$user['member_list_userinfoid']}",
+                    currency_id: $("#currency_id").val(),
+                },
+                function (data, status) {
+                    var json_str = $.parseJSON(data);
+                    if (status == "success") {
+                        $("#balance_availablecount").val("HKD "+json_str.availablecount);
+                        $("#balance_free").val(json_str.free);
+                        $("#balance_max").val(json_str.max);
+
+                        $("#HKD").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+                            var keyCode = evt.which;
+                            var buy = json_str.curbuy;
+                            var sell = json_str.cursell;
+                            var t = $(this).val();
+                            if (buy * t > 0) {
+                                var rmb = (t *buy).toFixed(2);
+                                $("#RMB").val(rmb);
+                            }
+//                            计算匯损
+                            console.log(rmb);
+
+                            var huisun = (rmb*(1/buy)).toFixed(2) - (rmb/sell).toFixed(2);
+                            console.log(huisun);
+                            console.log(rmb/sell);
+                            var sum = (rmb/sell+huisun).toFixed(2);
+                            console.log(sum);
+                            if(json_str.availablecount - sum >0){
+                                $("input[name='transfermoney']").val(sum);
+                                var yue = "HKD"+(json_str.availablecount - sum).toFixed(2);
+                                $('#submit').removeAttr("disabled");
+                            }else{
+                                var yue = "余额不足";
+                                $('#submit').attr("disabled","disabled");
+                            }
+//                            $('#huisun').text(huisun);
+//                            $("#chujin").text(sum);
+                            $('#yue').val(yue);
+                        });
+                        $("#RMB").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+                            var keyCode = evt.which;
+                            var buy = json_str.curbuy;
+                            var sell = json_str.cursell;
+                            var t = $(this).val();
+                            if (t/sell > 0) {
+                                var rmb = (t/sell).toFixed(2);
+                                $("#HKD").val(rmb);
+                            }
+//                            计算匯损
+                            var huisun = (t*(1/buy)).toFixed(2) - (t/sell).toFixed(2);
+                            var sum = (t/sell+huisun).toFixed(2);
+                            if(json_str.availablecount - sum >0){
+                                $("input[name='transfermoney']").val(sum);
+                                var yue = "HKD "+(json_str.availablecount - sum).toFixed(2);
+                                $('#submit').removeAttr("disabled");
+                            }else{
+                                var yue = "余额不足";
+                                $('#submit').attr("disabled","disabled");
+                            }
+//                            $('#huisun').text((huisun).toFixed(0));
+//                            $("#chujin").text(sum);
+                            $('#yue').val(yue);
+                        });
+                    } else {
+                        alert("数据: \n" + data + "\n状态: " + status);
+                    }
+                });
+            $("#sub_balance").bind('input', function () {
+                $.post("/home/ajax/getBalance", {
+                        id: $(this).val(),
+                    },
+                    function (data, status) {
+                        if (status == "success") {
+                            $("#balance_availablecount").val("HKD "+data.sub_user_balance);
+                        } else {
+                            alert("数据: \n" + data + "\n状态: " + status);
+                        }
+                    });
+            });
+
+            $("#RMB").bind('keyup keydown keypress DOMAttrModified propertychange', function (evt) {
+                var keyCode = evt.which;
+                //可用余额总数
+                var t0 = $("#balance_availablecount").val();
+                //单笔最大金额
+                var t1 = $("#balance_max").val();
+                //当前输入额度
+                var t2 = $(this).val();
+                //获取手续费
+                var t3 = $("#balance_free").val();
+                //获取超过最大金额的总数
+                var num = getOrderNumber(t2, t1);
+                var z = t2 * 1 + t3 * 1 * (num.length);
+                $("#balance").val(z);
+                if (z > t0) {
+                    layer.alert("可用余额不够，请重新核对金额后填写！", {icon: 5});
+                    $(this).val(0.00);
+                    $("#balance").val(0.00);
+                }
+
+            });
+
+        });
+    </script>
+</block>

@@ -1,0 +1,299 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+
+</script>
+<form id="orderForm" action='order.php' method='post'>
+    <input type="hidden" name="details" id="details">
+    <input type="hidden" name="hiddenSubOrder" id="hiddenSubOrder">
+    <table>
+        <tr>
+            <td width=200>接口类型:人民币订单</td>
+        </tr>
+        <tr>
+            <td width=200>提交版本</td>
+            <td width=200>
+                <select id="version">
+                    <option value="1.0">&nbsp;1.0&nbsp;</option>
+                    <option value="2.0">&nbsp;2.0&nbsp;</option>
+                </select>
+                <font color="red">(注:2.0是加密版)</font>
+            </td>
+        </tr>
+        <tr>
+            <td width=200>订单号</td>
+            <td><input type='text' name='requestId' id="requestId" value=''></td>
+        </tr>
+        <tr>
+            <td width=200>订单金额</td>
+            <td><input type='text' name='orderAmount' value=''>(分)</td>
+        </tr>
+        <tr>
+            <td width=200>订单币种</td>
+            <td><input type='text' name='orderCurrency' value='CNY'></td>
+        </tr>
+        <tr>
+            <td width=200>通知地址</td>
+
+            <td><input style='width:400px' type='text' name='notifyUrl' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>回调地址</td>
+            <td><input style='width:400px' type='text' name='callbackUrl' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>备注</td>
+            <td><input type='text' name='remark' value='备注'></td>
+        </tr>
+        <tr>
+            <td width=200>收货人</td>
+            <td><input type='text' name='receiverName' value='收货人'></td>
+        </tr>
+        <tr>
+            <td width=200>收货人电话</td>
+            <td><input type='text' name='receiverPhoneNum' value='收货人电话'></td>
+        </tr>
+        <tr>
+            <td width=200>收货人地址</td>
+            <td><input type='text' name='address' value='收货人地址'></td>
+        </tr>
+        <tr >
+            <td width=200>产品名称</td>
+            <td width=200>数量</td>
+            <td width=200>金额</td>
+            <td width=200>收款人</td>
+            <td width=200>产品描述</td>
+        </tr>
+        <tr class="product">
+            <td><input type='text' name='productName' id="productName" value='IPHONE6'></td>
+            <td><input type='text' name='quantity' value='100'></td>
+            <td><input type='text' name='productAmount' value='20000'></td>
+            <td><input type='text' name='receiver' value='张三'></td>
+            <td><input type='text' name='description' value='黑色64G'></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="add();">添加</button>
+            </td>
+            <td>
+                <button type="button" onclick="del();">删除</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><font color="red">---------------------商户子订单信息----------------------</font></td>
+        </tr>
+        <tr>
+            <td width=200>子订单号</td>
+            <td width=200>金额</td>
+        </tr>
+        <tr class="subOrders">
+            <td><input type='text' name='subRequestId' value=''></td>
+            <td><input type='text' name='subOrderAmount' value=''>(分)</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="addSubOrder();">添加</button>
+            </td>
+            <td>
+                <button type="button" onclick="delSubOrder();">删除</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=200>收银台版本</td>
+            <td>
+                <select name='cashierVersion' >
+                    <option value="">请选择</option>
+                    <option value="STANDARD">标准版</option>
+                    <option value="DECLARE">申报版</option>
+                    <option value="CUSTOMS">海淘版</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width=200>贸易背景</td>
+            <td>
+                <select name='forUse' >
+                    <option value="">请选择</option>
+                    <option value="GOODSTRADE">货物贸易</option>
+                    <option value="PLANETICKET">机票</option>
+                    <option value="HOTELACCOMMODATION">酒店住宿</option>
+                    <option value="STUDYABROAD">留学</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width=200>商户会员Id</td>
+            <td><input type='text' name='merchantUserId' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>绑卡Id</td>
+            <td><input type='text' name='bindCardId' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>ClientIp</td>
+            <td><input type='text' name='clientIp' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>超时时间</td>
+            <td><input type='text' name='timeout' value=''>（单位：分钟）</td>
+        </tr>
+        <tr>
+            <td colspan="2"><font color="red">---------------------付款人信息-----------------------------------</font></td>
+        </tr>
+        <tr id="payerName">
+            <td width=200>付款人姓名</td>
+            <td><input type='text' name='payerName' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="payerPhoneNum">
+            <td width=200>手机号码</td>
+            <td><input type='text' name='payerPhoneNum' value=''></td>
+        </tr>
+        <tr id="payerIdType">
+            <td width=200>证件类型</td>
+            <td><input type='text' name='payerIdType' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="payerIdNum">
+            <td width=200>证件号码</td>
+            <td><input type='text' name='payerIdNum' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="bankCardNum">
+            <td width=200>银行卡号</td>
+            <td><input type='text' name='bankCardNum' value='' onfocus="textFoucus()"></td>
+        </tr>
+        <tr id="email">
+            <td width=200>Email</td>
+            <td><input type='text' name='email' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>支付方式编码</td>
+            <td><input type='text' name='paymentModeCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>支付宝支付授权码</td>
+            <td><input type='text' name='authCode' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>微信公众号openId</td>
+            <td><input type='text' name='openId' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><font
+                    color="red">---------------------快捷直连时需要填银行卡号-----------------------------------</font></td>
+        </tr>
+        <tr>
+            <td width=200>开户名</td>
+            <td><input type='text' name='name' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>卡号</td>
+            <td><input type='text' name='cardNo' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>cvv2</td>
+            <td><input type='text' name='cvv2' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>身份证号</td>
+            <td><input type='text' name='idNo' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>有效期yyyy-MM</td>
+            <td><input type='text' name='expiryDate' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>手机号</td>
+            <td><input type='text' name='mobileNo' value=''></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type='submit' name='' value='提交'></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    document.getElementById("requestId").value = new Date().valueOf();
+</script>
+<script type="text/javascript">
+    $("#orderForm").submit(function () {
+        var json = "[";
+        $(".product").each(function (i) {
+            var item = "{";
+            item += "\"name\":\"" + $(this).find("input[name=productName]").val() + "\",";
+            item += "\"quantity\":\"" + $(this).find("input[name=quantity]").val() + "\",";
+            item += "\"amount\":\"" + $(this).find("input[name=productAmount]").val() + "\",";
+            item += "\"receiver\":\"" + $(this).find("input[name=receiver]").val() + "\",";
+            item += "\"description\":\"" + $(this).find("input[name=description]").val() + "\"";
+            item = item + "}";
+            if (i > 0) {
+                json += ",";
+            }
+            json += item;
+        });
+        json = json + "]";
+        $("#details").val(json);
+        var item =$("#details").val();
+		
+		    var json2 = "[";
+    $(".subOrders").each(function(j){
+        var str = "";
+        str += $.trim($(this).find("select[name=subRequestId]").val());
+        str += $.trim($(this).find("input[name=subOrderAmount]").val());
+        if($.trim(str)=="") {
+            return;//实现continue功能
+        }
+        var item2 = "{";
+        item2+="\"requestId\":\""+$.trim($(this).find("input[name=subRequestId]").val())+"\",";
+        item2+="\"orderAmount\":\""+$.trim($(this).find("input[name=subOrderAmount]").val())+"\"";
+        item2 = item2 + "}";
+        if(j>0){
+            json2+=",";
+        }
+        json2+=item2;
+    });
+    json2=json2 + "]";
+    $("#hiddenSubOrder").val(json2);
+		
+		var sub=$("#hiddenSubOrder").val();
+        console.log(item);
+        console.info(json);
+    });
+
+    function add() {
+        var p = $(".product:first");
+        p.after(p.clone());
+    }
+
+    function del() {
+        if ($(".product").length > 1) {
+            $(".product:last").remove();
+        }
+    }
+    
+    function addSubOrder(){
+        var p=$(".subOrders:last");
+        p.after(p.clone());
+    }
+
+    function delSubOrder(){
+        if($(".subOrders").length>1){
+            $(".subOrders:last").remove();
+        }
+    }
+    function addSplitRecord(){
+        var p=$(".splitRecords:last");
+        p.after(p.clone());
+    }
+
+    function delSplitRecord(){
+        if($(".splitRecords").length>1){
+            $(".splitRecords:last").remove();
+        }
+    }
+</script>
+</body>
+</html>

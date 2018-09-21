@@ -1,0 +1,111 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">批量出金</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal ajaxForm2" name="turnListToBankPage" method="post" action="{:U('turnListToBankPage')}"  enctype="multipart/form-data">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                上傳訂單
+                            </header>
+                            <div class="table-responsive tabledata" style="overflow:auto">
+                                <div class="col-xs-12 panel-body text-sm">
+                                    <div class="fileUpload btn btn-default">
+                                        <span>選擇檔案</span>
+                                        <input id="uploadBtn" name="file_stu" type="file" class="upload">
+                                    </div>
+                                    <input name="file_stu" id="uploadFile" placeholder="" disabled="disabled"
+                                           class="form-control input-sm inline v-middle" style="width:180px">
+
+                                    <br>
+
+                                    <div class="line line-dashed b-b line-lg pull-in m-t-sm m-b-sm"></div>
+                                    <button class="btn btn-danger nextBtn btn-md m-t-sm m-b-sm btn-rounded"
+                                            type="submit">提交
+                                    </button>
+                                    <a href="__PUBLIC__/Excel/sample/batchpayout.xls" class="btn btn-primary nextBtn btn-md btn-rounded m-t-sm m-b-sm "
+                                           >下載範例
+                                    </a>
+
+                                </div>
+                                <table class="table ach-table">
+
+                                    <tbody>
+
+                                    <tr>
+
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </section>
+                        </form>
+                        <div class="padder">
+                            <div class="line line-dashed b-b line-lg pull-in m-t-md"></div>
+                        </div>
+
+                        <section class="panel panel-default">
+
+                            <header class="panel-heading">
+                                批量出金詳情
+                            </header>
+
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="table table-striped b-t b-light tablesorter">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:80px">收款銀行</th>
+                                        <th>收款人名</th>
+                                        <th>銀行帳號</th>
+                                        <th>分行(省市)</th>
+                                        <th>Excel名稱</th>
+                                        <th>出金金額 RMB</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="audit_list" item="v">
+                                        <tr>
+                                            <td class="hidden-sm hidden-xs">{$v.bankname|getBankName}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.reaccname}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.reaccno}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.proname|getRegionName}-{$v.cityname|getRegionName}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.filename}</td>
+                                            <td class="hidden-sm hidden-xs">{$v.transfermoney}</td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td height="50" colspan="6" align="left">
+                                            {$page}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </section>
+    </section>
+</section>
+
+<include file="Public:footer"/>

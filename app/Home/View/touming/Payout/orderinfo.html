@@ -1,0 +1,154 @@
+<div class="modal-dialog-lg">
+    <div class="modal-content">
+        <div class="modal-body wrapper-md">
+            <form class="bs-example form-horizontal">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:15px">
+
+                    <tbody>
+                    <tr>
+                        <!--<td><img src="__PUBLIC__/speedlink/images/logo.png" style=" max-height:50px"></td>-->
+                        <td></td>
+                        <td></td>
+                        <td><h3>訂單詳情</h3></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td width="40%" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td style="border-bottom:2px solid #333;"><b>公司名稱:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>{$user['member_list_userinfoid']|getUserinfoName}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="2%" valign="top">&nbsp;
+                        </td>
+                        <td width="100%" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; border-top:2px solid #333; padding:2px 0px">
+                                        <b>訂單批次號碼：</b></td>
+                                    <td style="border-bottom:2px solid #333; border-top:2px solid #333;  padding:2px 0px">
+                                        {$order_info.batchnum}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>日期：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        {$order_info.begin_time|date='Y-m-d',###}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>時間：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        {$order_info.begin_time|date='H:i:s',###}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>狀態：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        <switch name="order_info.status">
+                                            <case value="1"><span class="text-success">審核通過</span></case>
+                                            <case value="2"><span class="red">審核失敗</span></case>
+                                            <case value="3"><span class="text-ellipsis">處理中</span></case>
+                                            <case value="4"><span class="text-success">轉賬成功</span></case>
+                                            <case value="5"><span class="red">轉賬失敗</span></case>
+                                            <case value="7"><span class="red">退款成功</span></case>
+                                            <default /><span class="text-ellipsis">待審核</span>
+                                        </switch>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table width="100%" border="1" cellspacing="0" cellpadding="0" class="receipt" style="font-size:15px">
+                    <tbody>
+                    <tr>
+                        <td colspan="2"><b><span style="font-size:15px">詳情</span></b></td>
+                    </tr>
+
+                    <tr>
+                        <td width="40%"><b>訂單號碼：</b></td>
+                        <td class="text-left">{$order_info.payout_orderid}</td>
+                    </tr>
+                    <tr>
+                        <td><b>收款人名：</b></td>
+                        <td class="text-left">{$order_info.reaccname}</td>
+                    </tr>
+                    <tr>
+                        <td><b>收款銀行：</b></td>
+                        <td class="text-left">{$order_info.bankname|getBankName}</td>
+                    </tr>
+                    <tr>
+                        <td><b>銀行號戶：</b></td>
+                        <td class="text-left">{$order_info.reaccno}</td>
+                    </tr>
+                    <tr>
+                        <td><b>分行：</b></td>
+                        <td class="text-left">{$order_info.reaccdept}</td>
+                    </tr>
+                    <tr>
+                        <td><b>省：</b></td>
+                        <td class="text-left">{$order_info.proname|getRegionName}</td>
+                    </tr>
+                    <tr>
+                        <td><b>市：</b></td>
+                        <td class="text-left">{$order_info.cityname|getRegionName}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>出金金額：</b></td>
+                        <td class="text-left">RMB {$order_info.transfermoney}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>手續費：</b></td>
+                        <td class="text-left">RMB {$order_info.free}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>結算金額：</b></td>
+                        <td class="text-left">RMB
+                            {$order_info['transfermoney']+$order_info['free']|number_format=###,2,'.',','}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>備註：</b></td>
+                        <td class="text-left">
+                            {$order_info['remark']}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div><!-- /.modal-content -->
+        <div class="modal-footer">
+            <div class="table-responsive">
+                <table class="table table-striped m-b-none" data-ride="datatables">
+                    <thead>
+                    <tr>
+                        <th width="30%">經辦:</th>
+                        <th width="30%">覆核:</th>
+                        <th width="30%">審批:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn btn-default" onClick="window.print();">Print</a>
+            <a href="#" class="btn btn-default" data-dismiss="modal">關閉</a>
+        </div>
+
+    </div><!-- /.modal-dialog -->

@@ -1,0 +1,156 @@
+<div class="modal-dialog-lg">
+    <div class="modal-content">
+        <div class="modal-body wrapper-md">
+            <form class="bs-example form-horizontal">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:15px">
+
+                    <tbody>
+                    <tr>
+                        <!--<td><img src="__PUBLIC__/speedlink/images/logo.png" style=" max-height:50px"></td>-->
+                        <td></td>
+                        <td></td>
+                        <td><h3>訂單詳情</h3></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td width="40%" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            </table>
+                        </td>
+                        <td width="2%" valign="top">&nbsp;
+                        </td>
+                        <td width="100%" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; border-top:2px solid #333; padding:2px 0px">
+                                        <b>訂單號碼：</b></td>
+                                    <td style="border-bottom:2px solid #333; border-top:2px solid #333;  padding:2px 0px">
+                                        {$payin_info.orderid}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>日期：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        {$order_info.update_time|date='Y-m-d',###}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>時間：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        {$order_info.update_time|date='H:i:s',###}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px"><b>狀態：</b></td>
+                                    <td style="border-bottom:2px solid #333; padding:2px 0px">
+                                        <switch name="payin_info.status">
+                                            <case value="1">
+                                                <a class="btn btn-danger btn-xs-square delete-btn bgdanger"
+                                                   href="#">成 &nbsp;&nbsp;功</a></case>
+                                            <case value="-1"><span class="text-success">支付失败</span></case>
+                                            <case value="2">
+                                                <span class="text-success">退款中</span></case>
+                                            <case value="3"><span class="text-success">退款失败</span></case>
+                                            <case value="4"><span class="text-success">退款成功</span></case>
+                                            <default/>
+                                            <a class="btn btn-danger btn-xs-square delete-btn bgfinish"
+                                               href="#">待支付</a>
+                                        </switch>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table width="100%" border="1" cellspacing="0" cellpadding="0" class="receipt" style="font-size:15px">
+                    <tbody>
+                    <tr>
+                        <td colspan="2"><b><span style="font-size:15px">詳情</span></b></td>
+                    </tr>
+                    <tr>
+                        <td width="40%"><b>客戶訂單號碼：</b></td>
+                        <td class="text-left">{$payin_info.transid}</td>
+                    </tr>
+                    <tr>
+                        <td><b>交易賬號：</b></td>
+                        <td class="text-left">{$order_info.customer_id}</td>
+                    </tr>
+                    <tr>
+                        <td><b>客戶姓名：</b></td>
+                        <td class="text-left">{$order_info.customer_name}</td>
+                    </tr>
+                    <tr>
+                        <td><b>證件類型：</b></td>
+                        <td class="text-left">
+                            <switch name="order_info.cert_type">
+                                <case value="1">身份證</case>
+                                <case value="2">
+                                    <span class="text-success">護照</span></case>
+                                <default/>
+                                身份證
+                            </switch>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>證件號碼：</b></td>
+                        <td class="text-left">{$order_info.cert_number}</td>
+                    </tr>
+                    <tr>
+                        <td><b>聯絡電話：</b></td>
+                        <td class="text-left">{$order_info.tel}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email：</b></td>
+                        <td class="text-left">{$order_info.email}</td>
+                    </tr>
+                    <tr>
+                        <td><b>支付卡號：</b></td>
+                        <td class="text-left">{$order_info.bank_number}</td>
+                    </tr>
+                    <tr>
+                        <td><b>金額：</b></td>
+                        <td class="text-left">HKD {$payin_info.ordermoney_hkd|number_format=###,2,'.',','}</td>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<td><b>結算金額：</b></td>-->
+                        <!--<td class="text-left">HKD-->
+                            <!--{$payin_info['ordermoney_hkd']-$payin_info['free']|number_format=###,2,'.',','}-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <tr>
+                        <td><b>備註：</b></td>
+                        <td class="text-left">
+                            {$payin_info['remark']}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div><!-- /.modal-content -->
+        <div class="modal-footer">
+            <div class="table-responsive">
+                <table class="table table-striped m-b-none" data-ride="datatables">
+                    <thead>
+                    <tr>
+                        <th width="30%">經辦:</th>
+                        <th width="30%">覆核:</th>
+                        <th width="30%">審批:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn btn-default" onClick="window.print();">Print</a>
+            <a href="#" class="btn btn-default" data-dismiss="modal">關閉</a>
+        </div>
+
+    </div><!-- /.modal-dialog -->

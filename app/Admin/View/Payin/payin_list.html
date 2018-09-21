@@ -1,0 +1,415 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('payin_list')}">
+            <div class="row maintop">
+                <div class="fl_right">
+                    <div class="white" style="position:relative;z-index: 1050;top: -51px">
+                        <input type="text" name="key" id="key" class="admin_search bgtouming" value="{$keyy}" placeholder="输入需查询的关键字" />
+                        <span class="ace-icon fa fa-search icon-on-right bigger-110 ace-pos"></span>
+                        <span>
+							<button type="submit" class="select_search">
+								显示全部
+							</button>
+						</span>
+                    </div>
+                </div>
+                <div class="liangzipao">
+                    <foreach name="menus_child" item="v" key="k">
+                        <if condition="$k eq 0">
+                            <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                            <else/>
+                            <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                        </if>
+                    </foreach>
+                    <div class="clear"></div>
+                </div>
+                <div style="margin-top: 30px">
+                    <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                        <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                            <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                                   placeholder="点击选择日期范围"/>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-1 hidden-xs btn-sespan">
+                        <div class="input-group">
+                            <select name="mid" class="form-control search-query admin_sea back_wh1" style="border-radius: 2px;color:#fff">
+                                <option value="">商户名称</option>
+                                <foreach name="mid_list" item="v">
+                                    <option value="{$v.user_id}" <if condition="$midd eq $v['user_id']">selected</if>>{$v.member_name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-1 hidden-xs btn-sespan" style="margin-left: 15px">
+                        <div class="input-group">
+                            <select name="payment_id" class="form-control search-query admin_sea back_wh1" style="color:#fff;border-radius: 2px">
+                                <option value="">支付公司名称</option>
+                                <foreach name="payment_list" item="v">
+                                    <option value="{$v.api_id}" <if condition="$payment_idd eq $v['api_id']">selected</if>>{$v.api_china_name}</option>
+                                </foreach>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-1 hidden-xs btn-sespan">
+                        <div class="input-group">
+                            <select name="payment_mid" class="form-control search-query admin_sea back_wh1" style="color:#fff;border-radius: 2px">
+                                <option value="">MID名称</option>
+                                <foreach name="payment_mid_list" item="v">
+                                    <option value="{$v.m_id}" <if condition="$payment_midd eq $v['m_id']">selected</if>>{$v.title}</option>
+                                </foreach>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2 col-sm-1 hidden-xs btn-sespan">
+                        <div class="input-group">
+                            <select name="paybank" class="form-control search-query admin_sea back_wh1" style="color:#fff;border-radius: 2px">
+                                <option value="">入金方式</option>
+                                <option value="alipay" <if condition="$paybankk eq 'alipay'">selected="selected"</if>>支付寶</option>
+                                <option value="weixin" <if condition="$paybankk eq 'weixin'">selected="selected"</if> >微信</option>
+                                <option value="netgate" <if condition="$paybankk eq 'netgate'">selected="selected"</if> >網關</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <span>
+                    <button type="submit" class="select_search white" style="font-size: 15px">
+                        确认
+                    </button>
+                </span>
+                    <a class="btn btn-sm btn-blue" style="margin-left: 15px" href="{:U('select',array('action'=>'export','reservation'=>$sldate,'mid'=>$midd))}"
+                       title="导出报表">
+                        <i class="iconfont icon-chakantiezigengduofenxiang"></i>
+                        <span class="bigger-110 no-text-shadow">导出报表</span>
+                    </a>
+                </div>
+
+
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="urllist white" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <td class="hidden-sm hidden-xs "><p>ID</p></td>
+                            <th class="hidden-xs hidden-sm"><p>创建时间|交易时间</p></th>
+                            <th class="hidden-xs hidden-sm"><p>平台訂單號|客戶訂單號碼</p></th>
+                            <th class="hidden-xs hidden-sm"><p>商戶ID|商戶名稱</p></th>
+                            <th class="hidden-xs hidden-sm"><p>支付公司 | 入金MID名稱</p></th>
+                            <th class="hidden-sm hidden-xs "><p>貨幣</p></th>
+                            <th class="hidden-sm hidden-xs "><p>入金金額</p></th>
+                            <th class="hidden-sm hidden-xs "><p>入金手續費</p></th>
+                            <th class="hidden-xs hidden-sm"><p>支付人姓名</p></th>
+                            <th class="hidden-xs hidden-sm"><p>支付人电话</p></th>
+                            <th class="hidden-xs hidden-sm"><p>支付人身份证</p></th>
+                            <th class="hidden-xs hidden-sm"><p>支付人银行卡</p></th>
+                            <th class="hidden-sm hidden-xs "><p>訂單狀態</p></th>
+                            <th class="hidden-sm hidden-xs "><p>通知狀態</p></th>
+                            <th class="hidden-sm hidden-xs "><p>入金銀行</p></th>
+                            <th class="hidden-sm hidden-xs "><p>備註</p></th>
+                            <th class="hidden-sm hidden-xs "><p>提交交式</p></th>
+                            <th class="hidden-sm hidden-xs "><p>代理</p></th>
+                            <th class="hidden-sm hidden-xs "><p>詳情</p></th>
+                            <th class="hidden-sm hidden-xs "><p>补单</p></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="select_list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs"><p>{$v.payin_id}</p></td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                        {$v.begin_time|date="Y-m-d H:i:s",###}
+                                        <br>
+                                        <if condition="empty($v['end_time'])">
+                                            <else />  {$v.end_time|date="Y-m-d H:i:s",###}
+                                        </if>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                        {$v.orderid}
+                                        <br />
+                                        {$v.transid}
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                        {$v.uid}
+                                        <br />
+                                        {$v.uid|getUserinfoName}
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                        {$v.api_china_name}<br/>
+                                        {$v.title}
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.currency_id|getCurrencyName}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.ordermoney}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.free}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.realname}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.mobile}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.idcard}</p></td>
+                                <td class="hidden-sm hidden-xs"><p>{$v.bankcard}</p></td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                        <switch name="v.status">
+                                            <case value="1"><span
+                                                    class="">成功</span></case>
+                                            <case value="-1"><span class="label label-sm label-fiale">支付失败</span></case>
+                                            <case value="2"><span
+                                                    class="label label-info arrowed-right arrowed-in">退款中</span></case>
+                                            <case value="3"><span class="label label-danger arrowed">退款失败</span></case>
+                                            <case value="4"><span class="label label-sm label-success">退款成功</span></case>
+                                            <default/>
+                                            <span class="label label-sm label-inverse arrowed-in">待支付</span>
+                                        </switch>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm">
+                                    <div class="border_margin">
+                                    <div class="hidden-sm hidden-xs action-buttons">
+                                        <if condition="$v['status'] eq 1">
+                                            <if condition="$v['notice_status'] eq 1 ">
+                                                <div>
+                                                    <button class="btn btn-minier btn-yellow">已通知</button>
+                                                </div>
+                                                <else/>
+                                                <a class="red payin-state-btn" href="{:U('select_state')}"
+                                                   data-id="{$v.payin_id}" title="未通知">
+                                                    <div id="zt{$v.payin_id}">
+                                                        <button class="btn btn-minier btn-danger">未通知</button>
+                                                    </div>
+                                                </a>
+                                            </if>
+                                        </if>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.paybank|getBankName}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.remark}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.payin_method}</div></td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                    <if condition="$v['agsettle_status'] eq 1 ">
+                                        <div>
+                                            <span class="">已结算</span>
+                                        </div>
+                                        <else/>
+                                        <div>
+                                            <span class="label label-sm label-inverse arrowed-in">未结算</span>
+                                        </div>
+                                        </a>
+                                    </if>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs">
+                                    <div class="border_margin">
+                                    <div class="hidden-sm hidden-xs action-buttons">
+                                        <a class="green payin-btn" href="{:U('select')}" data-id="{$v.payin_id}"
+                                           title="詳情">
+                                            <i class="ace-icon fa fa-flag bigger-120"></i>
+                                        </a>
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-flag bigger-120"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                <li>
+                                                    <a href="{:U('select')}" data-id="{$v.payin_id}"
+                                                       class="tooltip-success payout-btn" data-rel="tooltip" title=""
+                                                       data-original-title="詳情">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm" id="h{$v.id}">
+                                    <div class="border_margin">
+                                        <if condition="$v['status'] eq 0">
+                                            <a class="red open-btn" href="{:U('orderRepairRight')}" data-id="{$v.payin_id}" title="未补单">
+                                                <div id="zt{$v.payin_id}"><button class="btn btn-minier btn-yellow">未补单</button></div>
+                                            </a>
+                                            <else/>
+                                            <a class="red open-btn" href="{:U('orderRepairRight')}" data-id="{$v.payin_id}" title="已补单">
+                                                <div id="zt{$v.payin_id}"><button class="btn btn-minier btn-danger">已补单</button></div>
+                                            </a>
+                                        </if>
+                                    </div>
+                                </td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td class="hidden-sm hidden-xs"><p>成功</p></td>
+                            <td class="hidden-sm hidden-xs"><p>訂單總數：{$num}</p></td>
+                            <td class="hidden-sm hidden-xs" colspan="2"><p>成功金額：{$a_OrderMoney|number_format=###,2,'.',','}</p></td>
+                            <td class="hidden-sm hidden-xs" colspan="3"><p>成功手續費：{$a_free|number_format=###,2,'.',','}</p></td>
+                            <td class="hidden-sm hidden-xs" colspan="3"><p>公司佣金：{$c_free|number_format=###,2,'.',','}</p></td>
+                            <td class="hidden-sm hidden-xs" colspan="2"><p>代理佣金：{$ag_free|number_format=###,2,'.',','}</p></td>
+                            <td class="hidden-sm hidden-xs" colspan="7"><p> 結算金額：{$a_OrderMoney-$a_free|number_format=###,2,'.',','}</p></td>
+                        </tr>
+                        <tr>
+                            <td height="50" colspan="15" align="left">
+
+                                {$page}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+
+    <!-- 显示模态框（Modal） -->
+    <div class="modal fade in" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-backdrop fade in" id="gbbb" style="height: 100%;"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="gb" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        訂單詳情
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    系統訂單號： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="orderid" id="orderid" value="" class="col-xs-10" readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    客戶訂單號： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="transid" id="transid" value="" class="col-xs-10 " readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    入金銀行： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="paybank" id="paybank" value="" class="col-xs-10 " readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    訂單金額： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="ordermoney" id="ordermoney" readonly class="col-xs-10 "
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    訂單創建時間： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="begin_time" id="begin_time" value="" class="col-xs-10 "
+                                           readonly required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1">
+                                    訂單完成時間： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="end_time" id="end_time" value="" class="col-xs-10 "
+                                           readonly required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 手續費： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="free" id="free" value="" class="col-xs-10 " readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 狀態： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="status" id="status" value="" class="col-xs-10 " readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-1"> 備註： </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="remark" id="remark" value="" class="col-xs-10 " readonly
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="gbb">
+                        关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+
+        });
+    </script>
+</block>

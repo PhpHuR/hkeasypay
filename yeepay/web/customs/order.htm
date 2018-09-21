@@ -1,0 +1,184 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script language="JavaScript" src="../js/jquery.js"></script>
+</head>
+<body>
+<form id="orderForm" name="orderForm" action='order.php' method='post'>
+    <input type="hidden" name="customsInfos" id="customsInfos">
+    <table>
+        <tr>
+            <td width=200>接口类型:海关报关</td>
+        </tr>
+        <tr>
+            <td width=200>支付流水号</td>
+            <td><input type='text' name='paySerialNumber' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>通知地址</td>
+
+            <td><input type='text' name='notifyUrl' value=''></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><font color="red">--------------- 付款人信息 --------------</font></td>
+        </tr>
+
+        <tr id="payerName">
+            <td width=200>付款人姓名</td>
+            <td><input type='text' name='payerName' value=''></td>
+        </tr>
+
+        <tr>
+            <td width=200>身份证号</td>
+            <td><input type='text' name='idNum' value=''></td>
+        </tr>
+        <tr>
+            <td width=200>手机号码</td>
+            <td><input type='text' name='phoneNum' value=''></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><font color="red">------------- 申报海关信息 --------------</font></td>
+        </tr>
+        <tr>
+            <td width=150 >申报海关</td>
+            <td width=150 >报关金额(分)</td>
+            <td width=150 >支付货款(分)</td>
+            <td width=150 >支付税款(分)</td>
+            <td width=150 >支付运费(分)</td>
+            <td width=150 >保费(分)</td>
+            <td width=150 >备案名称</td>
+            <td width=150 >备案号</td>
+            <td width=150 >仓</td>
+            <td width=150 >主管海关代码</td>
+            <td width=150 >检验检疫机构代码</td>
+            <td width=150 >业务类型</td>
+            <td width=150 >业务类型</td>
+            <td width=150 >dxpid</td>
+            <td width=150 >扩展信息</td>
+        </tr>
+
+        <tr class="customsInfo">
+            <td>
+                <select name='customsChannel' >
+                    <option value=""></option>
+                    <option value="GUANGZHOU">广州</option>
+                    <option value="ZHENGZHOU">郑州</option>
+                    <option value="HANGZHOU">杭州</option>
+                    <option value="CHONGQING">重庆</option>
+                    <option value="NINGBO">宁波</option>
+                    <option value="XIAN">西安</option>
+                    <option value="FUZHOU">福州</option>
+                    <option value="CHENGDU">成都</option>
+                    <option value="QINGDAO">青岛</option>
+                    <option value="NANJING">南京</option>
+                    <option value="YINCHUAN">银川</option>
+                    <option value="SHENZHEN">深圳</option>
+                    <option value="KHORGOS">霍尔果斯</option>
+                    <option value="OFFICAL">海关总署</option>
+                    <option value="GUANGZHOUSP">广州公共服务</option>
+                    <option value="DALIANSP">大连单一窗口</option>
+                    <option value="PINGTAN">平潭一单两报</option>
+                    <option value="ZHENGZHOUZB">郑州综保</option>
+                    <option value="ZHENGZHOUZBNEW">郑州综保新</option>
+                    <option value="TIANJIN">天津</option>
+                    <option value="SHANGHAI">上海</option>
+                </select>
+            </td>
+            <td width="150"><input type='text' name='amount' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='goodsAmount' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='tax' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='freight' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='insuredAmount' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='merchantCommerceName' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='merchantCommerceCode' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='storeHouse' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='customsCode' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='ciqCode' value='' style="width:100px;"></td>
+            <td width="150"><select name='functionCode'>
+                <option value=""></option>
+                <option value="CUS">单向海关</option>
+                <option value="CIQ">单向国检</option>
+                <option value="BC">同时发送1</option>
+                <option value="BBC">同时发送2</option>
+                <option value="C">海关</option>
+                <option value="Q">检验检疫</option>
+                <option value="M">市场监管</option>
+                <option value="F">外汇</option>
+                <option value="T">国税</option>
+            </select>
+            </td>
+            <td width="150"><select name='businessType'>
+                <option value=""></option>
+                <option value="B2B2C">B2B2C</option>
+                <option value="B2C">B2C</option>
+            </select>
+            </td>
+            <td width="150"><input type='text' name='dxpid' value='' style="width:100px;"></td>
+            <td width="150"><input type='text' name='jsonInfo' value="{'merchantCommerceCodeCiq':''}" style="width:400px;"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="addcustomsinput()" value="+"/></td>
+            <td><input type="button" onclick="delcustomsinput()" value="-"/></td>
+        </tr>
+        <tr>
+            <td width=200><input type='submit' name='' value='提交'></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    $("#orderForm").submit(function(){
+        var json2="[";
+        $(".customsInfo").each(function(i){
+            var str = "";
+            str += $.trim($(this).find("select[name=customsChannel]").val());
+            str += $.trim($(this).find("input[name=amount]").val());
+            if($.trim(str)=="") {
+                return;//实现continue功能
+            }
+            var item2 ="{";
+            item2+="\"customsChannel\":\""+$.trim($(this).find("select[name=customsChannel]").val())+"\",";
+            item2+="\"amount\":\""+$.trim($(this).find("input[name=amount]").val())+"\",";
+            item2+="\"goodsAmount\":\""+$.trim($(this).find("input[name=goodsAmount]").val())+"\",";
+            item2+="\"tax\":\""+$.trim($(this).find("input[name=tax]").val())+"\",";
+            item2+="\"freight\":\""+$.trim($(this).find("input[name=freight]").val())+"\",";
+            item2+="\"insuredAmount\":\""+$.trim($(this).find("input[name=insuredAmount]").val())+"\",";
+            item2+="\"merchantCommerceName\":\""+ $.trim($(this).find("input[name=merchantCommerceName]").val())+"\",";
+            item2+="\"merchantCommerceCode\":\""+ $.trim($(this).find("input[name=merchantCommerceCode]").val())+"\",";
+            item2+="\"storeHouse\":\""+ $.trim($(this).find("input[name=storeHouse]").val())+"\",";
+            item2+="\"customsCode\":\""+ $.trim($(this).find("input[name=customsCode]").val())+"\",";
+            item2+="\"ciqCode\":\""+ $.trim($(this).find("input[name=ciqCode]").val())+"\",";
+            item2+="\"functionCode\":\""+ $.trim($(this).find("select[name=functionCode]").val())+"\",";
+            item2+="\"businessType\":\""+ $.trim($(this).find("select[name=businessType]").val())+"\",";
+            item2+="\"dxpid\":\""+ $.trim($(this).find("input[name=dxpid]").val())+"\",";
+            item2+="\"jsonInfo\":\""+ $.trim($(this).find("input[name=jsonInfo]").val())+"\"";
+            item2 =item2+"}";
+            if(i>0){
+                json2+=",";
+            }
+            json2+=item2;
+        });
+        json2=json2+"]";
+        if(json2=="[]"){
+            $("#customsInfos").val("");
+        } else {
+            $("#customsInfos").val(json2);
+        }
+    });
+
+    function addcustomsinput(){
+        var p=$(".customsInfo:last");
+        p.after(p.clone());
+    }
+
+    function delcustomsinput(){
+        if($(".customsInfo").length>1){
+            $(".customsInfo:last").remove();
+        }
+    }
+</script>
+</body>
+</html>

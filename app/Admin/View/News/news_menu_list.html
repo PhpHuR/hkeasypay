@@ -1,0 +1,113 @@
+<extend name="Public/base" />
+<block name="main-content">
+	<div class="page-content">
+		<div class="liangzipao">
+			<foreach name="menus_child" item="v" key="k">
+				<if condition="$v['id'] eq $id_curr">
+					<div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+					<else/>
+					<div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+				</if>
+			</foreach>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div style="margin-top: 20px">
+					<form class="ajaxForm2" name="leftnav" method="post" action="{:U('news_menu_order')}" >
+						<table id="dynamic-table" class="urllist white">
+							<thead>
+							<tr>
+								<th class="hidden-sm"><div class="border_margin">菜单标题</div></th>
+								<th class="hidden-sm"><div class="border_margin">开启状态</div></th>
+								<th class="hidden-sm"><div class="border_margin">排序</div></th>
+								<th class="hidden-sm"><div class="border_margin">操作</div></th>
+							</tr>
+							</thead>
+
+							<tbody>
+
+							<foreach name="arr" item="v">
+								<tr>
+									<td class="hidden-sm" style=padding-left:<if condition='$v.leftpin neq 0'>{$v.leftpin}</if>px; >
+										<div class="border_margin">
+											{$v.lefthtml}{$v.menu_name}</span> <strong>(ID：{$v.id})</strong>
+										</div></td>
+									<td class="hidden-sm">
+										<div class="border_margin">
+											<if condition="$v['menu_open'] eq 1">
+												<a class="red open-btn" href="{:U('news_menu_state')}" data-id="{$v.id}" title="已开启">
+													<div id="zt{$v.id}"><button class="btn btn-minier btn-yellow">开启</button></div>
+												</a>
+												<else/>
+												<a class="red open-btn" href="{:U('news_menu_state')}" data-id="{$v.id}" title="已禁用">
+													<div id="zt{$v.id}"><button class="btn btn-minier btn-danger">禁用</button></div>
+												</a>
+											</if>
+										</div>
+
+									</td>
+									<td class="hidden-sm">
+										<div class="border_margin">
+											<input name="{$v.id}" value=" {$v.listorder}" class="list_order"/>
+										</div>
+									</td>
+									<td class="hidden-sm">
+										<div class="border_margin">
+											<div class="hidden-sm hidden-xs action-buttons">
+												<a class="blue" href="{:U('news_menu_add',array('id'=>$v['id']))}"  title="添加子类">
+													<i class="ace-icon fa fa-plus-circle bigger-130"></i>																</a>
+												<a class="green" href="{:U('news_menu_edit',array('id'=>$v['id']))}" title="修改">
+													<i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+												<a class="red confirm-rst-url-btn" href="{:U('news_menu_del',array('id'=>$v['id']))}" data-info="若存在子菜单，则子菜单将一起被删除，你确定要删除吗？" title="删除">
+													<i class="ace-icon fa fa-trash-o bigger-130"></i>
+												</a>
+											</div>
+											<div class="hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+														<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+													</button>
+													<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+														<li>
+															<a href="{:U('news_menu_add',array('id'=>$v['id']))}"  class="tooltip-success" data-rel="tooltip" title="" data-original-title="添加子类">
+																	<span class="green">
+																		<i class="ace-icon fa fa-plus-circle bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+														<li>
+															<a href="{:U('news_menu_edit',array('id'=>$v['id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+
+														<li>
+															<a href="{:U('news_menu_del',array('id'=>$v['id']))}"  data-info="若存在子菜单，则子菜单将一起被删除，你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+							</foreach>
+							<tr>
+								<td align="left"><button  id="btnorder" class="btn btn-white btn-yellow btn-sm">排序</button></td>
+								<td colspan="3"></td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.page-content -->
+</block>

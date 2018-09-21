@@ -1,0 +1,347 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script language="JavaScript" src="../js/jquery.js"></script>
+</head>
+<body>
+	<form id="orderForm" name="orderForm" action='order.php' method='post'>
+	<input type="hidden" name="details" id="details">
+	<input type="hidden" name="hiddenCI" id="hiddenCI">
+	<input type="hidden" name="hiddenCIQ" id="hiddenCIQ">
+		<table>
+			<tr>
+				<td width=200>接口类型:海购请求</td>
+			</tr>
+	
+			<tr>
+				<td width=200>订单号</td>
+				<td><input type='text' name='requestId' id="requestId" value='1534567933'></td>
+			</tr>
+			<tr>
+				<td width=200>订单金额</td>
+				<td><input type='text' name='orderAmount' value='600'>(分)</td>
+			</tr>
+			<tr>
+				<td width=200>订单币种</td>
+				<td><input type='text' name='orderCurrency' value='CNY'></td>
+			</tr>
+			<tr>
+				<td width=200>通知地址</td>
+
+				<td><input type='text' name='notifyUrl' id="notifyUrl" value=''></td>
+
+
+		</tr>
+		<tr>
+			<td width=200>备注</td>
+			<td><input type='text' name='remark' value='备注'></td>
+		</tr>
+		<tr>
+			<td width=200 >产品名称</td>
+			<td width=200 >数量</td>
+			<td width=200 >金额</td>
+			<td width=200 >收款人</td>
+			<td width=200 >产品描述</td>
+		</tr>
+		<tr class="product">
+			<td><input type='text' name='productName' value=''></td>
+			<td><input type='text' name='quantity' value=''></td>
+			<td><input type='text' name='productAmount' value=''></td>
+			<td><input type='text' name='receiver' value=''></td>
+			<td><input type='text' name='description' value=''></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="addinput()" value="+"/></td>
+			<td><input type="button" onclick="delinput()" value="-"/></td>
+		</tr>
+		<tr/>
+		<tr id="payerName">
+			<td width=200>付款人姓名</td>
+			<td><input type='text' name='payerName' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>证件类型</td>
+			<td><input type='text' name='idType' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>证件号</td>
+			<td><input type='text' name='idNum' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>商户会员id</td>
+			<td><input type='text' name='customerId' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>银行卡号</td>
+			<td><input type='text' name='bankCardNum' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>手机号码</td>
+			<td><input type='text' name='phoneNum' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>Email</td>
+			<td><input type='text' name='email' value=''></td>
+		</tr>
+		<tr>
+			<td width=200>付款人国籍</td>
+			<td><input type='text' name='nationality' value=''></td>
+		</tr>
+		<tr>
+			<td width=200 >报关通道</td>
+			<td width=200 >报关金额(分)</td>
+			<td width=200 >支付运费(分)</td>
+			<td width=200 >支付货款(分)</td>
+			<td width=200 >支付税款(分)</td>
+			<td width=200 >保费(分)</td>
+			<td width=200 >备案号</td>
+			<td width=200 >备案名称</td>
+			<!--新增-->
+			<td width=200 >仓</td>
+			<td width=200 >主管海关代码</td>
+			<td width=200 >检验检疫代码</td>
+			<td width=200 >业务类型</td>
+			<td width=200 >业务类型</td>
+			<td width=200 >dxpid</td>
+			<td width=200 >扩展信息</td>
+		</tr>
+		<tr class="customsInfo">
+			<td>
+				<select name='customsChannel' >
+					<option value=""></option>
+					<option value="GUANGZHOU">广州</option>
+					<option value="ZHENGZHOU">郑州</option>
+					<option value="HANGZHOU">杭州</option>
+					<option value="CHONGQING">重庆</option>
+					<option value="NINGBO">宁波</option>
+					<option value="XIAN">西安</option>
+					<option value="CHENGDU">成都</option>
+					<option value="QINGDAO">青岛</option>
+					<option value="NANJING">南京</option>
+					<option value="YINCHUAN">银川</option>
+					<option value="SHENZHEN">深圳</option>
+					<option value="KHORGOS">霍尔果斯</option>
+					<option value="OFFICAL">海关总署</option>
+					<option value="GUANGZHOUSP">广州公共服务平台</option>
+					<option value="DALIANSP">大连单一窗口</option>
+                    <option value="PINGTAN">平潭一单两报</option>
+					<option value="ZHENGZHOUZB">郑州综保</option>
+					<option value="ZHENGZHOUZBNEW">郑州综保新</option>
+					<option value="TIANJIN">天津</option>
+                    <option value="SHANGHAI">上海</option>
+				</select>
+			</td>
+			<td><input type='text' name='amount' value=''></td>
+			<td><input type='text' name='freight' value=''></td>
+			<td><input type='text' name='goodsAmount' value=''></td>
+			<td><input type='text' name='tax' value=''></td>
+			<td><input type='text' name='insuredAmount' value=''></td>
+			<td><input type='text' name='commerceCode' value=''></td>
+			<td><input type='text' name='commerceName' value=''></td>
+			<!--新增-->
+			<td><input type='text' name='storeHouse' value=''></td>
+			<td><input type='text' name='customsCode' value=''></td>
+			<td><input type='text' name='ciqCode' value=''></td>
+			<td width="150"><select name='functionCode'>
+				<option value=""></option>
+				<option value="CUS">单向海关</option>
+				<option value="CIQ">单向国检</option>
+				<option value="BC">同时发送1</option>
+				<option value="BBC">同时发送2</option>
+				<option value="C">海关</option>
+				<option value="Q">检验检疫</option>
+				<option value="M">市场监管</option>
+				<option value="F">外汇</option>
+				<option value="T">国税</option>
+			</select>
+			</td>
+			<td width="150"><select name='businessType'>
+				<option value=""></option>
+				<option value="B2B2C">B2B2C</option>
+				<option value="B2C">B2C</option>
+			</select>
+			</td>
+			<td><input type='text' name='dxpid' value=''></td>
+			<td><input type='text' name='jsonInfo' value=''></td>
+		</tr>
+
+		<!--国检信息-->
+		<tr>
+			<td width=200 >申报国检</td>
+			<td width=200 >国检组织代码</td>
+			<td width=200 >申报金额(分)</td>
+			<td width=200 >备案号</td>
+			<td width=200 >备案名称</td>
+
+			<td width=200 >货款(北京)</td>
+			<td width=200 >杂费(北京)</td>
+			<td width=200 >税费(北京)</td>
+
+			<td width=200 >customsCode(北京)</td>
+			<td width=200 >receiverId(北京)</td>
+		</tr>
+		<tr class="ciqInfo">
+			<td>
+				<select name='ciqChannel' >
+					<option value=""></option>
+					<option value="GUANGZHOU">广州</option>
+					<option value="XIAN">西安</option>
+					<option value="BEIJING">北京</option>
+				</select>
+			</td>
+			<td><input type='text' name='ciqCode' value=''></td>
+			<td><input type='text' name='amount' value=''></td>
+
+			<td><input type='text' name='commerceCode' value=''></td>
+			<td><input type='text' name='commerceName' value=''></td>
+
+			<td><input type='text' name='goodsValue' value=''></td>
+			<td><input type='text' name='otherValue' value=''></td>
+			<td><input type='text' name='tax' value=''></td>
+
+			<td><input type='text' name='customsCode' value=''></td>
+			<td><input type='text' name='receiverId' value=''></td>
+		</tr>
+
+
+
+
+		<tr>
+			<td><input type="button" onclick="addcustomsinput()" value="+"/></td>
+			<td><input type="button" onclick="delcustomsinput()" value="-"/></td>
+		</tr>
+
+		<tr>
+			<td width=200><input type='submit' name='' value='提交'></td>
+			<td></td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript">
+    document.getElementById("requestId").value=new Date().valueOf();
+</script>
+<script type="text/javascript">
+    $("#orderForm").submit(function(){
+        var json1="[";
+        $(".product").each(function(i){
+            var item1 ="{";
+            item1+="\"name\":\""+$.trim($(this).find("input[name=productName]").val())+"\",";
+            item1+="\"quantity\":\""+$.trim($(this).find("input[name=quantity]").val())+"\",";
+            item1+="\"amount\":\""+$.trim($(this).find("input[name=productAmount]").val())+"\",";
+            item1+="\"receiver\":\""+$.trim($(this).find("input[name=receiver]").val())+"\",";
+            item1+="\"description\":\""+$.trim($(this).find("input[name=description]").val())+"\"";
+            item1 =item1+"}";
+            if(i>0){
+                json1+=",";
+            }
+            json1+=item1;
+        });
+        json1=json1+"]";
+        $("#details").val(json1);
+
+        var json2="[";
+        $(".customsInfo").each(function(i){
+            var str = "";
+            str += $.trim($(this).find("select[name=customsChannel]").val());
+            str += $.trim($(this).find("input[name=amount]").val());
+            if($.trim(str)=="") {
+                return;//实现continue功能
+            }
+            var item2 ="{";
+            item2+="\"customsChannel\":\""+$.trim($(this).find("select[name=customsChannel]").val())+"\",";
+            item2+="\"amount\":\""+$.trim($(this).find("input[name=amount]").val())+"\",";
+            item2+="\"freight\":\""+$.trim($(this).find("input[name=freight]").val())+"\",";
+            item2+="\"goodsAmount\":\""+$.trim($(this).find("input[name=goodsAmount]").val())+"\",";
+            item2+="\"tax\":\""+$.trim($(this).find("input[name=tax]").val())+"\",";
+            item2+="\"insuredAmount\":\""+$.trim($(this).find("input[name=insuredAmount]").val())+"\",";
+            item2+="\"commerceCode\":\""+$.trim($(this).find("input[name=commerceCode]").val())+"\",";
+            item2+="\"commerceName\":\""+$.trim($(this).find("input[name=commerceName]").val())+"\",";
+            //新增
+            item2+="\"storeHouse\":\""+$.trim($(this).find("input[name=storeHouse]").val())+"\",";
+            item2+="\"customsCode\":\""+$.trim($(this).find("input[name=customsCode]").val())+"\",";
+            item2+="\"ciqCode\":\""+$.trim($(this).find("input[name=ciqCode]").val())+"\",";
+            item2+="\"functionCode\":\""+$.trim($(this).find("select[name=functionCode]").val())+"\",";
+            item2+="\"businessType\":\""+$.trim($(this).find("select[name=businessType]").val())+"\",";
+            item2+="\"dxpid\":\""+$.trim($(this).find("input[name=dxpid]").val())+"\",";
+            item2+="\"jsonInfo\":\""+$.trim($(this).find("input[name=jsonInfo]").val())+"\"";
+            item2 =item2+"}";
+            if(i>0){
+                json2+=",";
+            }
+            json2+=item2;
+        });
+        json2=json2+"]";
+        if(json2=="[]"){
+            $("#hiddenCI").val("");
+        } else {
+            $("#hiddenCI").val(json2);
+        }
+
+        //国检信息
+        var unionCiq="";
+        $(".ciqInfo").each(function(i){
+            var str = "";
+            str += $.trim($(this).find("select[name=ciqChannel]").val());
+            str += $.trim($(this).find("input[name=amount]").val());
+            if($.trim(str)=="") {
+                return;//实现continue功能
+            }
+
+            var ciqJson = "\"{";
+            ciqJson += "'goodsValue':'"+$.trim($(this).find("input[name=goodsValue]").val())+"',";
+            ciqJson += "'otherValue':'"+$.trim($(this).find("input[name=otherValue]").val())+"',";
+            ciqJson += "'customsCode':'"+$.trim($(this).find("input[name=customsCode]").val())+"',";
+            ciqJson += "'receiverId':'"+$.trim($(this).find("input[name=receiverId]").val())+"',";
+            ciqJson += "'tax':'"+$.trim($(this).find("input[name=tax]").val())+"'";
+            ciqJson = ciqJson+"}\"";
+
+            var item2 ="{";
+            item2+="\"ciqChannel\":\""+$.trim($(this).find("select[name=ciqChannel]").val())+"\",";
+            item2+="\"ciqCode\":\""+$.trim($(this).find("input[name=ciqCode]").val())+"\",";
+            item2+="\"amount\":\""+$.trim($(this).find("input[name=amount]").val())+"\",";
+            item2+="\"commerceCode\":\""+$.trim($(this).find("input[name=commerceCode]").val())+"\",";
+            item2+="\"commerceName\":\""+$.trim($(this).find("input[name=commerceName]").val())+"\",";
+            item2+="\"ciqJson\":"+ciqJson+"";
+            item2 =item2+"}";
+
+            ciqJson = "";
+
+            if(i>0){
+                unionCiq=",";
+            }
+            unionCiq+=item2;
+        });
+        unionCiq=unionCiq +"";
+
+
+        if(unionCiq=="{}"){
+            $("#hiddenCIQ").val("");
+        } else {
+            $("#hiddenCIQ").val(unionCiq);
+        }
+    });
+
+    function addinput(){
+        var p=$(".product:last");
+        p.after(p.clone());
+    }
+
+    function delinput(){
+        if($(".product").length>1){
+            $(".product:last").remove();
+        }
+    }
+
+    function addcustomsinput(){
+        var p=$(".customsInfo:last");
+        p.after(p.clone());
+    }
+
+    function delcustomsinput(){
+        if($(".customsInfo").length>1){
+            $(".customsInfo:last").remove();
+        }
+    }
+</script>
+</body>
+</html>

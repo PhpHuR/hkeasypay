@@ -1,0 +1,117 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('rate_line')}">
+            <div class="row maintop" style="margin-top: 20px">
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                               placeholder="点击选择日期范围"/>
+
+                    </div>
+                </div>
+                <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                    搜索
+                </button>
+                <div class="fl_left">
+                    <a href="{:U('rate_line')}">
+                        <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="urllist white" id="dynamic-table">
+                        <thead>
+                        <tr>
+
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">ID</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Client</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Supplier</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Rateline</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">MDR</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Payout Fee</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Settlement</div></th>
+                            <!--<th class="hidden-sm hidden-xs ">详情</th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="userinfo_list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.user_id}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.member_name}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">
+                                    <volist name="v['product_line']" id="e">
+                                        {$e.product_attribute|getProductAttribute}：{$e['product_title']}<br />
+                                    </volist>
+                                </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">
+                                    <volist name = "v['product_line']" id="f">
+                                        {$f.product_attribute|getProductAttribute}<br />
+                                        Supplier : {$f['inprice']*100}%<br/>
+                                        Company: {$f['inrate']*100-$f['inprice']*100}%<br/>
+                                        *****************************<br />
+                                    </volist>
+                                </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">
+                                    <volist name = "v['product_line']" id="g">
+                                        {$g.product_attribute|getProductAttribute}: {$g['inrate']*100}%<br />
+                                        *****************************<br />
+                                    </volist>
+                                </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v['outrate']}</td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">T+1<br/>
+                                    跨境結算T+1<br/>
+                                    FX Markup 2點子
+                                </div>
+                                </td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td height="50" colspan="12" align="left">
+                                <a class="btn btn-sm btn-warning"  href="{:U('rate_line',array('action'=>'export'))}"  title="导出报表">
+                                    <i class="ace-icon fa fa-fire bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">导出报表</span>
+                                </a>
+                                {$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

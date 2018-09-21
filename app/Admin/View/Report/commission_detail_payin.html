@@ -1,0 +1,123 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('commission_detail_payin')}">
+            <div class="row maintop" style="margin-top: 20px">
+                <div class="fl_left" style="margin-right: 10px">
+                    <select name="Sales" class="sl-date back_wh1 active">
+                        <option value="Sales" <if condition="$sales eq ''">selected</if>>Sales</option>
+                        <option value="news_auto" <if condition="$sales eq 'ag'">selected</if>>Company</option>
+                        <option value="news_author" <if condition="$sales eq 'news_author'">selected</if>>中介人</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-4 col-sm-2 hidden-xs btn-sespan">
+                    <div class="input-group">
+                        <span class="back_wh1 dis_pad">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="color: #fff;"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date back_wh1" style="color: #fff;margin-left: 15px" value="{$sldate}"
+                               placeholder="点击选择日期范围"/>
+
+                    </div>
+                </div>
+                <button type="submit" class="select_search white fl_left" style="margin-left: 20px;display: inline-block;font-size: 15px">
+                    搜索
+                </button>
+                <div class="fl_left">
+                    <a href="{:U('commission_detail_payin')}">
+                        <button type="submit" class="select_search white" style="margin-left: 20px;font-size: 15px">
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="urllist white" id="dynamic-table">
+                        <thead>
+                        <tr>
+
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">ID</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">客戶</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Settlement</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Sales</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">Transaction Date</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">訂單金額</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">總手續費</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">公司佣金</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">代理佣金</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">結算匯率利潤</div></th>
+                            <th class="hidden-sm hidden-xs"><div class="border_margin">總佣金</div></th>
+                            <!--<th class="hidden-sm hidden-xs ">详情</th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="select_list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.payin_id}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.uid|getUserinfoName}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">T+1 FX Cost Rate</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">Company</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.end_time|date='Y-m-d H:i:s',###}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.ordermoney|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.free|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.payin_commission_c|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">{$v.payin_commission_ag|number_format=###,2,'.',','}</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">0.00</div></td>
+                                <td class="hidden-sm hidden-xs"><div class="border_margin">0.00</div></td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">總額：</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin"></div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin"></div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin"></div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin"></div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$a_income|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$a_free|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$a_payin_commission_c|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">{$a_payin_commission_ag|number_format=###,2,'.',','}</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">0.00</div></td>
+                            <td class="hidden-sm hidden-xs"><div class="border_margin">0.00</div></td>
+                        </tr>
+                        <tr>
+                            <td height="50" colspan="11" align="left">
+                                <a class="btn btn-sm btn-warning"  href="{:U('daily',array('action'=>'export'))}"  title="导出报表">
+                                    <i class="ace-icon fa fa-fire bigger-110"></i>
+                                    <span class="bigger-110 no-text-shadow">导出报表</span>
+                                </a>
+                                {$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>

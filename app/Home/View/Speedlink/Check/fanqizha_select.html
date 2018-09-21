@@ -1,0 +1,116 @@
+<include file="Public:head"/>
+<include file="Public:nav"/>
+
+<section id="content" class="modal-open">
+    <section class="hbox stretch">
+        <section class="vbox">
+
+            <section class="scrollable padder remittance-form">
+                <div class="m-b-md">
+                    <h3 class="m-b-none">反欺诈数据查询结果</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                账号基本信息
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="xin_table">
+                                        <tbody>
+                                        <tr>
+                                            <th class="jian-right">手机号</th>
+                                            <td class="jian-left" >{$fan_data['mobile']}</td>
+                                            <th class="jian-right">姓名</th>
+                                            <td class="jian-left" >{$fan_data['realname']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">身份证号</th>
+                                            <td class="jian-left">{$fan_data['idcard']}</td>
+                                            <th class="jian-right">银行卡号</th>
+                                            <td class="jian-left" >{$fan_data['bankcard']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">身份证归属地</th>
+                                            <td class="jian-left">{$fan_data['id_card_area']}</td>
+                                            <th class="jian-right">性别</th>
+                                            <td class="jian-left" >{$fan_data['sex']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">出生日期</th>
+                                            <td class="jian-left">{$fan_data['birthday']}</td>
+                                            <th class="jian-right">年龄</th>
+                                            <td class="jian-left" >{$fan_data['age']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">手机号运营商</th>
+                                            <td class="jian-left">{$fan_data['carrier']}</td>
+                                            <th class="jian-right">手机卡类型</th>
+                                            <td class="jian-left" >{$fan_data['card']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">手机号归属地</th>
+                                            <td class="jian-left">{$fan_data['mobile_info_province']}&nbsp;&nbsp;{$fan_data['mobile_info_city']}</td>
+                                            <th class="jian-right">手机号在网状态</th>
+                                            <td class="jian-left" >{$fan_data['mobile_status_description']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">手机号在网时长</th>
+                                            <td class="jian-left">{$fan_data['mobile_time_str']}</td>
+                                            <th class="jian-right">银行卡所属银行</th>
+                                            <td class="jian-left" >{$fan_data['bank']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">银行卡类型</th>
+                                            <td class="jian-left">{$fan_data['type']}</td>
+                                            <th class="jian-right">上网IP地址</th>
+                                            <td class="jian-left" >{$fan_data['ip_info_location']}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="jian-right">上网IP运营商</th>
+                                            <td class="jian-left" colspan="3">{$fan_data['ip_info_area']}</td>
+                                        </tr>
+                                        </tbody>
+
+                                </table>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <header class="panel-heading">
+                                账号风险预警
+                            </header>
+                            <div class="table-responsive evenodd tabledata" style="overflow:auto">
+                                <table class="xin_table">
+                                    <tbody>
+                                    <tr>
+                                    <th class="jian-right">是否查到账号</th>
+                                    <td class="jian-left" >{$fan_data['found_str']}</td>
+                                    <th class="jian-right">欺诈分值</th>
+                                    <td class="jian-left" >{$fan_data['risk_score']}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="jian-right">风险异常状况</th>
+                                        <td class="jian-left" colspan="3">{$fan_data['risk__str']}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="jian-right">风险等级</th>
+                                        <td class="jian-left" >{$fan_data['risk_value_str']}</td>
+                                        <th class="jian-right">风险描述</th>
+                                        <td class="jian-left" >{$fan_data['risk_description']}</td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+
+
+<include file="Public:footer"/>

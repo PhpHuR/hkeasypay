@@ -1,0 +1,13 @@
+[ 2018-09-18T10:03:45+08:00 ] 202.83.241.113 /
+NOTIC: [8] Undefined variable: site_seo_keywords /www/web/fast_com/public_html/data/runtime/Cache/Home/0776836f48eca73500bb0ba8fdfcbad9.php 第 7 行.
+NOTIC: [8] Undefined variable: site_seo_description /www/web/fast_com/public_html/data/runtime/Cache/Home/0776836f48eca73500bb0ba8fdfcbad9.php 第 8 行.
+NOTIC: [2] file_put_contents(./data/conf/config.php): failed to open stream: Permission denied /www/web/fast_com/public_html/app/Common/Common/function.php 第 1094 行.
+NOTIC: [2] file_put_contents(./data/conf/config.php): failed to open stream: Permission denied /www/web/fast_com/public_html/app/Common/Common/function.php 第 1094 行.
+
+[ 2018-09-18T10:04:08+08:00 ] 202.83.241.113 /home/userinfo/info
+NOTIC: [8] Undefined variable: site_seo_title /www/web/fast_com/public_html/data/runtime/Cache/Home/f15d5a2489c9b94b7f5302ee71b0fa38.php 第 6 行.
+NOTIC: [8] Undefined variable: site_seo_keywords /www/web/fast_com/public_html/data/runtime/Cache/Home/f15d5a2489c9b94b7f5302ee71b0fa38.php 第 7 行.
+NOTIC: [8] Undefined variable: site_seo_description /www/web/fast_com/public_html/data/runtime/Cache/Home/f15d5a2489c9b94b7f5302ee71b0fa38.php 第 8 行.
+NOTIC: [8] Undefined index: admin_avatar /www/web/fast_com/public_html/data/runtime/Cache/Home/f15d5a2489c9b94b7f5302ee71b0fa38.php 第 167 行.
+NOTIC: [8] Undefined index: admin_username /www/web/fast_com/public_html/data/runtime/Cache/Home/f15d5a2489c9b94b7f5302ee71b0fa38.php 第 169 行.
+

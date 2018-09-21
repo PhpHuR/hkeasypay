@@ -1,0 +1,116 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+        <!--主题-->
+        <div class="row white">
+            <div class="col-xs-12 box_chujin">
+                <form class="form-horizontal ajaxForm2" name="mid_edit" method="post" action="{:U('mid_runedit')}">
+                    <input name="m_id" id="m_id" type="hidden" value="{$payment_mid_edit.m_id}" />
+                    <div class="fl_left w50">
+                        <div class="form-group">
+                            <label class="no-padding-right" for="form-field-1"> 所属支付公司：</label>
+                            <div class="col-sm-10" style="float: none">
+                                <select name="p_id" style="border-radius: 4px" class="col-xs-10 bgtouming w93 selector">
+                                    <option value="">选择所属支付公司</option>
+                                    <foreach name="payment_name" item="v">
+                                        <option value="{$v.api_id}" <if condition="$payment_mid_edit['p_id'] eq $v['api_id']">selected</if>>{$v.api_china_name}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 商城名字：</label>
+                            <div class="col-sm-4 fl_none">
+                                <input type="text" name="title" id="title" value="{$payment_mid_edit.title}"
+                                       class="col-xs-10 bgtouming w93" required/>
+                                <span style="display: inline-block" class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> MID：</label>
+                            <div class="col-sm-4 fl_none">
+                                <input type="text" name="memberid" id="memberid" value="{$payment_mid_edit.memberid}"
+                                       class="col-xs-10 bgtouming w93" required/>
+                                <span style="display: inline-block" class="lbl">&nbsp;&nbsp;<span class="red">*</span>必填</span>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+                    <div class="fl_right w50">
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 秘钥：</label>
+                            <div class="col-sm-4 fl_none">
+                                <input type="text" name="paypsd" id="paypsd" value="{$payment_mid_edit.paypsd}" class="col-xs-10 bgtouming w93"/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 终端号：</label>
+                            <div class="col-sm-4 fl_none">
+                                <input type="text" name="terminal" id="terminal" value="{$payment_mid_edit.terminal}" class="col-xs-10 bgtouming w93"/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上传公钥： </label>
+                            <div class="col-sm-10">
+                                <input type="file" name="public_cert" id="public_cert" value="{$payment_mid_edit.public_cert}" multiple="multiple"/>
+                            </div>
+                            <div>
+                                <if condition="$payment_mid_edit.public_cert neq ''">
+                                    <input type="hidden" name="public_cert_h" value="{$payment_mid_edit.public_cert}">
+                                    {$payment_mid_edit.public_cert}
+                                </if>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上传私钥： </label>
+                            <div class="col-sm-10">
+                                <input type="file" name="private_cert" id="private_cert" value="{$payment_mid_edit.private_cert}" multiple="multiple"/>
+                            </div>
+                            <div>
+                                <if condition="$payment_mid_edit.private_cert neq ''">
+                                    <input type="hidden" name="private_cert_h" value="{$payment_mid_edit.private_cert}">
+                                    {$payment_mid_edit.private_cert}
+                                </if>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="w20 no-padding-right" for="form-field-1"> 商城地址：</label>
+                            <div class="col-sm-4 fl_none">
+                                <input type="text" name="apishop" id="apishop" value="{$payment_mid_edit.apishop}" class="col-xs-10 bgtouming w93"/>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                    </div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                保存
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.page-content -->
+</block>

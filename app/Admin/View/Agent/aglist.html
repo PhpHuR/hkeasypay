@@ -1,0 +1,108 @@
+<extend name="Public/base" />
+<block name="main-content">
+    <div class="page-content">
+        <div class="liangzipao">
+            <foreach name="menus_child" item="v" key="k">
+                <if condition="$v['id'] eq $id_curr">
+                    <div class="mega" style="background-color: rgba(255,255,255,0.1)"><a href="{:U(''.$v['name'].'')}" class="freedom" >{$v['title']}</a></div>
+                    <else/>
+                    <div class="mega"><a href="{:U(''.$v['name'].'')}" class="freedom">{$v['title']}</a></div>
+                </if>
+            </foreach>
+            <div class="clear"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div style="margin-top: 20px">
+                        <table id="dynamic-table" class="urllist white">
+                            <thead>
+                            <tr>
+                                <th class="hidden-sm"><div class='border_margin'>代理商名称</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>代理商昵称</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>入金费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>微信费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>支付宝费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>出金费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>跨境出金费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>跨境结算费率</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>可用余额</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>总额</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>更新时间</div></th>
+                                <th class="hidden-sm"><div class='border_margin'>操作</div></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="arr" item="v">
+                                <tr>
+                                    <td class="hidden-sm" style=padding-left:<if condition='$v.leftpin neq 0'>{$v.leftpin}</if>px; >
+                                        <div class="border_margin">
+                                            {$v.lefthtml}{$v.agent_list_username}</span> <strong>(ID：{$v.agent_list_id})</strong>
+                                        </div>
+                                        </td>
+                                    <td class="hidden-sm">
+                                        <div class='border_margin'>
+                                        {$v.agent_list_nickname}
+                                    </div>
+                                    </td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v['agent_list_payin_rate']*100|number_format=###,2,'.',','}%</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v['agent_list_weixin_rate']*100|number_format=###,2,'.',','}%</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v['agent_list_alipay_rate']*100|number_format=###,2,'.',','}%</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.agent_list_payout_rate|number_format=###,2,'.',','} 元</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.agent_list_change_rate|number_format=###,2,'.',','} 元</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.agent_list_cross_rate|number_format=###,2,'.',','} 元</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.agent_list_availablecount|number_format=###,2,'.',','} 元</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.agent_list_sumcount|number_format=###,2,'.',','} 元</div></td>
+                                    <td class="hidden-sm"><div class='border_margin'>{$v.update_time|date="Y-m-d H:i:s",###}</div></td>
+                                    <td class="hidden-sm">
+                                        <div class='border_margin'>
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a class="blue" href="{:U('add',array('id'=>$v['agent_list_id']))}"  title="添加子类">
+                                                <i class="ace-icon fa fa-plus-circle bigger-130"></i>																</a>
+                                            <a class="green" href="{:U('edit',array('id'=>$v['agent_list_id']))}" title="修改">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
+                                            <a class="red confirm-rst-url-btn" href="{:U('del',array('id'=>$v['agent_list_id']))}" data-info="若存在子代理，则子菜单将一起被删除，你确定要删除吗？" title="删除">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>																</a>											</div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="{:U('add',array('id'=>$v['agent_list_id']))}"  class="tooltip-success" data-rel="tooltip" title="" data-original-title="添加子类">
+																	<span class="green">
+																		<i class="ace-icon fa fa-plus-circle bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{:U('edit',array('id'=>$v['agent_list_id']))}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="{:U('del',array('id'=>$v['agent_list_id']))}"  data-info="若存在子菜单，则子菜单将一起被删除，你确定要删除吗？" class="tooltip-error confirm-rst-url-btn" data-rel="tooltip" title="" data-original-title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>

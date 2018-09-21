@@ -1,0 +1,124 @@
+<extend name="Public/base"/>
+<block name="main-content">
+    <div class="page-content">
+
+        <link rel="stylesheet" type="text/css" media="all" href="__PUBLIC__/sldate/daterangepicker-bs3.css"/>
+        <form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('select')}">
+            <div class="row maintop">
+                <div class="col-xs-12 col-sm-5 hidden-xs btn-sespan">
+                    <div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                        <input type="text" name="reservation" id="reservation" class="sl-date" value="{$sldate}" placeholder="点击选择日期范围"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 btn-sespan">
+                    <div class="input-group">
+						<span class="input-group-addon"><i class="ace-icon fa fa-check"></i></span>
+                        <input type="text" name="key" id="key" class="form-control search-query admin_sea" value="{$keyy}" placeholder="输入需查询的关键字"/>
+                        <span class="input-group-btn">
+							<button type="submit" class="btn btn-xs btm-input btn-purple">
+                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>搜索
+                             </button>
+						</span>
+                    </div>
+                </div>
+
+                <div class="input-group-btn">
+                    <a href="{:U('select')}">
+                        <button type="button" class="btn btn-xs all-btn btn-purple">
+                            <span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+                            显示全部
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div>
+                    <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">创建时间|交易时间</th>
+                            <th class="hidden-xs">訂單號碼</th>
+                            <th class="hidden-xs">客戶訂單號碼</th>
+                            <th class="hidden-sm hidden-xs">商戶號MID</th>
+                            <th class="hidden-sm hidden-xs ">貨幣</th>
+                            <th class="hidden-sm hidden-xs ">入金金額</th>
+                            <th class="hidden-sm hidden-xs ">入金手續費</th>
+                            <th class="hidden-sm hidden-xs ">訂單狀態</th>
+                            <th class="hidden-sm hidden-xs ">通知狀態</th>
+                            <th class="hidden-sm hidden-xs ">入金銀行</th>
+                            <th class="hidden-sm hidden-xs ">備註</th>
+                            <th class="hidden-sm hidden-xs ">提交交式</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <foreach name="select_list" item="v">
+                            <tr>
+                                <td class="hidden-sm hidden-xs">{$v.begin_time|date="Y-m-d H:i:s",###}</td>
+                                <td class="hidden-sm hidden-xs">{$v.orderid}</td>
+                                <td class="hidden-sm hidden-xs">{$v.transid}</td>
+                                <td class="hidden-sm hidden-xs">{$v.uid}</td>
+                                <td class="hidden-sm hidden-xs">RMB</td>
+                                <td class="hidden-sm hidden-xs">{$v.ordermoney}</td>
+                                <td class="hidden-sm hidden-xs">{$v.free}</td>
+                                <td class="hidden-sm hidden-xs">
+                                    <switch name="v.status">
+                                        <case value="1"><span
+                                                class="label label-success arrowed-in arrowed-in-right">成功</span></case>
+                                        <case value="-1"><span class="label label-sm label-fiale">支付失败</span></case>
+                                        <case value="2"><span
+                                                class="label label-info arrowed-right arrowed-in">退款中</span></case>
+                                        <case value="3"><span class="label label-danger arrowed">退款失败</span></case>
+                                        <case value="4"><span class="label label-sm label-success">退款成功</span></case>
+                                        <default/>
+                                        <span class="label label-sm label-inverse arrowed-in">待支付</span>
+                                    </switch>
+                                </td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs action-buttons">
+                                        <switch name="v.notice_status">
+                                            <case value="1">
+                                                <span class="label label-success arrowed-in arrowed-in-right">已通知</span>
+                                            </case>
+                                            <case value="0"><span class="label label-sm label-fiale">未通知</span>
+                                            </case>
+                                        </switch>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm hidden-xs">{$v.paybank|getBankName}</td>
+                                <td class="hidden-sm hidden-xs">{$v.remark}</td>
+                                <td class="hidden-sm hidden-xs">API</td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td align="left"><a class="btn btn-sm btn-warning"
+                                                href="{:U('select',array('action'=>'export'))}"
+                                                title="导出报表">
+                                <i class="ace-icon fa fa-fire bigger-110"></i>
+                                <span class="bigger-110 no-text-shadow">导出报表</span>
+                            </a></button> 
+                            </td>
+                            <td height="50" colspan="12" align="left">{$page}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- /.page-content -->
+</block>
+<block name="scripts">
+    <script type="text/javascript" src="__PUBLIC__/sldate/moment.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/sldate/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $('#reservation').daterangepicker(null, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    </script>
+</block>
